@@ -1,0 +1,13 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20181126155405",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "sip_peer",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}

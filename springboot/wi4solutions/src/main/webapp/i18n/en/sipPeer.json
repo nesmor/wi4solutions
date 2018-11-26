@@ -1,0 +1,65 @@
+{
+    "wi4SolutionsApp": {
+        "sipPeer": {
+            "home": {
+                "title": "Sip Peers",
+                "createLabel": "Create a new Sip Peer",
+                "createOrEditLabel": "Create or edit a Sip Peer"
+            },
+            "created": "A new Sip Peer is created with identifier {{ param }}",
+            "updated": "A Sip Peer is updated with identifier {{ param }}",
+            "deleted": "A Sip Peer is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Sip Peer {{ id }}?"
+            },
+            "detail": {
+                "title": "Sip Peer"
+            },
+            "name": "Name",
+            "host": "Host",
+            "nat": "Nat",
+            "type": "Type",
+            "accountcode": "Accountcode",
+            "amaflags": "Amaflags",
+            "calllimit": "Calllimit",
+            "callgroup": "Callgroup",
+            "callerid": "Callerid",
+            "cancallforward": "Cancallforward",
+            "canreinvite": "Canreinvite",
+            "context": "Context",
+            "defaultip": "Defaultip",
+            "dtmfmode": "Dtmfmode",
+            "fromuser": "Fromuser",
+            "fromdomain": "Fromdomain",
+            "insecure": "Insecure",
+            "language": "Language",
+            "mailbox": "Mailbox",
+            "md5secret": "Md 5 Secret",
+            "deny": "Deny",
+            "permit": "Permit",
+            "mask": "Mask",
+            "musiconhold": "Musiconhold",
+            "pickupgroup": "Pickupgroup",
+            "qualify": "Qualify",
+            "regexten": "Regexten",
+            "restrictcid": "Restrictcid",
+            "rtptimeout": "Rtptimeout",
+            "rtpholdtimeout": "Rtpholdtimeout",
+            "secret": "Secret",
+            "setvar": "Setvar",
+            "disallow": "Disallow",
+            "allow": "Allow",
+            "fullcontact": "Fullcontact",
+            "ipaddr": "Ipaddr",
+            "port": "Port",
+            "regserver": "Regserver",
+            "regseconds": "Regseconds",
+            "lastms": "Lastms",
+            "username": "Username",
+            "defaultuser": "Defaultuser",
+            "subscribecontext": "Subscribecontext",
+            "useragent": "Useragent",
+            "dialPlan": "Dial Plan"
+        }
+    }
+}

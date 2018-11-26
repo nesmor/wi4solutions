@@ -1,0 +1,29 @@
+{
+    "wi4SolutionsApp": {
+        "dialPlan": {
+            "home": {
+                "title": "Dial Plans",
+                "createLabel": "Crear nuevo Dial Plan",
+                "createOrEditLabel": "Crear o editar Dial Plan"
+            },
+            "created": "Un nuevo Dial Plan ha sido creado con el identificador {{ param }}",
+            "updated": "Un Dial Plan ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Dial Plan ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Dial Plan {{ id }}?"
+            },
+            "detail": {
+                "title": "Dial Plan"
+            },
+            "name": "Name",
+            "description": "Description",
+            "prefix": "Prefix",
+            "digitCut": "Digit Cut",
+            "preceding": "Preceding",
+            "priority": "Priority",
+            "gateway": "Gateway",
+            "limit": "Limit",
+            "sipPeer": "Sip Peer"
+        }
+    }
+}

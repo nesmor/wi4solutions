@@ -1,0 +1,56 @@
+{
+    "name": "DialPlan",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prefix",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "digitCut",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "preceding",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "priority",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "gateway",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "limit",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "sipPeer",
+            "otherEntityName": "sipPeer",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "dialPlan"
+        }
+    ],
+    "changelogDate": "20181126191242",
+    "entityTableName": "dial_plan",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

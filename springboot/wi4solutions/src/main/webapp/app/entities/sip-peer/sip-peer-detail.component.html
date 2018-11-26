@@ -1,0 +1,199 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sipPeer">
+            <h2><span jhiTranslate="wi4SolutionsApp.sipPeer.detail.title">Sip Peer</span> {{sipPeer.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.name">Name</span></dt>
+                <dd>
+                    <span>{{sipPeer.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.host">Host</span></dt>
+                <dd>
+                    <span>{{sipPeer.host}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.nat">Nat</span></dt>
+                <dd>
+                    <span>{{sipPeer.nat}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.type">Type</span></dt>
+                <dd>
+                    <span>{{sipPeer.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.accountcode">Accountcode</span></dt>
+                <dd>
+                    <span>{{sipPeer.accountcode}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.amaflags">Amaflags</span></dt>
+                <dd>
+                    <span>{{sipPeer.amaflags}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.calllimit">Calllimit</span></dt>
+                <dd>
+                    <span>{{sipPeer.calllimit}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.callgroup">Callgroup</span></dt>
+                <dd>
+                    <span>{{sipPeer.callgroup}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.callerid">Callerid</span></dt>
+                <dd>
+                    <span>{{sipPeer.callerid}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.cancallforward">Cancallforward</span></dt>
+                <dd>
+                    <span>{{sipPeer.cancallforward}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.canreinvite">Canreinvite</span></dt>
+                <dd>
+                    <span>{{sipPeer.canreinvite}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.context">Context</span></dt>
+                <dd>
+                    <span>{{sipPeer.context}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.defaultip">Defaultip</span></dt>
+                <dd>
+                    <span>{{sipPeer.defaultip}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.dtmfmode">Dtmfmode</span></dt>
+                <dd>
+                    <span>{{sipPeer.dtmfmode}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.fromuser">Fromuser</span></dt>
+                <dd>
+                    <span>{{sipPeer.fromuser}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.fromdomain">Fromdomain</span></dt>
+                <dd>
+                    <span>{{sipPeer.fromdomain}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.insecure">Insecure</span></dt>
+                <dd>
+                    <span>{{sipPeer.insecure}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.language">Language</span></dt>
+                <dd>
+                    <span>{{sipPeer.language}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.mailbox">Mailbox</span></dt>
+                <dd>
+                    <span>{{sipPeer.mailbox}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.md5secret">Md 5 Secret</span></dt>
+                <dd>
+                    <span>{{sipPeer.md5secret}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.deny">Deny</span></dt>
+                <dd>
+                    <span>{{sipPeer.deny}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.permit">Permit</span></dt>
+                <dd>
+                    <span>{{sipPeer.permit}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.mask">Mask</span></dt>
+                <dd>
+                    <span>{{sipPeer.mask}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.musiconhold">Musiconhold</span></dt>
+                <dd>
+                    <span>{{sipPeer.musiconhold}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.pickupgroup">Pickupgroup</span></dt>
+                <dd>
+                    <span>{{sipPeer.pickupgroup}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.qualify">Qualify</span></dt>
+                <dd>
+                    <span>{{sipPeer.qualify}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.regexten">Regexten</span></dt>
+                <dd>
+                    <span>{{sipPeer.regexten}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.restrictcid">Restrictcid</span></dt>
+                <dd>
+                    <span>{{sipPeer.restrictcid}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.rtptimeout">Rtptimeout</span></dt>
+                <dd>
+                    <span>{{sipPeer.rtptimeout}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.rtpholdtimeout">Rtpholdtimeout</span></dt>
+                <dd>
+                    <span>{{sipPeer.rtpholdtimeout}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.secret">Secret</span></dt>
+                <dd>
+                    <span>{{sipPeer.secret}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.setvar">Setvar</span></dt>
+                <dd>
+                    <span>{{sipPeer.setvar}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.disallow">Disallow</span></dt>
+                <dd>
+                    <span>{{sipPeer.disallow}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.allow">Allow</span></dt>
+                <dd>
+                    <span>{{sipPeer.allow}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.fullcontact">Fullcontact</span></dt>
+                <dd>
+                    <span>{{sipPeer.fullcontact}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.ipaddr">Ipaddr</span></dt>
+                <dd>
+                    <span>{{sipPeer.ipaddr}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.port">Port</span></dt>
+                <dd>
+                    <span>{{sipPeer.port}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.regserver">Regserver</span></dt>
+                <dd>
+                    <span>{{sipPeer.regserver}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.regseconds">Regseconds</span></dt>
+                <dd>
+                    <span>{{sipPeer.regseconds}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.lastms">Lastms</span></dt>
+                <dd>
+                    <span>{{sipPeer.lastms}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.username">Username</span></dt>
+                <dd>
+                    <span>{{sipPeer.username}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.defaultuser">Defaultuser</span></dt>
+                <dd>
+                    <span>{{sipPeer.defaultuser}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.subscribecontext">Subscribecontext</span></dt>
+                <dd>
+                    <span>{{sipPeer.subscribecontext}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.sipPeer.useragent">Useragent</span></dt>
+                <dd>
+                    <span>{{sipPeer.useragent}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sip-peer', sipPeer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="wi4SolutionsApp.sipPeer.home.title">Sip Peers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sip-peer" [routerLink]="['/sip-peer/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="wi4SolutionsApp.sipPeer.home.createLabel">
+            Create new Sip Peer
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="sipPeers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.name">Name</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.host">Host</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.nat">Nat</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.type">Type</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.accountcode">Accountcode</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.amaflags">Amaflags</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.calllimit">Calllimit</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.callgroup">Callgroup</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.callerid">Callerid</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.cancallforward">Cancallforward</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.canreinvite">Canreinvite</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.context">Context</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.defaultip">Defaultip</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.dtmfmode">Dtmfmode</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.fromuser">Fromuser</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.fromdomain">Fromdomain</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.insecure">Insecure</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.language">Language</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.mailbox">Mailbox</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.md5secret">Md 5 Secret</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.deny">Deny</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.permit">Permit</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.mask">Mask</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.musiconhold">Musiconhold</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.pickupgroup">Pickupgroup</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.qualify">Qualify</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.regexten">Regexten</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.restrictcid">Restrictcid</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.rtptimeout">Rtptimeout</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.rtpholdtimeout">Rtpholdtimeout</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.secret">Secret</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.setvar">Setvar</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.disallow">Disallow</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.allow">Allow</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.fullcontact">Fullcontact</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.ipaddr">Ipaddr</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.port">Port</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.regserver">Regserver</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.regseconds">Regseconds</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.lastms">Lastms</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.username">Username</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.defaultuser">Defaultuser</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.subscribecontext">Subscribecontext</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.useragent">Useragent</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sipPeer of sipPeers ;trackBy: trackId">
+                <td><a [routerLink]="['/sip-peer', sipPeer.id, 'view' ]">{{sipPeer.id}}</a></td>
+                <td>{{sipPeer.name}}</td>
+                <td>{{sipPeer.host}}</td>
+                <td>{{sipPeer.nat}}</td>
+                <td>{{sipPeer.type}}</td>
+                <td>{{sipPeer.accountcode}}</td>
+                <td>{{sipPeer.amaflags}}</td>
+                <td>{{sipPeer.calllimit}}</td>
+                <td>{{sipPeer.callgroup}}</td>
+                <td>{{sipPeer.callerid}}</td>
+                <td>{{sipPeer.cancallforward}}</td>
+                <td>{{sipPeer.canreinvite}}</td>
+                <td>{{sipPeer.context}}</td>
+                <td>{{sipPeer.defaultip}}</td>
+                <td>{{sipPeer.dtmfmode}}</td>
+                <td>{{sipPeer.fromuser}}</td>
+                <td>{{sipPeer.fromdomain}}</td>
+                <td>{{sipPeer.insecure}}</td>
+                <td>{{sipPeer.language}}</td>
+                <td>{{sipPeer.mailbox}}</td>
+                <td>{{sipPeer.md5secret}}</td>
+                <td>{{sipPeer.deny}}</td>
+                <td>{{sipPeer.permit}}</td>
+                <td>{{sipPeer.mask}}</td>
+                <td>{{sipPeer.musiconhold}}</td>
+                <td>{{sipPeer.pickupgroup}}</td>
+                <td>{{sipPeer.qualify}}</td>
+                <td>{{sipPeer.regexten}}</td>
+                <td>{{sipPeer.restrictcid}}</td>
+                <td>{{sipPeer.rtptimeout}}</td>
+                <td>{{sipPeer.rtpholdtimeout}}</td>
+                <td>{{sipPeer.secret}}</td>
+                <td>{{sipPeer.setvar}}</td>
+                <td>{{sipPeer.disallow}}</td>
+                <td>{{sipPeer.allow}}</td>
+                <td>{{sipPeer.fullcontact}}</td>
+                <td>{{sipPeer.ipaddr}}</td>
+                <td>{{sipPeer.port}}</td>
+                <td>{{sipPeer.regserver}}</td>
+                <td>{{sipPeer.regseconds}}</td>
+                <td>{{sipPeer.lastms}}</td>
+                <td>{{sipPeer.username}}</td>
+                <td>{{sipPeer.defaultuser}}</td>
+                <td>{{sipPeer.subscribecontext}}</td>
+                <td>{{sipPeer.useragent}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/sip-peer', sipPeer.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/sip-peer', sipPeer.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sip-peer/'+ sipPeer.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

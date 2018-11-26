@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dialPlan">
+            <h2><span jhiTranslate="wi4SolutionsApp.dialPlan.detail.title">Dial Plan</span> {{dialPlan.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.name">Name</span></dt>
+                <dd>
+                    <span>{{dialPlan.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.description">Description</span></dt>
+                <dd>
+                    <span>{{dialPlan.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.prefix">Prefix</span></dt>
+                <dd>
+                    <span>{{dialPlan.prefix}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.digitCut">Digit Cut</span></dt>
+                <dd>
+                    <span>{{dialPlan.digitCut}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.preceding">Preceding</span></dt>
+                <dd>
+                    <span>{{dialPlan.preceding}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.priority">Priority</span></dt>
+                <dd>
+                    <span>{{dialPlan.priority}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.gateway">Gateway</span></dt>
+                <dd>
+                    <span>{{dialPlan.gateway}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.limit">Limit</span></dt>
+                <dd>
+                    <span>{{dialPlan.limit}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.sipPeer">Sip Peer</span></dt>
+                <dd>
+                    <div *ngIf="dialPlan.sipPeer">
+                        <a [routerLink]="['/sip-peer', dialPlan.sipPeer?.id, 'view']">{{dialPlan.sipPeer?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/dial-plan', dialPlan.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

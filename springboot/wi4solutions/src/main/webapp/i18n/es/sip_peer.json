@@ -1,0 +1,20 @@
+{
+    "wi4SolutionsApp": {
+        "sip_peer": {
+            "home": {
+                "title": "Sip Peers",
+                "createLabel": "Crear nuevo Sip Peer",
+                "createOrEditLabel": "Crear o editar Sip Peer"
+            },
+            "created": "Un nuevo Sip Peer ha sido creado con el identificador {{ param }}",
+            "updated": "Un Sip Peer ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Sip Peer ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Sip Peer {{ id }}?"
+            },
+            "detail": {
+                "title": "Sip Peer"
+            }
+        }
+    }
+}

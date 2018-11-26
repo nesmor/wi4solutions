@@ -1,0 +1,199 @@
+{
+    "name": "SipPeer",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "host",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "accountcode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "amaflags",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "calllimit",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "callgroup",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "callerid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cancallforward",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "canreinvite",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "context",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "defaultip",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dtmfmode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fromuser",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fromdomain",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "insecure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "language",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mailbox",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "md5secret",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deny",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "permit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mask",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "musiconhold",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pickupgroup",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "qualify",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "regexten",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "restrictcid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rtptimeout",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rtpholdtimeout",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "secret",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "setvar",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "disallow",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "allow",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fullcontact",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ipaddr",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "port",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "regserver",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "regseconds",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "lastms",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "username",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "defaultuser",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "subscribecontext",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "useragent",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "dialPlan",
+            "otherEntityName": "dialPlan",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "sipPeer"
+        }
+    ],
+    "changelogDate": "20181126154019",
+    "entityTableName": "sip_peer",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

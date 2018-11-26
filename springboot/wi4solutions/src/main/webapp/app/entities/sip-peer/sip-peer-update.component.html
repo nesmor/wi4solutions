@@ -1,0 +1,244 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-sip-peer-heading" jhiTranslate="wi4SolutionsApp.sipPeer.home.createOrEditLabel">Create or edit a Sip Peer</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!sipPeer.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="sipPeer.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="sipPeer.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.host" for="field_host">Host</label>
+                    <input type="text" class="form-control" name="host" id="field_host"
+                        [(ngModel)]="sipPeer.host" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.nat" for="field_nat">Nat</label>
+                    <input type="text" class="form-control" name="nat" id="field_nat"
+                        [(ngModel)]="sipPeer.nat" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.type" for="field_type">Type</label>
+                    <input type="text" class="form-control" name="type" id="field_type"
+                        [(ngModel)]="sipPeer.type" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.accountcode" for="field_accountcode">Accountcode</label>
+                    <input type="text" class="form-control" name="accountcode" id="field_accountcode"
+                        [(ngModel)]="sipPeer.accountcode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.amaflags" for="field_amaflags">Amaflags</label>
+                    <input type="text" class="form-control" name="amaflags" id="field_amaflags"
+                        [(ngModel)]="sipPeer.amaflags" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.calllimit" for="field_calllimit">Calllimit</label>
+                    <input type="number" class="form-control" name="calllimit" id="field_calllimit"
+                        [(ngModel)]="sipPeer.calllimit" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.callgroup" for="field_callgroup">Callgroup</label>
+                    <input type="text" class="form-control" name="callgroup" id="field_callgroup"
+                        [(ngModel)]="sipPeer.callgroup" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.callerid" for="field_callerid">Callerid</label>
+                    <input type="text" class="form-control" name="callerid" id="field_callerid"
+                        [(ngModel)]="sipPeer.callerid" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.cancallforward" for="field_cancallforward">Cancallforward</label>
+                    <input type="text" class="form-control" name="cancallforward" id="field_cancallforward"
+                        [(ngModel)]="sipPeer.cancallforward" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.canreinvite" for="field_canreinvite">Canreinvite</label>
+                    <input type="text" class="form-control" name="canreinvite" id="field_canreinvite"
+                        [(ngModel)]="sipPeer.canreinvite" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.context" for="field_context">Context</label>
+                    <input type="text" class="form-control" name="context" id="field_context"
+                        [(ngModel)]="sipPeer.context" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.defaultip" for="field_defaultip">Defaultip</label>
+                    <input type="text" class="form-control" name="defaultip" id="field_defaultip"
+                        [(ngModel)]="sipPeer.defaultip" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.dtmfmode" for="field_dtmfmode">Dtmfmode</label>
+                    <input type="text" class="form-control" name="dtmfmode" id="field_dtmfmode"
+                        [(ngModel)]="sipPeer.dtmfmode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.fromuser" for="field_fromuser">Fromuser</label>
+                    <input type="text" class="form-control" name="fromuser" id="field_fromuser"
+                        [(ngModel)]="sipPeer.fromuser" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.fromdomain" for="field_fromdomain">Fromdomain</label>
+                    <input type="text" class="form-control" name="fromdomain" id="field_fromdomain"
+                        [(ngModel)]="sipPeer.fromdomain" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.insecure" for="field_insecure">Insecure</label>
+                    <input type="text" class="form-control" name="insecure" id="field_insecure"
+                        [(ngModel)]="sipPeer.insecure" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.language" for="field_language">Language</label>
+                    <input type="text" class="form-control" name="language" id="field_language"
+                        [(ngModel)]="sipPeer.language" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.mailbox" for="field_mailbox">Mailbox</label>
+                    <input type="text" class="form-control" name="mailbox" id="field_mailbox"
+                        [(ngModel)]="sipPeer.mailbox" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.md5secret" for="field_md5secret">Md 5 Secret</label>
+                    <input type="text" class="form-control" name="md5secret" id="field_md5secret"
+                        [(ngModel)]="sipPeer.md5secret" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.deny" for="field_deny">Deny</label>
+                    <input type="text" class="form-control" name="deny" id="field_deny"
+                        [(ngModel)]="sipPeer.deny" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.permit" for="field_permit">Permit</label>
+                    <input type="text" class="form-control" name="permit" id="field_permit"
+                        [(ngModel)]="sipPeer.permit" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.mask" for="field_mask">Mask</label>
+                    <input type="text" class="form-control" name="mask" id="field_mask"
+                        [(ngModel)]="sipPeer.mask" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.musiconhold" for="field_musiconhold">Musiconhold</label>
+                    <input type="text" class="form-control" name="musiconhold" id="field_musiconhold"
+                        [(ngModel)]="sipPeer.musiconhold" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.pickupgroup" for="field_pickupgroup">Pickupgroup</label>
+                    <input type="text" class="form-control" name="pickupgroup" id="field_pickupgroup"
+                        [(ngModel)]="sipPeer.pickupgroup" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.qualify" for="field_qualify">Qualify</label>
+                    <input type="text" class="form-control" name="qualify" id="field_qualify"
+                        [(ngModel)]="sipPeer.qualify" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.regexten" for="field_regexten">Regexten</label>
+                    <input type="text" class="form-control" name="regexten" id="field_regexten"
+                        [(ngModel)]="sipPeer.regexten" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.restrictcid" for="field_restrictcid">Restrictcid</label>
+                    <input type="text" class="form-control" name="restrictcid" id="field_restrictcid"
+                        [(ngModel)]="sipPeer.restrictcid" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.rtptimeout" for="field_rtptimeout">Rtptimeout</label>
+                    <input type="text" class="form-control" name="rtptimeout" id="field_rtptimeout"
+                        [(ngModel)]="sipPeer.rtptimeout" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.rtpholdtimeout" for="field_rtpholdtimeout">Rtpholdtimeout</label>
+                    <input type="text" class="form-control" name="rtpholdtimeout" id="field_rtpholdtimeout"
+                        [(ngModel)]="sipPeer.rtpholdtimeout" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.secret" for="field_secret">Secret</label>
+                    <input type="text" class="form-control" name="secret" id="field_secret"
+                        [(ngModel)]="sipPeer.secret" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.setvar" for="field_setvar">Setvar</label>
+                    <input type="text" class="form-control" name="setvar" id="field_setvar"
+                        [(ngModel)]="sipPeer.setvar" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.disallow" for="field_disallow">Disallow</label>
+                    <input type="text" class="form-control" name="disallow" id="field_disallow"
+                        [(ngModel)]="sipPeer.disallow" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.allow" for="field_allow">Allow</label>
+                    <input type="text" class="form-control" name="allow" id="field_allow"
+                        [(ngModel)]="sipPeer.allow" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.fullcontact" for="field_fullcontact">Fullcontact</label>
+                    <input type="text" class="form-control" name="fullcontact" id="field_fullcontact"
+                        [(ngModel)]="sipPeer.fullcontact" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.ipaddr" for="field_ipaddr">Ipaddr</label>
+                    <input type="text" class="form-control" name="ipaddr" id="field_ipaddr"
+                        [(ngModel)]="sipPeer.ipaddr" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.port" for="field_port">Port</label>
+                    <input type="number" class="form-control" name="port" id="field_port"
+                        [(ngModel)]="sipPeer.port" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.regserver" for="field_regserver">Regserver</label>
+                    <input type="text" class="form-control" name="regserver" id="field_regserver"
+                        [(ngModel)]="sipPeer.regserver" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.regseconds" for="field_regseconds">Regseconds</label>
+                    <input type="number" class="form-control" name="regseconds" id="field_regseconds"
+                        [(ngModel)]="sipPeer.regseconds" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.lastms" for="field_lastms">Lastms</label>
+                    <input type="number" class="form-control" name="lastms" id="field_lastms"
+                        [(ngModel)]="sipPeer.lastms" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.username" for="field_username">Username</label>
+                    <input type="text" class="form-control" name="username" id="field_username"
+                        [(ngModel)]="sipPeer.username" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.defaultuser" for="field_defaultuser">Defaultuser</label>
+                    <input type="text" class="form-control" name="defaultuser" id="field_defaultuser"
+                        [(ngModel)]="sipPeer.defaultuser" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.subscribecontext" for="field_subscribecontext">Subscribecontext</label>
+                    <input type="text" class="form-control" name="subscribecontext" id="field_subscribecontext"
+                        [(ngModel)]="sipPeer.subscribecontext" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.useragent" for="field_useragent">Useragent</label>
+                    <input type="text" class="form-control" name="useragent" id="field_useragent"
+                        [(ngModel)]="sipPeer.useragent" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
