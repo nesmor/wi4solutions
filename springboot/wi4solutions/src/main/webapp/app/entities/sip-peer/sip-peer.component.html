@@ -4,7 +4,7 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sip-peer" [routerLink]="['/sip-peer/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="wi4SolutionsApp.sipPeer.home.createLabel">
-            Create new Sip Peer
+            Create new Carrier
             </span>
         </button>
     </h2>
@@ -17,7 +17,7 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.name">Name</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.host">Host</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.nat">Nat</span></th>
+          <!--    <th><span jhiTranslate="wi4SolutionsApp.sipPeer.nat">Nat</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.type">Type</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.accountcode">Accountcode</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.amaflags">Amaflags</span></th>
@@ -59,6 +59,7 @@
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.defaultuser">Defaultuser</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.subscribecontext">Subscribecontext</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.useragent">Useragent</span></th>
+            -->
             <th></th>
             </tr>
             </thead>
@@ -67,7 +68,7 @@
                 <td><a [routerLink]="['/sip-peer', sipPeer.id, 'view' ]">{{sipPeer.id}}</a></td>
                 <td>{{sipPeer.name}}</td>
                 <td>{{sipPeer.host}}</td>
-                <td>{{sipPeer.nat}}</td>
+               <!-- <td>{{sipPeer.nat}}</td>
                 <td>{{sipPeer.type}}</td>
                 <td>{{sipPeer.accountcode}}</td>
                 <td>{{sipPeer.amaflags}}</td>
@@ -108,7 +109,7 @@
                 <td>{{sipPeer.username}}</td>
                 <td>{{sipPeer.defaultuser}}</td>
                 <td>{{sipPeer.subscribecontext}}</td>
-                <td>{{sipPeer.useragent}}</td>
+                <td>{{sipPeer.useragent}}</td>-->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
