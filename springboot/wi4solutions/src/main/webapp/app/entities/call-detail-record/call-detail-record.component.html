@@ -1,0 +1,84 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="wi4SolutionsApp.callDetailRecord.home.title">Call Detail Records</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-call-detail-record" [routerLink]="['/call-detail-record/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="wi4SolutionsApp.callDetailRecord.home.createLabel">
+            Create new Call Detail Record
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="callDetailRecords">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.calldate">Calldate</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.clid">Clid</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.src">Src</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.dst">Dst</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.dcontext">Dcontext</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.channel">Channel</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.dstchannel">Dstchannel</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.lastapp">Lastapp</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.lastdata">Lastdata</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.duration">Duration</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.billsec">Billsec</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.disposition">Disposition</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.amaflags">Amaflags</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.accountcode">Accountcode</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.uniqueid">Uniqueid</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callDetailRecord.userfield">Userfield</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let callDetailRecord of callDetailRecords ;trackBy: trackId">
+                <td><a [routerLink]="['/call-detail-record', callDetailRecord.id, 'view' ]">{{callDetailRecord.id}}</a></td>
+                <td>{{callDetailRecord.calldate | date:'medium'}}</td>
+                <td>{{callDetailRecord.clid}}</td>
+                <td>{{callDetailRecord.src}}</td>
+                <td>{{callDetailRecord.dst}}</td>
+                <td>{{callDetailRecord.dcontext}}</td>
+                <td>{{callDetailRecord.channel}}</td>
+                <td>{{callDetailRecord.dstchannel}}</td>
+                <td>{{callDetailRecord.lastapp}}</td>
+                <td>{{callDetailRecord.lastdata}}</td>
+                <td>{{callDetailRecord.duration}}</td>
+                <td>{{callDetailRecord.billsec}}</td>
+                <td>{{callDetailRecord.disposition}}</td>
+                <td>{{callDetailRecord.amaflags}}</td>
+                <td>{{callDetailRecord.accountcode}}</td>
+                <td>{{callDetailRecord.uniqueid}}</td>
+                <td>{{callDetailRecord.userfield}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/call-detail-record', callDetailRecord.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/call-detail-record', callDetailRecord.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'call-detail-record/'+ callDetailRecord.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

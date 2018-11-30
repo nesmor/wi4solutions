@@ -1,0 +1,36 @@
+{
+    "wi4SolutionsApp": {
+        "callDetailRecord": {
+            "home": {
+                "title": "Call Detail Records",
+                "createLabel": "Create a new Call Detail Record",
+                "createOrEditLabel": "Create or edit a Call Detail Record"
+            },
+            "created": "A new Call Detail Record is created with identifier {{ param }}",
+            "updated": "A Call Detail Record is updated with identifier {{ param }}",
+            "deleted": "A Call Detail Record is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Call Detail Record {{ id }}?"
+            },
+            "detail": {
+                "title": "Call Detail Record"
+            },
+            "calldate": "Calldate",
+            "clid": "Clid",
+            "src": "Src",
+            "dst": "Dst",
+            "dcontext": "Dcontext",
+            "channel": "Channel",
+            "dstchannel": "Dstchannel",
+            "lastapp": "Lastapp",
+            "lastdata": "Lastdata",
+            "duration": "Duration",
+            "billsec": "Billsec",
+            "disposition": "Disposition",
+            "amaflags": "Amaflags",
+            "accountcode": "Accountcode",
+            "uniqueid": "Uniqueid",
+            "userfield": "Userfield"
+        }
+    }
+}

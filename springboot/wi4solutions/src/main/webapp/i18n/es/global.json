@@ -11,6 +11,7 @@
                 "dialPlan": "Plan de Marcado",
                 "carrier": "Proveedor",
                 "gateway": "Gateway",
+                "callDetailRecord": "Call Detail Record",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

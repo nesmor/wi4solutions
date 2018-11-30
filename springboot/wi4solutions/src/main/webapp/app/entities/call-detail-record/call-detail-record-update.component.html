@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-call-detail-record-heading" jhiTranslate="wi4SolutionsApp.callDetailRecord.home.createOrEditLabel">Create or edit a Call Detail Record</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!callDetailRecord.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="callDetailRecord.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.calldate" for="field_calldate">Calldate</label>
+                    <div class="d-flex">
+                        <input id="field_calldate" type="datetime-local" class="form-control" name="calldate" [(ngModel)]="calldate"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.clid" for="field_clid">Clid</label>
+                    <input type="text" class="form-control" name="clid" id="field_clid"
+                        [(ngModel)]="callDetailRecord.clid" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.src" for="field_src">Src</label>
+                    <input type="text" class="form-control" name="src" id="field_src"
+                        [(ngModel)]="callDetailRecord.src" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.dst" for="field_dst">Dst</label>
+                    <input type="text" class="form-control" name="dst" id="field_dst"
+                        [(ngModel)]="callDetailRecord.dst" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.dcontext" for="field_dcontext">Dcontext</label>
+                    <input type="text" class="form-control" name="dcontext" id="field_dcontext"
+                        [(ngModel)]="callDetailRecord.dcontext" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.channel" for="field_channel">Channel</label>
+                    <input type="text" class="form-control" name="channel" id="field_channel"
+                        [(ngModel)]="callDetailRecord.channel" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.dstchannel" for="field_dstchannel">Dstchannel</label>
+                    <input type="text" class="form-control" name="dstchannel" id="field_dstchannel"
+                        [(ngModel)]="callDetailRecord.dstchannel" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.lastapp" for="field_lastapp">Lastapp</label>
+                    <input type="text" class="form-control" name="lastapp" id="field_lastapp"
+                        [(ngModel)]="callDetailRecord.lastapp" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.lastdata" for="field_lastdata">Lastdata</label>
+                    <input type="text" class="form-control" name="lastdata" id="field_lastdata"
+                        [(ngModel)]="callDetailRecord.lastdata" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.duration" for="field_duration">Duration</label>
+                    <input type="number" class="form-control" name="duration" id="field_duration"
+                        [(ngModel)]="callDetailRecord.duration" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.billsec" for="field_billsec">Billsec</label>
+                    <input type="number" class="form-control" name="billsec" id="field_billsec"
+                        [(ngModel)]="callDetailRecord.billsec" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.disposition" for="field_disposition">Disposition</label>
+                    <input type="text" class="form-control" name="disposition" id="field_disposition"
+                        [(ngModel)]="callDetailRecord.disposition" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.amaflags" for="field_amaflags">Amaflags</label>
+                    <input type="number" class="form-control" name="amaflags" id="field_amaflags"
+                        [(ngModel)]="callDetailRecord.amaflags" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.accountcode" for="field_accountcode">Accountcode</label>
+                    <input type="text" class="form-control" name="accountcode" id="field_accountcode"
+                        [(ngModel)]="callDetailRecord.accountcode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.uniqueid" for="field_uniqueid">Uniqueid</label>
+                    <input type="text" class="form-control" name="uniqueid" id="field_uniqueid"
+                        [(ngModel)]="callDetailRecord.uniqueid" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callDetailRecord.userfield" for="field_userfield">Userfield</label>
+                    <input type="text" class="form-control" name="userfield" id="field_userfield"
+                        [(ngModel)]="callDetailRecord.userfield" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

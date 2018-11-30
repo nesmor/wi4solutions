@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="callDetailRecord">
+            <h2><span jhiTranslate="wi4SolutionsApp.callDetailRecord.detail.title">Call Detail Record</span> {{callDetailRecord.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.calldate">Calldate</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.calldate}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.clid">Clid</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.clid}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.src">Src</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.src}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.dst">Dst</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.dst}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.dcontext">Dcontext</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.dcontext}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.channel">Channel</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.channel}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.dstchannel">Dstchannel</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.dstchannel}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.lastapp">Lastapp</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.lastapp}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.lastdata">Lastdata</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.lastdata}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.duration">Duration</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.duration}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.billsec">Billsec</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.billsec}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.disposition">Disposition</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.disposition}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.amaflags">Amaflags</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.amaflags}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.accountcode">Accountcode</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.accountcode}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.uniqueid">Uniqueid</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.uniqueid}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callDetailRecord.userfield">Userfield</span></dt>
+                <dd>
+                    <span>{{callDetailRecord.userfield}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/call-detail-record', callDetailRecord.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity CallDetailRecord.
+    -->
+    <changeSet id="20181130013300-1" author="jhipster">
+        <createTable tableName="call_detail_record">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="calldate" type="datetime">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="clid" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="src" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="dst" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="dcontext" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="channel" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="dstchannel" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lastapp" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lastdata" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="duration" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="billsec" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="disposition" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="amaflags" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="accountcode" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="uniqueid" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="userfield" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="call_detail_record" columnName="calldate" columnDataType="datetime"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>
