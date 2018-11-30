@@ -29,18 +29,14 @@
                 <dd>
                     <span>{{dialPlan.priority}}</span>
                 </dd>
-                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.gateway">Gateway</span></dt>
-                <dd>
-                    <span>{{dialPlan.gateway}}</span>
-                </dd>
                 <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.limit">Limit</span></dt>
                 <dd>
                     <span>{{dialPlan.limit}}</span>
                 </dd>
-                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.sipPeer">Sip Peer</span></dt>
+                <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.gateway">Gateway</span></dt>
                 <dd>
-                    <div *ngIf="dialPlan.sipPeer">
-                        <a [routerLink]="['/sip-peer', dialPlan.sipPeer?.id, 'view']">{{dialPlan.sipPeer?.id}}</a>
+                    <div *ngIf="dialPlan.gateway">
+                        <a [routerLink]="['/gateway', dialPlan.gateway?.id, 'view']">{{dialPlan.gateway?.id}}</a>
                     </div>
                 </dd>
             </dl>

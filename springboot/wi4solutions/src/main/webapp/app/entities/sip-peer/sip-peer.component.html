@@ -4,7 +4,7 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sip-peer" [routerLink]="['/sip-peer/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="wi4SolutionsApp.sipPeer.home.createLabel">
-            Create new Carrier
+            Create new Sip Peer
             </span>
         </button>
     </h2>
@@ -17,11 +17,15 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.name">Name</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.host">Host</span></th>
-          <!--    <th><span jhiTranslate="wi4SolutionsApp.sipPeer.nat">Nat</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.nat">Nat</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.calllimit">Calllimit</span></th>
+             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.allow">Allow</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.status">Status</span></th>
+            <!--  
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.type">Type</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.accountcode">Accountcode</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.amaflags">Amaflags</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.calllimit">Calllimit</span></th>
+         
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.callgroup">Callgroup</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.callerid">Callerid</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.cancallforward">Cancallforward</span></th>
@@ -48,7 +52,7 @@
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.secret">Secret</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.setvar">Setvar</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.disallow">Disallow</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.sipPeer.allow">Allow</span></th>
+           
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.fullcontact">Fullcontact</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.ipaddr">Ipaddr</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.sipPeer.port">Port</span></th>
@@ -68,11 +72,21 @@
                 <td><a [routerLink]="['/sip-peer', sipPeer.id, 'view' ]">{{sipPeer.id}}</a></td>
                 <td>{{sipPeer.name}}</td>
                 <td>{{sipPeer.host}}</td>
-               <!-- <td>{{sipPeer.nat}}</td>
+                <td>{{sipPeer.nat}}</td>
+                <td>{{sipPeer.calllimit}}</td>
+                <td>{{sipPeer.allow}}</td>
+                 <td>
+                    <button class="btn btn-danger btn-sm" (click)="setActive(sipPeer, true)" *ngIf="!sipPeer.status"
+                            jhiTranslate="userManagement.deactivated">Deactivated</button>
+                    <button class="btn btn-success btn-sm" (click)="setActive(sipPeer, false)" *ngIf="sipPeer.status"
+                            jhiTranslate="userManagement.activated">Activated</button>
+                </td>
+             <!--    
+                <td>{{sipPeer.status}}</td>
                 <td>{{sipPeer.type}}</td>
                 <td>{{sipPeer.accountcode}}</td>
                 <td>{{sipPeer.amaflags}}</td>
-                <td>{{sipPeer.calllimit}}</td>
+                
                 <td>{{sipPeer.callgroup}}</td>
                 <td>{{sipPeer.callerid}}</td>
                 <td>{{sipPeer.cancallforward}}</td>
@@ -99,7 +113,7 @@
                 <td>{{sipPeer.secret}}</td>
                 <td>{{sipPeer.setvar}}</td>
                 <td>{{sipPeer.disallow}}</td>
-                <td>{{sipPeer.allow}}</td>
+                
                 <td>{{sipPeer.fullcontact}}</td>
                 <td>{{sipPeer.ipaddr}}</td>
                 <td>{{sipPeer.port}}</td>
@@ -110,6 +124,7 @@
                 <td>{{sipPeer.defaultuser}}</td>
                 <td>{{sipPeer.subscribecontext}}</td>
                 <td>{{sipPeer.useragent}}</td>-->
+                
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

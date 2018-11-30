@@ -8,11 +8,11 @@
     -->
     <changeSet id="20181126191242-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="sip_peer_id"
+        <addForeignKeyConstraint baseColumnNames="gateway_id"
                                  baseTableName="dial_plan"
-                                 constraintName="fk_dial_plan_sip_peer_id"
+                                 constraintName="fk_dial_plan_gateway_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="sip_peer"/>
+                                 referencedTableName="gateway"/>
 
     </changeSet>
 </databaseChangeLog>

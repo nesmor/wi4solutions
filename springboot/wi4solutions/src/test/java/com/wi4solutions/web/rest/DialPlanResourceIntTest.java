@@ -57,9 +57,6 @@ public class DialPlanResourceIntTest {
     private static final Integer DEFAULT_PRIORITY = 1;
     private static final Integer UPDATED_PRIORITY = 2;
 
-    private static final Long DEFAULT_GATEWAY = 1L;
-    private static final Long UPDATED_GATEWAY = 2L;
-
     private static final Integer DEFAULT_LIMIT = 1;
     private static final Integer UPDATED_LIMIT = 2;
 
@@ -107,7 +104,6 @@ public class DialPlanResourceIntTest {
             .digitCut(DEFAULT_DIGIT_CUT)
             .preceding(DEFAULT_PRECEDING)
             .priority(DEFAULT_PRIORITY)
-            .gateway(DEFAULT_GATEWAY)
             .limit(DEFAULT_LIMIT);
         return dialPlan;
     }
@@ -138,7 +134,6 @@ public class DialPlanResourceIntTest {
         assertThat(testDialPlan.getDigitCut()).isEqualTo(DEFAULT_DIGIT_CUT);
         assertThat(testDialPlan.getPreceding()).isEqualTo(DEFAULT_PRECEDING);
         assertThat(testDialPlan.getPriority()).isEqualTo(DEFAULT_PRIORITY);
-        assertThat(testDialPlan.getGateway()).isEqualTo(DEFAULT_GATEWAY);
         assertThat(testDialPlan.getLimit()).isEqualTo(DEFAULT_LIMIT);
     }
 
@@ -178,7 +173,6 @@ public class DialPlanResourceIntTest {
             .andExpect(jsonPath("$.[*].digitCut").value(hasItem(DEFAULT_DIGIT_CUT.toString())))
             .andExpect(jsonPath("$.[*].preceding").value(hasItem(DEFAULT_PRECEDING.toString())))
             .andExpect(jsonPath("$.[*].priority").value(hasItem(DEFAULT_PRIORITY)))
-            .andExpect(jsonPath("$.[*].gateway").value(hasItem(DEFAULT_GATEWAY.intValue())))
             .andExpect(jsonPath("$.[*].limit").value(hasItem(DEFAULT_LIMIT)));
     }
     
@@ -199,7 +193,6 @@ public class DialPlanResourceIntTest {
             .andExpect(jsonPath("$.digitCut").value(DEFAULT_DIGIT_CUT.toString()))
             .andExpect(jsonPath("$.preceding").value(DEFAULT_PRECEDING.toString()))
             .andExpect(jsonPath("$.priority").value(DEFAULT_PRIORITY))
-            .andExpect(jsonPath("$.gateway").value(DEFAULT_GATEWAY.intValue()))
             .andExpect(jsonPath("$.limit").value(DEFAULT_LIMIT));
     }
 
@@ -230,7 +223,6 @@ public class DialPlanResourceIntTest {
             .digitCut(UPDATED_DIGIT_CUT)
             .preceding(UPDATED_PRECEDING)
             .priority(UPDATED_PRIORITY)
-            .gateway(UPDATED_GATEWAY)
             .limit(UPDATED_LIMIT);
 
         restDialPlanMockMvc.perform(put("/api/dial-plans")
@@ -248,7 +240,6 @@ public class DialPlanResourceIntTest {
         assertThat(testDialPlan.getDigitCut()).isEqualTo(UPDATED_DIGIT_CUT);
         assertThat(testDialPlan.getPreceding()).isEqualTo(UPDATED_PRECEDING);
         assertThat(testDialPlan.getPriority()).isEqualTo(UPDATED_PRIORITY);
-        assertThat(testDialPlan.getGateway()).isEqualTo(UPDATED_GATEWAY);
         assertThat(testDialPlan.getLimit()).isEqualTo(UPDATED_LIMIT);
     }
 

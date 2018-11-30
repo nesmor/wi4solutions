@@ -40,14 +40,14 @@ public class DialPlan implements Serializable {
     @Column(name = "priority")
     private Integer priority;
 
-    @Column(name = "gateway")
-    private Long gateway;
-
     @Column(name = "jhi_limit")
     private Integer limit;
+    
+    @Column(name = "status")
+    private boolean status = false;
 
-    @OneToOne    @JoinColumn(unique = true)
-    private SipPeer sipPeer;
+    @ManyToOne    @JoinColumn(name="gateway_id")
+    private Gateway gateway;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -136,19 +136,6 @@ public class DialPlan implements Serializable {
         this.priority = priority;
     }
 
-    public Long getGateway() {
-        return gateway;
-    }
-
-    public DialPlan gateway(Long gateway) {
-        this.gateway = gateway;
-        return this;
-    }
-
-    public void setGateway(Long gateway) {
-        this.gateway = gateway;
-    }
-
     public Integer getLimit() {
         return limit;
     }
@@ -161,18 +148,31 @@ public class DialPlan implements Serializable {
     public void setLimit(Integer limit) {
         this.limit = limit;
     }
-
-    public SipPeer getSipPeer() {
-        return sipPeer;
+    
+    public boolean getStatus() {
+        return status;
     }
 
-    public DialPlan sipPeer(SipPeer sipPeer) {
-        this.sipPeer = sipPeer;
+    public DialPlan status(boolean status) {
+        this.status = status;
         return this;
     }
 
-    public void setSipPeer(SipPeer sipPeer) {
-        this.sipPeer = sipPeer;
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Gateway getGateway() {
+        return gateway;
+    }
+
+    public DialPlan gateway(Gateway gateway) {
+        this.gateway = gateway;
+        return this;
+    }
+
+    public void setGateway(Gateway gateway) {
+        this.gateway = gateway;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -206,7 +206,6 @@ public class DialPlan implements Serializable {
             ", digitCut='" + getDigitCut() + "'" +
             ", preceding='" + getPreceding() + "'" +
             ", priority=" + getPriority() +
-            ", gateway=" + getGateway() +
             ", limit=" + getLimit() +
             "}";
     }

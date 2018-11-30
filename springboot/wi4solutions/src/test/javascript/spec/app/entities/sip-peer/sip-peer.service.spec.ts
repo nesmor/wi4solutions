@@ -66,7 +66,8 @@ describe('Service Tests', () => {
                 'AAAAAAA',
                 'AAAAAAA',
                 'AAAAAAA',
-                'AAAAAAA'
+                'AAAAAAA',
+                0
             );
         });
 
@@ -144,7 +145,8 @@ describe('Service Tests', () => {
                         username: 'BBBBBB',
                         defaultuser: 'BBBBBB',
                         subscribecontext: 'BBBBBB',
-                        useragent: 'BBBBBB'
+                        useragent: 'BBBBBB',
+                        status: 1
                     },
                     elemDefault
                 );
@@ -204,7 +206,8 @@ describe('Service Tests', () => {
                         username: 'BBBBBB',
                         defaultuser: 'BBBBBB',
                         subscribecontext: 'BBBBBB',
-                        useragent: 'BBBBBB'
+                        useragent: 'BBBBBB',
+                        status: 1
                     },
                     elemDefault
                 );

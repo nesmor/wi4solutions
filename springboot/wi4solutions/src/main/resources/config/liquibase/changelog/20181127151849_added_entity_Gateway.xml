@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Gateway.
+    -->
+    <changeSet id="20181127151849-1" author="jhipster">
+        <createTable tableName="gateway">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="host" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="nat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="accountcode" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="amaflags" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="calllimit" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="callgroup" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="callerid" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="cancallforward" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="canreinvite" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="context" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="defaultip" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="dtmfmode" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fromuser" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fromdomain" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="insecure" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="language" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="mailbox" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="md_5_secret" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_deny" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="permit" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="mask" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="musiconhold" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pickupgroup" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="qualify" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="regexten" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="restrictcid" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="rtptimeout" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="rtpholdtimeout" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="secret" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="setvar" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="disallow" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="allow" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fullcontact" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="ipaddr" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="port" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="regserver" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="regseconds" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lastms" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="username" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="defaultuser" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="subscribecontext" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="useragent" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="status" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

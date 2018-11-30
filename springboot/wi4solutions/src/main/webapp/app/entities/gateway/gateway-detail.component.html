@@ -1,0 +1,209 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="gateway">
+            <h2><span jhiTranslate="wi4SolutionsApp.gateway.detail.title">Gateway</span> {{gateway.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.name">Name</span></dt>
+                <dd>
+                    <span>{{gateway.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.host">Host</span></dt>
+                <dd>
+                    <span>{{gateway.host}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.nat">Nat</span></dt>
+                <dd>
+                    <span>{{gateway.nat}}</span>
+                </dd>
+                <!-- 
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.type">Type</span></dt>
+                <dd>
+                    <span>{{gateway.type}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.accountcode">Accountcode</span></dt>
+                <dd>
+                    <span>{{gateway.accountcode}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.amaflags">Amaflags</span></dt>
+                <dd>
+                    <span>{{gateway.amaflags}}</span>
+                </dd>
+            --> 
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.calllimit">Calllimit</span></dt>
+                <dd>
+                    <span>{{gateway.calllimit}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.allow">Allow</span></dt>
+                <dd>
+                    <span>{{gateway.allow}}</span>
+                </dd>
+            <!--
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.callgroup">Callgroup</span></dt>
+                <dd>
+                    <span>{{gateway.callgroup}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.callerid">Callerid</span></dt>
+                <dd>
+                    <span>{{gateway.callerid}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.cancallforward">Cancallforward</span></dt>
+                <dd>
+                    <span>{{gateway.cancallforward}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.canreinvite">Canreinvite</span></dt>
+                <dd>
+                    <span>{{gateway.canreinvite}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.context">Context</span></dt>
+                <dd>
+                    <span>{{gateway.context}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.defaultip">Defaultip</span></dt>
+                <dd>
+                    <span>{{gateway.defaultip}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.dtmfmode">Dtmfmode</span></dt>
+                <dd>
+                    <span>{{gateway.dtmfmode}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.fromuser">Fromuser</span></dt>
+                <dd>
+                    <span>{{gateway.fromuser}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.fromdomain">Fromdomain</span></dt>
+                <dd>
+                    <span>{{gateway.fromdomain}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.insecure">Insecure</span></dt>
+                <dd>
+                    <span>{{gateway.insecure}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.language">Language</span></dt>
+                <dd>
+                    <span>{{gateway.language}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.mailbox">Mailbox</span></dt>
+                <dd>
+                    <span>{{gateway.mailbox}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.md5secret">Md 5 Secret</span></dt>
+                <dd>
+                    <span>{{gateway.md5secret}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.deny">Deny</span></dt>
+                <dd>
+                    <span>{{gateway.deny}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.permit">Permit</span></dt>
+                <dd>
+                    <span>{{gateway.permit}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.mask">Mask</span></dt>
+                <dd>
+                    <span>{{gateway.mask}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.musiconhold">Musiconhold</span></dt>
+                <dd>
+                    <span>{{gateway.musiconhold}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.pickupgroup">Pickupgroup</span></dt>
+                <dd>
+                    <span>{{gateway.pickupgroup}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.qualify">Qualify</span></dt>
+                <dd>
+                    <span>{{gateway.qualify}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.regexten">Regexten</span></dt>
+                <dd>
+                    <span>{{gateway.regexten}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.restrictcid">Restrictcid</span></dt>
+                <dd>
+                    <span>{{gateway.restrictcid}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.rtptimeout">Rtptimeout</span></dt>
+                <dd>
+                    <span>{{gateway.rtptimeout}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.rtpholdtimeout">Rtpholdtimeout</span></dt>
+                <dd>
+                    <span>{{gateway.rtpholdtimeout}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.secret">Secret</span></dt>
+                <dd>
+                    <span>{{gateway.secret}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.setvar">Setvar</span></dt>
+                <dd>
+                    <span>{{gateway.setvar}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.disallow">Disallow</span></dt>
+                <dd>
+                    <span>{{gateway.disallow}}</span>
+                </dd>
+                
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.fullcontact">Fullcontact</span></dt>
+                <dd>
+                    <span>{{gateway.fullcontact}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.ipaddr">Ipaddr</span></dt>
+                <dd>
+                    <span>{{gateway.ipaddr}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.port">Port</span></dt>
+                <dd>
+                    <span>{{gateway.port}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.regserver">Regserver</span></dt>
+                <dd>
+                    <span>{{gateway.regserver}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.regseconds">Regseconds</span></dt>
+                <dd>
+                    <span>{{gateway.regseconds}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.lastms">Lastms</span></dt>
+                <dd>
+                    <span>{{gateway.lastms}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.username">Username</span></dt>
+                <dd>
+                    <span>{{gateway.username}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.defaultuser">Defaultuser</span></dt>
+                <dd>
+                    <span>{{gateway.defaultuser}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.subscribecontext">Subscribecontext</span></dt>
+                <dd>
+                    <span>{{gateway.subscribecontext}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.useragent">Useragent</span></dt>
+                <dd>
+                    <span>{{gateway.useragent}}</span>
+                </dd>
+                --> 
+                <dt><span jhiTranslate="wi4SolutionsApp.gateway.status">Status</span></dt>
+                <dd>
+                    <span>{{gateway.status}}</span>
+                </dd>
+                
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/gateway', gateway.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

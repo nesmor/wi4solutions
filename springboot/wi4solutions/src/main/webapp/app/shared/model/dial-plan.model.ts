@@ -1,4 +1,4 @@
-import { ISipPeer } from 'app/shared/model//sip-peer.model';
+import { IGateway } from 'app/shared/model//gateway.model';
 
 export interface IDialPlan {
     id?: number;
@@ -8,9 +8,8 @@ export interface IDialPlan {
     digitCut?: string;
     preceding?: string;
     priority?: number;
-    gateway?: number;
     limit?: number;
-    sipPeer?: ISipPeer;
+    gateway?: IGateway;
 }
 
 export class DialPlan implements IDialPlan {
@@ -22,8 +21,7 @@ export class DialPlan implements IDialPlan {
         public digitCut?: string,
         public preceding?: string,
         public priority?: number,
-        public gateway?: number,
         public limit?: number,
-        public sipPeer?: ISipPeer
+        public gateway?: IGateway
     ) {}
 }

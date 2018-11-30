@@ -1,0 +1,66 @@
+{
+    "wi4SolutionsApp": {
+        "gateway": {
+            "home": {
+                "title": "Gateways",
+                "createLabel": "Crear nuevo Gateway",
+                "createOrEditLabel": "Crear o editar Gateway"
+            },
+            "created": "Un nuevo Gateway ha sido creado con el identificador {{ param }}",
+            "updated": "Un Gateway ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Gateway ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Gateway {{ id }}?"
+            },
+            "detail": {
+                "title": "Gateway"
+            },
+            "name": "Name",
+            "host": "Host",
+            "nat": "Nat",
+            "type": "Type",
+            "accountcode": "Accountcode",
+            "amaflags": "Amaflags",
+            "calllimit": "Calllimit",
+            "callgroup": "Callgroup",
+            "callerid": "Callerid",
+            "cancallforward": "Cancallforward",
+            "canreinvite": "Canreinvite",
+            "context": "Context",
+            "defaultip": "Defaultip",
+            "dtmfmode": "Dtmfmode",
+            "fromuser": "Fromuser",
+            "fromdomain": "Fromdomain",
+            "insecure": "Insecure",
+            "language": "Language",
+            "mailbox": "Mailbox",
+            "md5secret": "Md 5 Secret",
+            "deny": "Deny",
+            "permit": "Permit",
+            "mask": "Mask",
+            "musiconhold": "Musiconhold",
+            "pickupgroup": "Pickupgroup",
+            "qualify": "Qualify",
+            "regexten": "Regexten",
+            "restrictcid": "Restrictcid",
+            "rtptimeout": "Rtptimeout",
+            "rtpholdtimeout": "Rtpholdtimeout",
+            "secret": "Secret",
+            "setvar": "Setvar",
+            "disallow": "Disallow",
+            "allow": "Allow",
+            "fullcontact": "Fullcontact",
+            "ipaddr": "Ipaddr",
+            "port": "Port",
+            "regserver": "Regserver",
+            "regseconds": "Regseconds",
+            "lastms": "Lastms",
+            "username": "Username",
+            "defaultuser": "Defaultuser",
+            "subscribecontext": "Subscribecontext",
+            "useragent": "Useragent",
+            "status": "Status",
+            "dialPlan": "Dial Plan"
+        }
+    }
+}

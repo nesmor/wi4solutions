@@ -19,11 +19,28 @@
                     <input type="text" class="form-control" name="host" id="field_host"
                         [(ngModel)]="sipPeer.host" />
                 </div>
-          <!--     <div class="form-group">
+                <div class="form-group" hidden="true">
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.nat" for="field_nat">Nat</label>
-                    <input type="text" class="form-control" name="nat" id="field_nat"
+                    <input type="text" class="form-control" name="nat" id="field_nat" 
                         [(ngModel)]="sipPeer.nat" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.calllimit" for="field_calllimit">Calllimit</label>
+                    <input type="number" class="form-control" name="calllimit" id="field_calllimit"
+                        [(ngModel)]="sipPeer.calllimit" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.allow" for="field_allow">Allow</label>
+                    <input type="text" class="form-control" name="allow" id="field_allow"
+                        [(ngModel)]="sipPeer.allow" />
+                </div>
+                  <div class="form-check">
+                    <label class="form-check-label" for="field_status">
+                        <input class="form-check-input" [disabled]="sipPeer.id === null" type="checkbox" id="field_status" name="status" [(ngModel)]="sipPeer.status">
+                        <span jhiTranslate="userManagement.activated">Activated</span>
+                    </label>
+                </div>
+                <!--  
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.type" for="field_type">Type</label>
                     <input type="text" class="form-control" name="type" id="field_type"
@@ -38,11 +55,6 @@
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.amaflags" for="field_amaflags">Amaflags</label>
                     <input type="text" class="form-control" name="amaflags" id="field_amaflags"
                         [(ngModel)]="sipPeer.amaflags" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.calllimit" for="field_calllimit">Calllimit</label>
-                    <input type="number" class="form-control" name="calllimit" id="field_calllimit"
-                        [(ngModel)]="sipPeer.calllimit" />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.callgroup" for="field_callgroup">Callgroup</label>
@@ -174,11 +186,7 @@
                     <input type="text" class="form-control" name="disallow" id="field_disallow"
                         [(ngModel)]="sipPeer.disallow" />
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.allow" for="field_allow">Allow</label>
-                    <input type="text" class="form-control" name="allow" id="field_allow"
-                        [(ngModel)]="sipPeer.allow" />
-                </div>
+                
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.fullcontact" for="field_fullcontact">Fullcontact</label>
                     <input type="text" class="form-control" name="fullcontact" id="field_fullcontact"
@@ -205,6 +213,12 @@
                         [(ngModel)]="sipPeer.regseconds" />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.status" for="field_status">Status</label>
+                    <input type="number" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="sipPeer.status" />
+                </div>
+                <!-- 
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.lastms" for="field_lastms">Lastms</label>
                     <input type="number" class="form-control" name="lastms" id="field_lastms"
                         [(ngModel)]="sipPeer.lastms" />
@@ -229,7 +243,7 @@
                     <input type="text" class="form-control" name="useragent" id="field_useragent"
                         [(ngModel)]="sipPeer.useragent" />
                 </div>
-                -->
+                 -->
 
             </div>
             <div>

@@ -16,8 +16,6 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing SipPeer.
@@ -81,19 +79,11 @@ public class SipPeerResource {
     /**
      * GET  /sip-peers : get all the sipPeers.
      *
-     * @param filter the filter of the request
      * @return the ResponseEntity with status 200 (OK) and the list of sipPeers in body
      */
     @GetMapping("/sip-peers")
     @Timed
-    public List<SipPeer> getAllSipPeers(@RequestParam(required = false) String filter) {
-        if ("dialplan-is-null".equals(filter)) {
-            log.debug("REST request to get all SipPeers where dialPlan is null");
-            return StreamSupport
-                .stream(sipPeerRepository.findAll().spliterator(), false)
-                .filter(sipPeer -> sipPeer.getDialPlan() == null)
-                .collect(Collectors.toList());
-        }
+    public List<SipPeer> getAllSipPeers() {
         log.debug("REST request to get all SipPeers");
         return sipPeerRepository.findAll();
     }

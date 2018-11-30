@@ -1,0 +1,18 @@
+entity CallDetailRecord {
+calldate ZonedDateTime,
+clid String,
+src String,
+dst String,
+dcontext String,
+channel String,
+dstchannel String,
+lastapp String,
+lastdata String,
+duration Integer,
+billsec Integer,
+disposition String,
+amaflags Integer,
+accountcode String,
+uniqueid String,
+userfield String
+}

@@ -116,6 +116,7 @@ class SipPeerGatlingTest extends Simulation {
                 , "defaultuser":"SAMPLE_TEXT"
                 , "subscribecontext":"SAMPLE_TEXT"
                 , "useragent":"SAMPLE_TEXT"
+                , "status":"0"
                 }""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_sipPeer_url"))).exitHereIfFailed

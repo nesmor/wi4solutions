@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(DialPlanService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new DialPlan(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0, 0);
+            elemDefault = new DialPlan(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0);
         });
 
         describe('Service methods', async () => {
@@ -61,7 +61,6 @@ describe('Service Tests', () => {
                         digitCut: 'BBBBBB',
                         preceding: 'BBBBBB',
                         priority: 1,
-                        gateway: 1,
                         limit: 1
                     },
                     elemDefault
@@ -85,7 +84,6 @@ describe('Service Tests', () => {
                         digitCut: 'BBBBBB',
                         preceding: 'BBBBBB',
                         priority: 1,
-                        gateway: 1,
                         limit: 1
                     },
                     elemDefault

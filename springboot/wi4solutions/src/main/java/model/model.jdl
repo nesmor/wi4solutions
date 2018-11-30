@@ -43,8 +43,59 @@ lastms Integer,
 username String,
 defaultuser String,
 subscribecontext String,
-useragent String
+useragent String,
+status Integer
 }
+
+entity Gateway {
+id Long,
+name String,
+host String,
+nat String,
+type String,
+accountcode String,
+amaflags String,
+calllimit Integer,
+callgroup String,
+callerid String,
+cancallforward String,
+canreinvite String,
+context String,
+defaultip String,
+dtmfmode String,
+fromuser String,
+fromdomain String,
+insecure String,
+language String,
+mailbox String,
+md5secret String,
+deny String,
+permit String,
+mask String,
+musiconhold String,
+pickupgroup String,
+qualify String,
+regexten String,
+restrictcid String,
+rtptimeout String,
+rtpholdtimeout String,
+secret String,
+setvar String,
+disallow String,
+allow String,
+fullcontact String,
+ipaddr String,
+port Integer,
+regserver String,
+regseconds Integer,
+lastms Integer,
+username String,
+defaultuser String,
+subscribecontext String,
+useragent String,
+status Integer
+}
+
 
 entity DialPlan {
 id Long,
@@ -53,13 +104,12 @@ description String,
 prefix String,
 digitCut String,
 preceding String,
-priority Integer,
-gateway Long, 
+priority Integer, 
 limit Integer
 }
 
 relationship OneToOne{
-	DialPlan to SipPeer
+	DialPlan to Gateway
 }
 
 

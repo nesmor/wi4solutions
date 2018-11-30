@@ -1,6 +1,5 @@
 package com.wi4solutions.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -155,9 +154,8 @@ public class SipPeer implements Serializable {
     @Column(name = "useragent")
     private String useragent;
 
-    @OneToOne(mappedBy = "sipPeer")
-    @JsonIgnore
-    private DialPlan dialPlan;
+    @Column(name = "status")
+    private boolean status = false;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -740,17 +738,17 @@ public class SipPeer implements Serializable {
         this.useragent = useragent;
     }
 
-    public DialPlan getDialPlan() {
-        return dialPlan;
+    public boolean getStatus() {
+        return status;
     }
 
-    public SipPeer dialPlan(DialPlan dialPlan) {
-        this.dialPlan = dialPlan;
+    public SipPeer status(boolean status) {
+        this.status = status;
         return this;
     }
 
-    public void setDialPlan(DialPlan dialPlan) {
-        this.dialPlan = dialPlan;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -822,6 +820,7 @@ public class SipPeer implements Serializable {
             ", defaultuser='" + getDefaultuser() + "'" +
             ", subscribecontext='" + getSubscribecontext() + "'" +
             ", useragent='" + getUseragent() + "'" +
+            ", status=" + getStatus() +
             "}";
     }
 }

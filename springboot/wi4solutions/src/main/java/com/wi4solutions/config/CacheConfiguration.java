@@ -40,6 +40,7 @@ public class CacheConfiguration {
             cm.createCache(com.wi4solutions.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.wi4solutions.domain.SipPeer.class.getName(), jcacheConfiguration);
             cm.createCache(com.wi4solutions.domain.DialPlan.class.getName(), jcacheConfiguration);
+            cm.createCache(com.wi4solutions.domain.Gateway.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

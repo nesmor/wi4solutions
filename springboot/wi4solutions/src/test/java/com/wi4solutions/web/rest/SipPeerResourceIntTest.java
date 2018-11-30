@@ -171,6 +171,9 @@ public class SipPeerResourceIntTest {
     private static final String DEFAULT_USERAGENT = "AAAAAAAAAA";
     private static final String UPDATED_USERAGENT = "BBBBBBBBBB";
 
+    private static final boolean DEFAULT_STATUS = true;
+    private static final boolean UPDATED_STATUS = false;
+
     @Autowired
     private SipPeerRepository sipPeerRepository;
 
@@ -252,7 +255,8 @@ public class SipPeerResourceIntTest {
             .username(DEFAULT_USERNAME)
             .defaultuser(DEFAULT_DEFAULTUSER)
             .subscribecontext(DEFAULT_SUBSCRIBECONTEXT)
-            .useragent(DEFAULT_USERAGENT);
+            .useragent(DEFAULT_USERAGENT)
+            .status(DEFAULT_STATUS);
         return sipPeer;
     }
 
@@ -320,6 +324,7 @@ public class SipPeerResourceIntTest {
         assertThat(testSipPeer.getDefaultuser()).isEqualTo(DEFAULT_DEFAULTUSER);
         assertThat(testSipPeer.getSubscribecontext()).isEqualTo(DEFAULT_SUBSCRIBECONTEXT);
         assertThat(testSipPeer.getUseragent()).isEqualTo(DEFAULT_USERAGENT);
+        assertThat(testSipPeer.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
@@ -395,7 +400,8 @@ public class SipPeerResourceIntTest {
             .andExpect(jsonPath("$.[*].username").value(hasItem(DEFAULT_USERNAME.toString())))
             .andExpect(jsonPath("$.[*].defaultuser").value(hasItem(DEFAULT_DEFAULTUSER.toString())))
             .andExpect(jsonPath("$.[*].subscribecontext").value(hasItem(DEFAULT_SUBSCRIBECONTEXT.toString())))
-            .andExpect(jsonPath("$.[*].useragent").value(hasItem(DEFAULT_USERAGENT.toString())));
+            .andExpect(jsonPath("$.[*].useragent").value(hasItem(DEFAULT_USERAGENT.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)));
     }
     
     @Test
@@ -452,7 +458,8 @@ public class SipPeerResourceIntTest {
             .andExpect(jsonPath("$.username").value(DEFAULT_USERNAME.toString()))
             .andExpect(jsonPath("$.defaultuser").value(DEFAULT_DEFAULTUSER.toString()))
             .andExpect(jsonPath("$.subscribecontext").value(DEFAULT_SUBSCRIBECONTEXT.toString()))
-            .andExpect(jsonPath("$.useragent").value(DEFAULT_USERAGENT.toString()));
+            .andExpect(jsonPath("$.useragent").value(DEFAULT_USERAGENT.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS));
     }
 
     @Test
@@ -519,7 +526,8 @@ public class SipPeerResourceIntTest {
             .username(UPDATED_USERNAME)
             .defaultuser(UPDATED_DEFAULTUSER)
             .subscribecontext(UPDATED_SUBSCRIBECONTEXT)
-            .useragent(UPDATED_USERAGENT);
+            .useragent(UPDATED_USERAGENT)
+            .status(UPDATED_STATUS);
 
         restSipPeerMockMvc.perform(put("/api/sip-peers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -574,6 +582,7 @@ public class SipPeerResourceIntTest {
         assertThat(testSipPeer.getDefaultuser()).isEqualTo(UPDATED_DEFAULTUSER);
         assertThat(testSipPeer.getSubscribecontext()).isEqualTo(UPDATED_SUBSCRIBECONTEXT);
         assertThat(testSipPeer.getUseragent()).isEqualTo(UPDATED_USERAGENT);
+        assertThat(testSipPeer.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 
     @Test

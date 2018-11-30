@@ -6,8 +6,8 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IDialPlan } from 'app/shared/model/dial-plan.model';
 import { DialPlanService } from './dial-plan.service';
-import { ISipPeer } from 'app/shared/model/sip-peer.model';
-import { SipPeerService } from 'app/entities/sip-peer';
+import { IGateway } from 'app/shared/model/gateway.model';
+import { GatewayService } from 'app/entities/gateway';
 
 @Component({
     selector: 'jhi-dial-plan-update',
@@ -17,12 +17,12 @@ export class DialPlanUpdateComponent implements OnInit {
     dialPlan: IDialPlan;
     isSaving: boolean;
 
-    sippeers: ISipPeer[];
+    gateways: IGateway[];
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private dialPlanService: DialPlanService,
-        private sipPeerService: SipPeerService,
+        private gatewayService: GatewayService,
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -31,14 +31,15 @@ export class DialPlanUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ dialPlan }) => {
             this.dialPlan = dialPlan;
         });
-        this.sipPeerService.query({ filter: 'dialplan-is-null' }).subscribe(
-            (res: HttpResponse<ISipPeer[]>) => {
-                if (!this.dialPlan.sipPeer || !this.dialPlan.sipPeer.id) {
-                    this.sippeers = res.body;
+        this.gatewayService.query().subscribe(
+            // this.gatewayService.query({ filter: 'dialplan-is-null' }).subscribe(
+            (res: HttpResponse<IGateway[]>) => {
+                if (!this.dialPlan.gateway || !this.dialPlan.gateway.id) {
+                    this.gateways = res.body;
                 } else {
-                    this.sipPeerService.find(this.dialPlan.sipPeer.id).subscribe(
-                        (subRes: HttpResponse<ISipPeer>) => {
-                            this.sippeers = [subRes.body].concat(res.body);
+                    this.gatewayService.find(this.dialPlan.gateway.id).subscribe(
+                        (subRes: HttpResponse<IGateway>) => {
+                            this.gateways = [subRes.body].concat(res.body);
                         },
                         (subRes: HttpErrorResponse) => this.onError(subRes.message)
                     );
@@ -78,7 +79,7 @@ export class DialPlanUpdateComponent implements OnInit {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    trackSipPeerById(index: number, item: ISipPeer) {
+    trackGatewayById(index: number, item: IGateway) {
         return item.id;
     }
 }

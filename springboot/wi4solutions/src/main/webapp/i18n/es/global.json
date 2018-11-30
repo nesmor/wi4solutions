@@ -8,7 +8,9 @@
             "entities": {
                 "main": "Entidades",
                 "sipPeer": "Sip Peer",
-                "dialPlan": "Dial Plan",
+                "dialPlan": "Plan de Marcado",
+                "carrier": "Proveedor",
+                "gateway": "Gateway",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

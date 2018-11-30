@@ -1,5 +1,3 @@
-import { IDialPlan } from 'app/shared/model//dial-plan.model';
-
 export interface ISipPeer {
     id?: number;
     name?: string;
@@ -46,7 +44,7 @@ export interface ISipPeer {
     defaultuser?: string;
     subscribecontext?: string;
     useragent?: string;
-    dialPlan?: IDialPlan;
+    status?: number;
 }
 
 export class SipPeer implements ISipPeer {
@@ -96,6 +94,6 @@ export class SipPeer implements ISipPeer {
         public defaultuser?: string,
         public subscribecontext?: string,
         public useragent?: string,
-        public dialPlan?: IDialPlan
+        public status?: number
     ) {}
 }

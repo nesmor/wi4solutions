@@ -15,6 +15,8 @@ export class DialPlanComponent implements OnInit, OnDestroy {
     dialPlans: IDialPlan[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    error: any;
+    success: any;
 
     constructor(
         private dialPlanService: DialPlanService,
@@ -42,6 +44,20 @@ export class DialPlanComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
+    }
+
+    setActive(dialPlan, isActivated) {
+        dialPlan.status = isActivated;
+        this.dialPlanService.update(dialPlan).subscribe(response => {
+            if (response.status === 200) {
+                this.error = null;
+                this.success = 'OK';
+                this.loadAll();
+            } else {
+                this.success = null;
+                this.error = 'ERROR';
+            }
+        });
     }
 
     trackId(index: number, item: IDialPlan) {

@@ -1,0 +1,160 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="wi4SolutionsApp.gateway.home.title">Gateways</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-gateway" [routerLink]="['/gateway/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="wi4SolutionsApp.gateway.home.createLabel">
+            Create new Gateway
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="gateways">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.name">Name</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.host">Host</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.nat">Nat</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.calllimit">Calllimit</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.allow">Allow</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.status">Status</span></th>
+            
+            <!-- 
+            
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.type">Type</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.accountcode">Accountcode</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.amaflags">Amaflags</span></th>
+            
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.callgroup">Callgroup</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.callerid">Callerid</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.cancallforward">Cancallforward</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.canreinvite">Canreinvite</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.context">Context</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.defaultip">Defaultip</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.dtmfmode">Dtmfmode</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.fromuser">Fromuser</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.fromdomain">Fromdomain</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.insecure">Insecure</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.language">Language</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.mailbox">Mailbox</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.md5secret">Md 5 Secret</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.deny">Deny</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.permit">Permit</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.mask">Mask</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.musiconhold">Musiconhold</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.pickupgroup">Pickupgroup</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.qualify">Qualify</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.regexten">Regexten</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.restrictcid">Restrictcid</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.rtptimeout">Rtptimeout</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.rtpholdtimeout">Rtpholdtimeout</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.secret">Secret</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.setvar">Setvar</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.disallow">Disallow</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.allow">Allow</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.fullcontact">Fullcontact</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.ipaddr">Ipaddr</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.port">Port</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.regserver">Regserver</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.regseconds">Regseconds</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.lastms">Lastms</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.username">Username</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.defaultuser">Defaultuser</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.subscribecontext">Subscribecontext</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.useragent">Useragent</span></th>
+             -->
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let gateway of gateways ;trackBy: trackId">
+                <td><a [routerLink]="['/gateway', gateway.id, 'view' ]">{{gateway.id}}</a></td>
+                <td>{{gateway.name}}</td>
+                <td>{{gateway.host}}</td>
+                <td>{{gateway.nat}}</td>
+                <td>{{gateway.calllimit}}</td>
+                <td>{{gateway.allow}}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="setActive(gateway, true)" *ngIf="!gateway.status"
+                            jhiTranslate="userManagement.deactivated">Deactivated</button>
+                    <button class="btn btn-success btn-sm" (click)="setActive(gateway, false)" *ngIf="gateway.status"
+                            jhiTranslate="userManagement.activated">Activated</button>
+                </td>
+                
+                <!-- 
+                <td>{{gateway.status}}</td>
+                <td>{{gateway.nat}}</td>
+                <td>{{gateway.type}}</td>
+                <td>{{gateway.accountcode}}</td>
+                <td>{{gateway.amaflags}}</td>
+               
+                <td>{{gateway.callgroup}}</td>
+                <td>{{gateway.callerid}}</td>
+                <td>{{gateway.cancallforward}}</td>
+                <td>{{gateway.canreinvite}}</td>
+                <td>{{gateway.context}}</td>
+                <td>{{gateway.defaultip}}</td>
+                <td>{{gateway.dtmfmode}}</td>
+                <td>{{gateway.fromuser}}</td>
+                <td>{{gateway.fromdomain}}</td>
+                <td>{{gateway.insecure}}</td>
+                <td>{{gateway.language}}</td>
+                <td>{{gateway.mailbox}}</td>
+                <td>{{gateway.md5secret}}</td>
+                <td>{{gateway.deny}}</td>
+                <td>{{gateway.permit}}</td>
+                <td>{{gateway.mask}}</td>
+                <td>{{gateway.musiconhold}}</td>
+                <td>{{gateway.pickupgroup}}</td>
+                <td>{{gateway.qualify}}</td>
+                <td>{{gateway.regexten}}</td>
+                <td>{{gateway.restrictcid}}</td>
+                <td>{{gateway.rtptimeout}}</td>
+                <td>{{gateway.rtpholdtimeout}}</td>
+                <td>{{gateway.secret}}</td>
+                <td>{{gateway.setvar}}</td>
+                <td>{{gateway.disallow}}</td>
+                
+                <td>{{gateway.fullcontact}}</td>
+                <td>{{gateway.ipaddr}}</td>
+                <td>{{gateway.port}}</td>
+                <td>{{gateway.regserver}}</td>
+                <td>{{gateway.regseconds}}</td>
+                <td>{{gateway.lastms}}</td>
+                <td>{{gateway.username}}</td>
+                <td>{{gateway.defaultuser}}</td>
+                <td>{{gateway.subscribecontext}}</td>
+                <td>{{gateway.useragent}}</td>
+              	-->
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/gateway', gateway.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/gateway', gateway.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'gateway/'+ gateway.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

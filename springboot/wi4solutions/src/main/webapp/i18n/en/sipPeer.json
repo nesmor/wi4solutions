@@ -59,7 +59,7 @@
             "defaultuser": "Defaultuser",
             "subscribecontext": "Subscribecontext",
             "useragent": "Useragent",
-            "dialPlan": "Dial Plan"
+            "status": "Status"
         }
     }
 }

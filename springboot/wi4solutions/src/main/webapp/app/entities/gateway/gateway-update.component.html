@@ -1,0 +1,266 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-gateway-heading" jhiTranslate="wi4SolutionsApp.gateway.home.createOrEditLabel">Create or edit a Gateway</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!gateway.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="gateway.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="gateway.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.host" for="field_host">Host</label>
+                    <input type="text" class="form-control" name="host" id="field_host"
+                        [(ngModel)]="gateway.host" />
+                </div>
+                <div class="form-group" hidden="true">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.nat" for="field_nat">Nat</label>
+                    <input type="text" class="form-control" name="nat" id="field_nat"  
+                        [(ngModel)]="gateway.nat" />
+                </div>
+                <!--  
+                
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.type" for="field_type">Type</label>
+                    <input type="text" class="form-control" name="type" id="field_type"
+                        [(ngModel)]="gateway.type" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.accountcode" for="field_accountcode">Accountcode</label>
+                    <input type="text" class="form-control" name="accountcode" id="field_accountcode"
+                        [(ngModel)]="gateway.accountcode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.amaflags" for="field_amaflags">Amaflags</label>
+                    <input type="text" class="form-control" name="amaflags" id="field_amaflags"
+                        [(ngModel)]="gateway.amaflags" />
+                </div>
+                -->
+                
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.calllimit" for="field_calllimit">Calllimit</label>
+                    <input type="number" class="form-control" name="calllimit" id="field_calllimit"
+                        [(ngModel)]="gateway.calllimit" />
+                </div>
+                <!--
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.callgroup" for="field_callgroup">Callgroup</label>
+                    <input type="text" class="form-control" name="callgroup" id="field_callgroup"
+                        [(ngModel)]="gateway.callgroup" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.callerid" for="field_callerid">Callerid</label>
+                    <input type="text" class="form-control" name="callerid" id="field_callerid"
+                        [(ngModel)]="gateway.callerid" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.cancallforward" for="field_cancallforward">Cancallforward</label>
+                    <input type="text" class="form-control" name="cancallforward" id="field_cancallforward"
+                        [(ngModel)]="gateway.cancallforward" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.canreinvite" for="field_canreinvite">Canreinvite</label>
+                    <input type="text" class="form-control" name="canreinvite" id="field_canreinvite"
+                        [(ngModel)]="gateway.canreinvite" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.context" for="field_context">Context</label>
+                    <input type="text" class="form-control" name="context" id="field_context"
+                        [(ngModel)]="gateway.context" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.defaultip" for="field_defaultip">Defaultip</label>
+                    <input type="text" class="form-control" name="defaultip" id="field_defaultip"
+                        [(ngModel)]="gateway.defaultip" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.dtmfmode" for="field_dtmfmode">Dtmfmode</label>
+                    <input type="text" class="form-control" name="dtmfmode" id="field_dtmfmode"
+                        [(ngModel)]="gateway.dtmfmode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.fromuser" for="field_fromuser">Fromuser</label>
+                    <input type="text" class="form-control" name="fromuser" id="field_fromuser"
+                        [(ngModel)]="gateway.fromuser" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.fromdomain" for="field_fromdomain">Fromdomain</label>
+                    <input type="text" class="form-control" name="fromdomain" id="field_fromdomain"
+                        [(ngModel)]="gateway.fromdomain" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.insecure" for="field_insecure">Insecure</label>
+                    <input type="text" class="form-control" name="insecure" id="field_insecure"
+                        [(ngModel)]="gateway.insecure" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.language" for="field_language">Language</label>
+                    <input type="text" class="form-control" name="language" id="field_language"
+                        [(ngModel)]="gateway.language" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.mailbox" for="field_mailbox">Mailbox</label>
+                    <input type="text" class="form-control" name="mailbox" id="field_mailbox"
+                        [(ngModel)]="gateway.mailbox" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.md5secret" for="field_md5secret">Md 5 Secret</label>
+                    <input type="text" class="form-control" name="md5secret" id="field_md5secret"
+                        [(ngModel)]="gateway.md5secret" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.deny" for="field_deny">Deny</label>
+                    <input type="text" class="form-control" name="deny" id="field_deny"
+                        [(ngModel)]="gateway.deny" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.permit" for="field_permit">Permit</label>
+                    <input type="text" class="form-control" name="permit" id="field_permit"
+                        [(ngModel)]="gateway.permit" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.mask" for="field_mask">Mask</label>
+                    <input type="text" class="form-control" name="mask" id="field_mask"
+                        [(ngModel)]="gateway.mask" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.musiconhold" for="field_musiconhold">Musiconhold</label>
+                    <input type="text" class="form-control" name="musiconhold" id="field_musiconhold"
+                        [(ngModel)]="gateway.musiconhold" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.pickupgroup" for="field_pickupgroup">Pickupgroup</label>
+                    <input type="text" class="form-control" name="pickupgroup" id="field_pickupgroup"
+                        [(ngModel)]="gateway.pickupgroup" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.qualify" for="field_qualify">Qualify</label>
+                    <input type="text" class="form-control" name="qualify" id="field_qualify"
+                        [(ngModel)]="gateway.qualify" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.regexten" for="field_regexten">Regexten</label>
+                    <input type="text" class="form-control" name="regexten" id="field_regexten"
+                        [(ngModel)]="gateway.regexten" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.restrictcid" for="field_restrictcid">Restrictcid</label>
+                    <input type="text" class="form-control" name="restrictcid" id="field_restrictcid"
+                        [(ngModel)]="gateway.restrictcid" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.rtptimeout" for="field_rtptimeout">Rtptimeout</label>
+                    <input type="text" class="form-control" name="rtptimeout" id="field_rtptimeout"
+                        [(ngModel)]="gateway.rtptimeout" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.rtpholdtimeout" for="field_rtpholdtimeout">Rtpholdtimeout</label>
+                    <input type="text" class="form-control" name="rtpholdtimeout" id="field_rtpholdtimeout"
+                        [(ngModel)]="gateway.rtpholdtimeout" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.secret" for="field_secret">Secret</label>
+                    <input type="text" class="form-control" name="secret" id="field_secret"
+                        [(ngModel)]="gateway.secret" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.setvar" for="field_setvar">Setvar</label>
+                    <input type="text" class="form-control" name="setvar" id="field_setvar"
+                        [(ngModel)]="gateway.setvar" />
+                </div>
+               
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.disallow" for="field_disallow">Disallow</label>
+                    <input type="text" class="form-control" name="disallow" id="field_disallow"
+                        [(ngModel)]="gateway.disallow" />
+                </div>
+                 -->
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.allow" for="field_allow">Allow</label>
+                    <input type="text" class="form-control" name="allow" id="field_allow"
+                        [(ngModel)]="gateway.allow" />
+                </div>
+                <!-- 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.fullcontact" for="field_fullcontact">Fullcontact</label>
+                    <input type="text" class="form-control" name="fullcontact" id="field_fullcontact"
+                        [(ngModel)]="gateway.fullcontact" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.ipaddr" for="field_ipaddr">Ipaddr</label>
+                    <input type="text" class="form-control" name="ipaddr" id="field_ipaddr"
+                        [(ngModel)]="gateway.ipaddr" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.port" for="field_port">Port</label>
+                    <input type="number" class="form-control" name="port" id="field_port"
+                        [(ngModel)]="gateway.port" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.regserver" for="field_regserver">Regserver</label>
+                    <input type="text" class="form-control" name="regserver" id="field_regserver"
+                        [(ngModel)]="gateway.regserver" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.regseconds" for="field_regseconds">Regseconds</label>
+                    <input type="number" class="form-control" name="regseconds" id="field_regseconds"
+                        [(ngModel)]="gateway.regseconds" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.lastms" for="field_lastms">Lastms</label>
+                    <input type="number" class="form-control" name="lastms" id="field_lastms"
+                        [(ngModel)]="gateway.lastms" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.username" for="field_username">Username</label>
+                    <input type="text" class="form-control" name="username" id="field_username"
+                        [(ngModel)]="gateway.username" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.defaultuser" for="field_defaultuser">Defaultuser</label>
+                    <input type="text" class="form-control" name="defaultuser" id="field_defaultuser"
+                        [(ngModel)]="gateway.defaultuser" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.subscribecontext" for="field_subscribecontext">Subscribecontext</label>
+                    <input type="text" class="form-control" name="subscribecontext" id="field_subscribecontext"
+                        [(ngModel)]="gateway.subscribecontext" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.useragent" for="field_useragent">Useragent</label>
+                    <input type="text" class="form-control" name="useragent" id="field_useragent"
+                        [(ngModel)]="gateway.useragent" />
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.status" for="field_status">Status</label>
+                    <input type="number" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="gateway.status" />
+                </div>
+                
+                 -->
+                <div class="form-check">
+                    <label class="form-check-label" for="field_status">
+                        <input class="form-check-input" [disabled]="gateway.id === null" type="checkbox" id="field_status" name="status" [(ngModel)]="gateway.status">
+                        <span jhiTranslate="userManagement.activated">Activated</span>
+                    </label>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

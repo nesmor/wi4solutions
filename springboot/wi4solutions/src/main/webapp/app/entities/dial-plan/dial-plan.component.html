@@ -14,16 +14,16 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+                     <th><span jhiTranslate="global.field.id">ID</span></th>
          <!--   <th><span jhiTranslate="wi4SolutionsApp.dialPlan.name">Name</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.dialPlan.description">Description</span></th>-->
             <th><span jhiTranslate="wi4SolutionsApp.dialPlan.prefix">Prefix</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.dialPlan.digitCut">Digit Cut</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.dialPlan.preceding">Preceding</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.dialPlan.priority">Priority</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.dialPlan.gateway">Gateway</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.dialPlan.limit">Limit</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.dialPlan.sipPeer">Sip Peer</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.dialPlan.status">Status</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.dialPlan.gateway">Sip Peer</span></th>
             <th></th>
             </tr>
             </thead>
@@ -33,15 +33,20 @@
                 <!--  <td>{{dialPlan.name}}</td>
                 <td>{{dialPlan.description}}</td>-->
                <!-- <td>{{dialPlan.prefix}}</td>-->
-                <td>{{dialPlan.preceding + dialPlan.prefix.substring(0, (dialPlan.prefix.length - 1) - (dialPlan.digitCut - 1))}}</td>
+                <td>{{dialPlan.prefix}}=>{{dialPlan.preceding + dialPlan.prefix.substring(dialPlan.digitCut)}}</td>
                 <td>{{dialPlan.digitCut}}</td>
                 <td>{{dialPlan.preceding}}</td>
                 <td>{{dialPlan.priority}}</td>
-                <td>{{dialPlan.gateway}}</td>
                 <td>{{dialPlan.limit}}</td>
                 <td>
-                    <div *ngIf="dialPlan.sipPeer">
-                        <a [routerLink]="['../sip-peer', dialPlan.sipPeer?.id, 'view' ]" >{{dialPlan.sipPeer?.id}}</a>
+                    <button class="btn btn-danger btn-sm" (click)="setActive(dialPlan, true)" *ngIf="!dialPlan.status"
+                            jhiTranslate="userManagement.deactivated">Deactivated</button>
+                    <button class="btn btn-success btn-sm" (click)="setActive(dialPlan, false)" *ngIf="dialPlan.status"
+                            jhiTranslate="userManagement.activated">Activated</button>
+                </td>
+                <td>
+                    <div *ngIf="dialPlan.gateway">
+                        <a [routerLink]="['../gateway', dialPlan.gateway?.id, 'view' ]" >{{dialPlan.gateway?.host}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -15,6 +15,8 @@ export class SipPeerComponent implements OnInit, OnDestroy {
     sipPeers: ISipPeer[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    error: any;
+    success: any;
 
     constructor(
         private sipPeerService: SipPeerService,
@@ -42,6 +44,21 @@ export class SipPeerComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
+    }
+
+    setActive(sipPeer, isActivated) {
+        sipPeer.status = isActivated;
+
+        this.sipPeerService.update(sipPeer).subscribe(response => {
+            if (response.status === 200) {
+                this.error = null;
+                this.success = 'OK';
+                this.loadAll();
+            } else {
+                this.success = null;
+                this.error = 'ERROR';
+            }
+        });
     }
 
     trackId(index: number, item: ISipPeer) {

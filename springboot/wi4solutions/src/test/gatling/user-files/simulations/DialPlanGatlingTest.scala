@@ -78,7 +78,6 @@ class DialPlanGatlingTest extends Simulation {
                 , "digitCut":"SAMPLE_TEXT"
                 , "preceding":"SAMPLE_TEXT"
                 , "priority":"0"
-                , "gateway":null
                 , "limit":"0"
                 }""")).asJSON
             .check(status.is(201))
