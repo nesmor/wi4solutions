@@ -26,10 +26,6 @@
             "fieldType": "Integer"
         },
         {
-            "fieldName": "gateway",
-            "fieldType": "Long"
-        },
-        {
             "fieldName": "limit",
             "fieldType": "Integer"
         }
@@ -37,8 +33,8 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "sipPeer",
-            "otherEntityName": "sipPeer",
+            "relationshipName": "gateway",
+            "otherEntityName": "gateway",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "dialPlan"

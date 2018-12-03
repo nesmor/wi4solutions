@@ -176,17 +176,13 @@
         {
             "fieldName": "useragent",
             "fieldType": "String"
-        }
-    ],
-    "relationships": [
+        },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "dialPlan",
-            "otherEntityName": "dialPlan",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "sipPeer"
+            "fieldName": "status",
+            "fieldType": "Integer"
         }
     ],
+    "relationships": [],
     "changelogDate": "20181126154019",
     "entityTableName": "sip_peer",
     "dto": "no",
