@@ -1,0 +1,79 @@
+{
+    "name": "CallDetailRecord",
+    "fields": [
+        {
+            "fieldName": "calldate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "clid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "src",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dst",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dcontext",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "channel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dstchannel",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastapp",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastdata",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "billsec",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "disposition",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "amaflags",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "accountcode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "uniqueid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "userfield",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181130013300",
+    "entityTableName": "call_detail_record",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
