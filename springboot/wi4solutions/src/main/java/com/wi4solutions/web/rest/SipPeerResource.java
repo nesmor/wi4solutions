@@ -16,6 +16,8 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing SipPeer.
@@ -85,7 +87,10 @@ public class SipPeerResource {
     @Timed
     public List<SipPeer> getAllSipPeers() {
         log.debug("REST request to get all SipPeers");
-        return sipPeerRepository.findAll();
+        return StreamSupport
+                .stream(sipPeerRepository.findAll().spliterator(), false)
+                .filter(sipPeer -> sipPeer.getPeerType().equals("CARRIER"))
+                .collect(Collectors.toList());
     }
 
     /**

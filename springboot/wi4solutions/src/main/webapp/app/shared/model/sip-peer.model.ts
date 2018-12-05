@@ -45,6 +45,7 @@ export interface ISipPeer {
     subscribecontext?: string;
     useragent?: string;
     status?: number;
+    peerType?: string;
 }
 
 export class SipPeer implements ISipPeer {
@@ -94,6 +95,7 @@ export class SipPeer implements ISipPeer {
         public defaultuser?: string,
         public subscribecontext?: string,
         public useragent?: string,
-        public status?: number
+        public status?: number,
+        public peerType?: string
     ) {}
 }

@@ -91,7 +91,7 @@ public class GatewayResource {
             log.debug("REST request to get all Gateways where dialPlan is null");
             return StreamSupport
                 .stream(gatewayRepository.findAll().spliterator(), false)
-                .filter(gateway -> gateway.getDialPlan() == null)
+                .filter(gateway -> gateway.getDialPlan() == null && gateway.getPeerType().equals("GATEWAY"))
                 .collect(Collectors.toList());
         }
         log.debug("REST request to get all Gateways");

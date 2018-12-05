@@ -26,12 +26,16 @@ export class GatewayComponent implements OnInit, OnDestroy {
     ) {}
 
     loadAll() {
-        this.gatewayService.query().subscribe(
-            (res: HttpResponse<IGateway[]>) => {
-                this.gateways = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.gatewayService
+            .query({
+                peerType: 'GATEWAY'
+            })
+            .subscribe(
+                (res: HttpResponse<IGateway[]>) => {
+                    this.gateways = res.body;
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
     }
 
     ngOnInit() {

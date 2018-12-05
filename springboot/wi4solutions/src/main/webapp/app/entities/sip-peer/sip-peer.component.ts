@@ -26,12 +26,16 @@ export class SipPeerComponent implements OnInit, OnDestroy {
     ) {}
 
     loadAll() {
-        this.sipPeerService.query().subscribe(
-            (res: HttpResponse<ISipPeer[]>) => {
-                this.sipPeers = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
+        this.sipPeerService
+            .query({
+                peerType: 'CARRIER'
+            })
+            .subscribe(
+                (res: HttpResponse<ISipPeer[]>) => {
+                    this.sipPeers = res.body;
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
     }
 
     ngOnInit() {

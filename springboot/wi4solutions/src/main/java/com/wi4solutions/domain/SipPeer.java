@@ -156,6 +156,9 @@ public class SipPeer implements Serializable {
 
     @Column(name = "status")
     private boolean status = false;
+    
+    @Column(name = "peer_type")
+    private String peerType = "CARRIER";
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -750,6 +753,20 @@ public class SipPeer implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
+    
+    public String getPeerType() {
+  		return peerType;
+  	}
+
+  	public void setPeerType(String peerType) {
+  		this.peerType = peerType;
+  	}
+  	
+  	public SipPeer peerType(String peerType) {
+        this.peerType = peerType;
+        return this;
+    }
+    
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -821,6 +838,7 @@ public class SipPeer implements Serializable {
             ", subscribecontext='" + getSubscribecontext() + "'" +
             ", useragent='" + getUseragent() + "'" +
             ", status=" + getStatus() +
+            ", peer type=" + getPeerType() +
             "}";
     }
 }

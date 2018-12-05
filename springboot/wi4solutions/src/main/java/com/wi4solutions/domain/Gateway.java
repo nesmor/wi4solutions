@@ -14,7 +14,7 @@ import java.util.Objects;
  * A Gateway.
  */
 @Entity
-@Table(name = "gateway")
+@Table(name = "sip_peer")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Gateway implements Serializable {
 
@@ -158,6 +158,10 @@ public class Gateway implements Serializable {
 
     @Column(name = "status")
     private boolean status = false;
+    
+    @Column(name = "peer_type")
+    private String peerType = "GATEWAY";
+    
 
     @OneToMany(mappedBy = "gateway")
     @JsonIgnore
@@ -771,6 +775,19 @@ public class Gateway implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
+    public String getPeerType() {
+  		return peerType;
+  	}
+
+  	public void setPeerType(String peerType) {
+  		this.peerType = peerType;
+  	}
+  	
+  	public Gateway peerType(String peerType) {
+        this.peerType = peerType;
+        return this;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -786,7 +803,8 @@ public class Gateway implements Serializable {
         return Objects.equals(getId(), gateway.getId());
     }
 
-    @Override
+
+	@Override
     public int hashCode() {
         return Objects.hashCode(getId());
     }
@@ -840,6 +858,7 @@ public class Gateway implements Serializable {
             ", subscribecontext='" + getSubscribecontext() + "'" +
             ", useragent='" + getUseragent() + "'" +
             ", status=" + getStatus() +
+            ", peer type=" + getPeerType() +
             "}";
     }
 }

@@ -47,6 +47,7 @@ export interface IGateway {
     subscribecontext?: string;
     useragent?: string;
     status?: number;
+    peerType?: string;
     dialPlan?: IDialPlan;
 }
 
@@ -98,6 +99,7 @@ export class Gateway implements IGateway {
         public subscribecontext?: string,
         public useragent?: string,
         public status?: number,
-        public dialPlan?: IDialPlan
+        public dialPlan?: IDialPlan,
+        public peerType?: string
     ) {}
 }
