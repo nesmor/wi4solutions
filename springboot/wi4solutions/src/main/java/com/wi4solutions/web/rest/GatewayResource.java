@@ -50,6 +50,7 @@ public class GatewayResource {
         if (gateway.getId() != null) {
             throw new BadRequestAlertException("A new gateway cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        gateway.setUsername(gateway.getName());
         Gateway result = gatewayRepository.save(gateway);
         return ResponseEntity.created(new URI("/api/gateways/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -72,6 +73,7 @@ public class GatewayResource {
         if (gateway.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        gateway.setUsername(gateway.getName());
         Gateway result = gatewayRepository.save(gateway);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, gateway.getId().toString()))

@@ -50,6 +50,7 @@ public class SipPeerResource {
         if (sipPeer.getId() != null) {
             throw new BadRequestAlertException("A new sipPeer cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        sipPeer.setUsername(sipPeer.getName());
         SipPeer result = sipPeerRepository.save(sipPeer);
         return ResponseEntity.created(new URI("/api/sip-peers/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -72,6 +73,7 @@ public class SipPeerResource {
         if (sipPeer.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        sipPeer.setUsername(sipPeer.getName());
         SipPeer result = sipPeerRepository.save(sipPeer);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, sipPeer.getId().toString()))
