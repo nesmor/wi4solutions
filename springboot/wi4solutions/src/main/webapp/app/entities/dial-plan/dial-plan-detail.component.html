@@ -36,7 +36,7 @@
                 <dt><span jhiTranslate="wi4SolutionsApp.dialPlan.gateway">Gateway</span></dt>
                 <dd>
                     <div *ngIf="dialPlan.gateway">
-                        <a [routerLink]="['/gateway', dialPlan.gateway?.id, 'view']">{{dialPlan.gateway?.id}}</a>
+                        <a [routerLink]="['/gateway', dialPlan.gateway?.id, 'view']">{{dialPlan.gateway?.name}}</a>
                     </div>
                 </dd>
             </dl>

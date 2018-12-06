@@ -46,7 +46,7 @@
                 </td>
                 <td>
                     <div *ngIf="dialPlan.gateway">
-                        <a [routerLink]="['../gateway', dialPlan.gateway?.id, 'view' ]" >{{dialPlan.gateway?.host}}</a>
+                        <a [routerLink]="['../gateway', dialPlan.gateway?.id, 'view' ]" >{{dialPlan.gateway?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">

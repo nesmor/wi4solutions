@@ -53,6 +53,7 @@ public class GatewayResource {
         }
         gateway.setUsername(gateway.getName());
         gateway.setType("friend");
+        gateway.setHost("dynamic");
         gateway.setSecret(RandomUtil.generatePassword());
         Gateway result = gatewayRepository.save(gateway);
         return ResponseEntity.created(new URI("/api/gateways/" + result.getId()))
