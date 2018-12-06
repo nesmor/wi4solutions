@@ -3,6 +3,7 @@ package com.wi4solutions.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.wi4solutions.domain.SipPeer;
 import com.wi4solutions.repository.SipPeerRepository;
+import com.wi4solutions.service.util.RandomUtil;
 import com.wi4solutions.web.rest.errors.BadRequestAlertException;
 import com.wi4solutions.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -51,6 +52,7 @@ public class SipPeerResource {
             throw new BadRequestAlertException("A new sipPeer cannot already have an ID", ENTITY_NAME, "idexists");
         }
         sipPeer.setUsername(sipPeer.getName());
+        sipPeer.setSecret(RandomUtil.generatePassword());
         SipPeer result = sipPeerRepository.save(sipPeer);
         return ResponseEntity.created(new URI("/api/sip-peers/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

@@ -3,6 +3,7 @@ package com.wi4solutions.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.wi4solutions.domain.Gateway;
 import com.wi4solutions.repository.GatewayRepository;
+import com.wi4solutions.service.util.RandomUtil;
 import com.wi4solutions.web.rest.errors.BadRequestAlertException;
 import com.wi4solutions.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -51,6 +52,8 @@ public class GatewayResource {
             throw new BadRequestAlertException("A new gateway cannot already have an ID", ENTITY_NAME, "idexists");
         }
         gateway.setUsername(gateway.getName());
+        gateway.setType("friend");
+        gateway.setSecret(RandomUtil.generatePassword());
         Gateway result = gatewayRepository.save(gateway);
         return ResponseEntity.created(new URI("/api/gateways/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
