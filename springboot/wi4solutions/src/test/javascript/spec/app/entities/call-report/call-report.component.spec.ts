@@ -4,28 +4,28 @@ import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { Wi4SolutionsTestModule } from '../../../test.module';
-import { CallDetailRecordComponent } from 'app/entities/call-detail-record/call-detail-record.component';
-import { CallDetailRecordService } from 'app/entities/call-detail-record/call-detail-record.service';
-import { CallDetailRecord } from 'app/shared/model/call-detail-record.model';
+import { CallReportComponent } from 'app/entities/call-report/call-report.component';
+import { CallReportService } from 'app/entities/call-report/call-report.service';
+import { CallReport } from 'app/shared/model/call-report.model';
 
 describe('Component Tests', () => {
-    describe('CallDetailRecord Management Component', () => {
-        let comp: CallDetailRecordComponent;
-        let fixture: ComponentFixture<CallDetailRecordComponent>;
-        let service: CallDetailRecordService;
+    describe('CallReport Management Component', () => {
+        let comp: CallReportComponent;
+        let fixture: ComponentFixture<CallReportComponent>;
+        let service: CallReportService;
 
         beforeEach(() => {
             TestBed.configureTestingModule({
                 imports: [Wi4SolutionsTestModule],
-                declarations: [CallDetailRecordComponent],
+                declarations: [CallReportComponent],
                 providers: []
             })
-                .overrideTemplate(CallDetailRecordComponent, '')
+                .overrideTemplate(CallReportComponent, '')
                 .compileComponents();
 
-            fixture = TestBed.createComponent(CallDetailRecordComponent);
+            fixture = TestBed.createComponent(CallReportComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(CallDetailRecordService);
+            service = fixture.debugElement.injector.get(CallReportService);
         });
 
         it('Should call load all on init', () => {
@@ -34,7 +34,7 @@ describe('Component Tests', () => {
             spyOn(service, 'query').and.returnValue(
                 of(
                     new HttpResponse({
-                        body: [new CallDetailRecord(123)],
+                        body: [new CallReport(123)],
                         headers
                     })
                 )
@@ -45,7 +45,7 @@ describe('Component Tests', () => {
 
             // THEN
             expect(service.query).toHaveBeenCalled();
-            expect(comp.callDetailRecords[0]).toEqual(jasmine.objectContaining({ id: 123 }));
+            expect(comp.callReports[0]).toEqual(jasmine.objectContaining({ id: 123 }));
         });
     });
 });

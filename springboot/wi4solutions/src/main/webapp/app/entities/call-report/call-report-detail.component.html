@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="callReport">
+            <h2><span jhiTranslate="wi4SolutionsApp.callReport.detail.title">Call Report</span> {{callReport.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.fromDate">From Date</span></dt>
+                <dd>
+                    <span>{{callReport.fromDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.toDate">To Date</span></dt>
+                <dd>
+                    <span>{{callReport.toDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.failedCalls">Failed Calls</span></dt>
+                <dd>
+                    <span>{{callReport.failedCalls}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.totalCalls">Total Calls</span></dt>
+                <dd>
+                    <span>{{callReport.totalCalls}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.totalDuration">Total Duration</span></dt>
+                <dd>
+                    <span>{{callReport.totalDuration}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.asr">Asr</span></dt>
+                <dd>
+                    <span>{{callReport.asr}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.acd">Acd</span></dt>
+                <dd>
+                    <span>{{callReport.acd}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.minutes">Minutes</span></dt>
+                <dd>
+                    <span>{{callReport.minutes}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.connectedCalls">Connected Calls</span></dt>
+                <dd>
+                    <span>{{callReport.connectedCalls}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.reportType">Report Type</span></dt>
+                <dd>
+                    <span>{{callReport.reportType}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.hour">Hour</span></dt>
+                <dd>
+                    <span>{{callReport.hour}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.callReport.date">Date</span></dt>
+                <dd>
+                    <span>{{callReport.date}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/call-report', callReport.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

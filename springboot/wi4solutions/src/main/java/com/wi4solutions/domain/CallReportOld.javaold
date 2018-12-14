@@ -1,0 +1,265 @@
+package com.wi4solutions.domain;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+/**
+ * A CallReport.
+ */
+@Entity
+@Table(name = "call_report")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class CallReportOld implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "from_date")
+    private String fromDate;
+
+    @Column(name = "to_date")
+    private String toDate;
+
+    @Column(name = "failed_calls")
+    private Long failedCalls;
+
+    @Column(name = "total_calls")
+    private Long totalCalls;
+
+    @Column(name = "total_duration")
+    private Long totalDuration;
+
+    @Column(name = "asr")
+    private Float asr;
+
+    @Column(name = "acd")
+    private Long acd;
+
+    @Column(name = "minutes")
+    private Long minutes;
+
+    @Column(name = "connected_calls")
+    private Long connectedCalls;
+
+    @Column(name = "report_type")
+    private String reportType;
+
+    @Column(name = "hour")
+    private Integer hour;
+
+    @Column(name = "jhi_date")
+    private String date;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFromDate() {
+        return fromDate;
+    }
+
+    public CallReportOld fromDate(String fromDate) {
+        this.fromDate = fromDate;
+        return this;
+    }
+
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public String getToDate() {
+        return toDate;
+    }
+
+    public CallReportOld toDate(String toDate) {
+        this.toDate = toDate;
+        return this;
+    }
+
+    public void setToDate(String toDate) {
+        this.toDate = toDate;
+    }
+
+    public Long getFailedCalls() {
+        return failedCalls;
+    }
+
+    public CallReportOld failedCalls(Long failedCalls) {
+        this.failedCalls = failedCalls;
+        return this;
+    }
+
+    public void setFailedCalls(Long failedCalls) {
+        this.failedCalls = failedCalls;
+    }
+
+    public Long getTotalCalls() {
+        return totalCalls;
+    }
+
+    public CallReportOld totalCalls(Long totalCalls) {
+        this.totalCalls = totalCalls;
+        return this;
+    }
+
+    public void setTotalCalls(Long totalCalls) {
+        this.totalCalls = totalCalls;
+    }
+
+    public Long getTotalDuration() {
+        return totalDuration;
+    }
+
+    public CallReportOld totalDuration(Long totalDuration) {
+        this.totalDuration = totalDuration;
+        return this;
+    }
+
+    public void setTotalDuration(Long totalDuration) {
+        this.totalDuration = totalDuration;
+    }
+
+    public Float getAsr() {
+        return asr;
+    }
+
+    public CallReportOld asr(Float asr) {
+        this.asr = asr;
+        return this;
+    }
+
+    public void setAsr(Float asr) {
+        this.asr = asr;
+    }
+
+    public Long getAcd() {
+        return acd;
+    }
+
+    public CallReportOld acd(Long acd) {
+        this.acd = acd;
+        return this;
+    }
+
+    public void setAcd(Long acd) {
+        this.acd = acd;
+    }
+
+    public Long getMinutes() {
+        return minutes;
+    }
+
+    public CallReportOld minutes(Long minutes) {
+        this.minutes = minutes;
+        return this;
+    }
+
+    public void setMinutes(Long minutes) {
+        this.minutes = minutes;
+    }
+
+    public Long getConnectedCalls() {
+        return connectedCalls;
+    }
+
+    public CallReportOld connectedCalls(Long connectedCalls) {
+        this.connectedCalls = connectedCalls;
+        return this;
+    }
+
+    public void setConnectedCalls(Long connectedCalls) {
+        this.connectedCalls = connectedCalls;
+    }
+
+    public String getReportType() {
+        return reportType;
+    }
+
+    public CallReportOld reportType(String reportType) {
+        this.reportType = reportType;
+        return this;
+    }
+
+    public void setReportType(String reportType) {
+        this.reportType = reportType;
+    }
+
+    public Integer getHour() {
+        return hour;
+    }
+
+    public CallReportOld hour(Integer hour) {
+        this.hour = hour;
+        return this;
+    }
+
+    public void setHour(Integer hour) {
+        this.hour = hour;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public CallReportOld date(String date) {
+        this.date = date;
+        return this;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CallReportOld callReport = (CallReportOld) o;
+        if (callReport.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), callReport.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "CallReport{" +
+            "id=" + getId() +
+            ", fromDate='" + getFromDate() + "'" +
+            ", toDate='" + getToDate() + "'" +
+            ", failedCalls=" + getFailedCalls() +
+            ", totalCalls=" + getTotalCalls() +
+            ", totalDuration=" + getTotalDuration() +
+            ", asr=" + getAsr() +
+            ", acd=" + getAcd() +
+            ", minutes=" + getMinutes() +
+            ", connectedCalls=" + getConnectedCalls() +
+            ", reportType='" + getReportType() + "'" +
+            ", hour=" + getHour() +
+            ", date='" + getDate() + "'" +
+            "}";
+    }
+}

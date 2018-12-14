@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-call-report-heading" jhiTranslate="wi4SolutionsApp.callReport.home.createOrEditLabel">Create or edit a Call Report</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!callReport.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="callReport.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.fromDate" for="field_fromDate">From Date</label>
+                    <input type="text" class="form-control" name="fromDate" id="field_fromDate"
+                        [(ngModel)]="callReport.fromDate" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.toDate" for="field_toDate">To Date</label>
+                    <input type="text" class="form-control" name="toDate" id="field_toDate"
+                        [(ngModel)]="callReport.toDate" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.failedCalls" for="field_failedCalls">Failed Calls</label>
+                    <input type="number" class="form-control" name="failedCalls" id="field_failedCalls"
+                        [(ngModel)]="callReport.failedCalls" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.totalCalls" for="field_totalCalls">Total Calls</label>
+                    <input type="number" class="form-control" name="totalCalls" id="field_totalCalls"
+                        [(ngModel)]="callReport.totalCalls" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.totalDuration" for="field_totalDuration">Total Duration</label>
+                    <input type="number" class="form-control" name="totalDuration" id="field_totalDuration"
+                        [(ngModel)]="callReport.totalDuration" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.asr" for="field_asr">Asr</label>
+                    <input type="number" class="form-control" name="asr" id="field_asr"
+                        [(ngModel)]="callReport.asr" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.acd" for="field_acd">Acd</label>
+                    <input type="number" class="form-control" name="acd" id="field_acd"
+                        [(ngModel)]="callReport.acd" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.minutes" for="field_minutes">Minutes</label>
+                    <input type="number" class="form-control" name="minutes" id="field_minutes"
+                        [(ngModel)]="callReport.minutes" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.connectedCalls" for="field_connectedCalls">Connected Calls</label>
+                    <input type="number" class="form-control" name="connectedCalls" id="field_connectedCalls"
+                        [(ngModel)]="callReport.connectedCalls" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.reportType" for="field_reportType">Report Type</label>
+                    <input type="text" class="form-control" name="reportType" id="field_reportType"
+                        [(ngModel)]="callReport.reportType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.hour" for="field_hour">Hour</label>
+                    <input type="number" class="form-control" name="hour" id="field_hour"
+                        [(ngModel)]="callReport.hour" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.callReport.date" for="field_date">Date</label>
+                    <input type="text" class="form-control" name="date" id="field_date"
+                        [(ngModel)]="callReport.date" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

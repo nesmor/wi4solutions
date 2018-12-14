@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the CallDetailRecord entity.
+ * Performance test for the CallReport entity.
  */
-class CallDetailRecordGatlingTest extends Simulation {
+class CallReportGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -43,7 +43,7 @@ class CallDetailRecordGatlingTest extends Simulation {
         "Authorization" -> "${access_token}"
     )
 
-    val scn = scenario("Test the CallDetailRecord entity")
+    val scn = scenario("Test the CallReport entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -62,44 +62,40 @@ class CallDetailRecordGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all callDetailRecords")
-            .get("/api/call-detail-records")
+            exec(http("Get all callReports")
+            .get("/api/call-reports")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new callDetailRecord")
-            .post("/api/call-detail-records")
+            .exec(http("Create new callReport")
+            .post("/api/call-reports")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "id":null
-                , "calldate":"2020-01-01T00:00:00.000Z"
-                , "clid":"SAMPLE_TEXT"
-                , "src":"SAMPLE_TEXT"
-                , "dst":"SAMPLE_TEXT"
-                , "dcontext":"SAMPLE_TEXT"
-                , "channel":"SAMPLE_TEXT"
-                , "dstchannel":"SAMPLE_TEXT"
-                , "lastapp":"SAMPLE_TEXT"
-                , "lastdata":"SAMPLE_TEXT"
-                , "duration":"0"
-                , "billsec":"0"
-                , "disposition":"SAMPLE_TEXT"
-                , "amaflags":"0"
-                , "accountcode":"SAMPLE_TEXT"
-                , "uniqueid":"SAMPLE_TEXT"
-                , "userfield":"SAMPLE_TEXT"
+                , "fromDate":"SAMPLE_TEXT"
+                , "toDate":"SAMPLE_TEXT"
+                , "failedCalls":null
+                , "totalCalls":null
+                , "totalDuration":null
+                , "asr":null
+                , "acd":null
+                , "minutes":null
+                , "connectedCalls":null
+                , "reportType":"SAMPLE_TEXT"
+                , "hour":"0"
+                , "date":"SAMPLE_TEXT"
                 }""")).asJSON
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_callDetailRecord_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_callReport_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created callDetailRecord")
-                .get("${new_callDetailRecord_url}")
+                exec(http("Get created callReport")
+                .get("${new_callReport_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created callDetailRecord")
-            .delete("${new_callDetailRecord_url}")
+            .exec(http("Delete created callReport")
+            .delete("${new_callReport_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

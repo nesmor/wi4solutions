@@ -1,0 +1,32 @@
+{
+    "wi4SolutionsApp": {
+        "callReport": {
+            "home": {
+                "title": "Call Reports",
+                "createLabel": "Crear nuevo Call Report",
+                "createOrEditLabel": "Crear o editar Call Report"
+            },
+            "created": "Un nuevo Call Report ha sido creado con el identificador {{ param }}",
+            "updated": "Un Call Report ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Call Report ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Call Report {{ id }}?"
+            },
+            "detail": {
+                "title": "Call Report"
+            },
+            "fromDate": "From Date",
+            "toDate": "To Date",
+            "failedCalls": "Failed Calls",
+            "totalCalls": "Total Calls",
+            "totalDuration": "Total Duration",
+            "asr": "Asr",
+            "acd": "Acd",
+            "minutes": "Minutes",
+            "connectedCalls": "Connected Calls",
+            "reportType": "Report Type",
+            "hour": "Hour",
+            "date": "Date"
+        }
+    }
+}

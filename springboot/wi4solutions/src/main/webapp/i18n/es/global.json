@@ -12,7 +12,20 @@
                 "carrier": "Proveedor",
                 "gateway": "Gateway",
                 "callDetailRecord": "Call Detail Record",
+                "callReport": "Call Report",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+            },
+            "report": {
+                "main": "Report",
+                "hourly": "Hourly",
+                "daily": "Daily",
+                "weekly": "Weekly",
+                "monthy": "Monthy",
+                "today": "Today",
+                "yesterday-statistic": "Yesterday Statistic",
+                "this-month-statistic": "This Month Statistic",
+                "last-month-statistic": "Last Month Statistic",
+                "all-time-statistic": "All Time Sstatistic"
             },
             "account": {
                 "main": "Cuenta",

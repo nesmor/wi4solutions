@@ -1,7 +1,7 @@
 # ===================================================================
-# Spring Boot configuration for the "dev" profile.
+# Spring Boot configuration.
 #
-# This configuration overrides the application.yml file.
+# This configuration is used for unit/integration tests.
 #
 # More information on profiles: https://www.jhipster.tech/profiles/
 # More information on configuration properties: https://www.jhipster.tech/common-application-properties/
@@ -13,29 +13,12 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-logging:
-    level:
-        ROOT: DEBUG
-        io.github.jhipster: DEBUG
-        com.wi4solutions: DEBUG
 
 spring:
     application:
         name: wi4solutions
-    profiles:
-        active: dev
-        include:
-            - swagger
-            # Uncomment to activate TLS for the dev profile
-            #- tls
-    devtools:
-        restart:
-            enabled: true
-        livereload:
-            enabled: false # we use Webpack dev server + BrowserSync for livereload
-    jackson:
-        serialization:
-            indent-output: true
+    cache:
+        type: simple
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/wi4solutions?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=America/Caracas
@@ -63,16 +46,18 @@ spring:
         contexts: test
     mail:
         host: localhost
-        port: 25
-        username:
-        password:
     messages:
-        cache-duration: PT1S # 1 second, see the ISO 8601 standard
+        basename: i18n/messages
+    mvc:
+        favicon:
+            enabled: false
     thymeleaf:
-        cache: false
+        mode: HTML
+
 
 server:
-    port: 8080
+    port: 10344
+    address: localhost
 
 # ===================================================================
 # JHipster specific properties
@@ -81,20 +66,20 @@ server:
 # ===================================================================
 
 jhipster:
-    http:
-        version: V_1_1 # To use HTTP/2 you will need to activate TLS (see application-tls.yml)
-    cache: # Cache configuration
-        ehcache: # Ehcache configuration
-            time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
-            max-entries: 100 # Number of objects in each cache entry
-    # CORS is only enabled by default with the "dev" profile, so BrowserSync can access the API
-    cors:
-        allowed-origins: "*"
-        allowed-methods: "*"
-        allowed-headers: "*"
-        exposed-headers: "Authorization,Link,X-Total-Count"
-        allow-credentials: true
-        max-age: 1800
+    async:
+        core-pool-size: 1
+        max-pool-size: 50
+        queue-capacity: 10000
+    # To test logstash appender
+    logging:
+        logstash:
+            enabled: true
+            host: localhost
+            port: 5000
+            queue-size: 512
+    mail:
+        from: test@localhost
+        base-url: http://127.0.0.1:8080
     security:
         authentication:
             jwt:
@@ -102,24 +87,11 @@ jhipster:
                 base64-secret: MDVhM2MxYTYyMTYyMzE4NmNhZmJhMzA4MmE3NDNkZmE0OGU1YWZiYTY0NmQ5MjE3OTRhMjJmNTAxMzhmYzc2YzU1OGU0MTNiNGRiZmZjNThkMTZmZmFkMTc0NDc0YzFkYWNmYjYyMmRkNmZmNGMzMTUxZGIwYTJiMGI2YjRlNTc=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
-                token-validity-in-seconds-for-remember-me: 2592000
-    mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: wi4solutions@localhost
-        base-url: http://127.0.0.1:8080
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx:
-            enabled: true
-        prometheus:
-            enabled: false #expose metrics via prometheus
+        jmx.enabled: true
         logs: # Reports Dropwizard metrics in the logs
-            enabled: false
+            enabled: true
             report-frequency: 60 # in seconds
-    logging:
-        logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
-            enabled: false
-            host: localhost
-            port: 5000
-            queue-size: 512
 
 # ===================================================================
 # Application specific properties

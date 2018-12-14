@@ -14,10 +14,10 @@ import java.util.Objects;
  * A CallDetailRecord.
  */
 @Entity
-@Table(name = "call_detail_record")
+@Table(name = "cdr")
 
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class CallDetailRecord implements Serializable {
+public class Cdr implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class CallDetailRecord implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "calldate")
+    @Column(name = "answer")
     private ZonedDateTime calldate;
 
     @Column(name = "clid")
@@ -86,7 +86,7 @@ public class CallDetailRecord implements Serializable {
         return calldate;
     }
 
-    public CallDetailRecord calldate(ZonedDateTime calldate) {
+    public Cdr calldate(ZonedDateTime calldate) {
         this.calldate = calldate;
         return this;
     }
@@ -99,7 +99,7 @@ public class CallDetailRecord implements Serializable {
         return clid;
     }
 
-    public CallDetailRecord clid(String clid) {
+    public Cdr clid(String clid) {
         this.clid = clid;
         return this;
     }
@@ -112,7 +112,7 @@ public class CallDetailRecord implements Serializable {
         return src;
     }
 
-    public CallDetailRecord src(String src) {
+    public Cdr src(String src) {
         this.src = src;
         return this;
     }
@@ -125,7 +125,7 @@ public class CallDetailRecord implements Serializable {
         return dst;
     }
 
-    public CallDetailRecord dst(String dst) {
+    public Cdr dst(String dst) {
         this.dst = dst;
         return this;
     }
@@ -138,7 +138,7 @@ public class CallDetailRecord implements Serializable {
         return dcontext;
     }
 
-    public CallDetailRecord dcontext(String dcontext) {
+    public Cdr dcontext(String dcontext) {
         this.dcontext = dcontext;
         return this;
     }
@@ -151,7 +151,7 @@ public class CallDetailRecord implements Serializable {
         return channel;
     }
 
-    public CallDetailRecord channel(String channel) {
+    public Cdr channel(String channel) {
         this.channel = channel;
         return this;
     }
@@ -164,7 +164,7 @@ public class CallDetailRecord implements Serializable {
         return dstchannel;
     }
 
-    public CallDetailRecord dstchannel(String dstchannel) {
+    public Cdr dstchannel(String dstchannel) {
         this.dstchannel = dstchannel;
         return this;
     }
@@ -177,7 +177,7 @@ public class CallDetailRecord implements Serializable {
         return lastapp;
     }
 
-    public CallDetailRecord lastapp(String lastapp) {
+    public Cdr lastapp(String lastapp) {
         this.lastapp = lastapp;
         return this;
     }
@@ -190,7 +190,7 @@ public class CallDetailRecord implements Serializable {
         return lastdata;
     }
 
-    public CallDetailRecord lastdata(String lastdata) {
+    public Cdr lastdata(String lastdata) {
         this.lastdata = lastdata;
         return this;
     }
@@ -203,7 +203,7 @@ public class CallDetailRecord implements Serializable {
         return duration;
     }
 
-    public CallDetailRecord duration(Integer duration) {
+    public Cdr duration(Integer duration) {
         this.duration = duration;
         return this;
     }
@@ -216,7 +216,7 @@ public class CallDetailRecord implements Serializable {
         return billsec;
     }
 
-    public CallDetailRecord billsec(Integer billsec) {
+    public Cdr billsec(Integer billsec) {
         this.billsec = billsec;
         return this;
     }
@@ -229,7 +229,7 @@ public class CallDetailRecord implements Serializable {
         return disposition;
     }
 
-    public CallDetailRecord disposition(String disposition) {
+    public Cdr disposition(String disposition) {
         this.disposition = disposition;
         return this;
     }
@@ -242,7 +242,7 @@ public class CallDetailRecord implements Serializable {
         return amaflags;
     }
 
-    public CallDetailRecord amaflags(Integer amaflags) {
+    public Cdr amaflags(Integer amaflags) {
         this.amaflags = amaflags;
         return this;
     }
@@ -255,7 +255,7 @@ public class CallDetailRecord implements Serializable {
         return accountcode;
     }
 
-    public CallDetailRecord accountcode(String accountcode) {
+    public Cdr accountcode(String accountcode) {
         this.accountcode = accountcode;
         return this;
     }
@@ -268,7 +268,7 @@ public class CallDetailRecord implements Serializable {
         return uniqueid;
     }
 
-    public CallDetailRecord uniqueid(String uniqueid) {
+    public Cdr uniqueid(String uniqueid) {
         this.uniqueid = uniqueid;
         return this;
     }
@@ -281,7 +281,7 @@ public class CallDetailRecord implements Serializable {
         return userfield;
     }
 
-    public CallDetailRecord userfield(String userfield) {
+    public Cdr userfield(String userfield) {
         this.userfield = userfield;
         return this;
     }
@@ -299,7 +299,7 @@ public class CallDetailRecord implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CallDetailRecord callDetailRecord = (CallDetailRecord) o;
+        Cdr callDetailRecord = (Cdr) o;
         if (callDetailRecord.getId() == null || getId() == null) {
             return false;
         }

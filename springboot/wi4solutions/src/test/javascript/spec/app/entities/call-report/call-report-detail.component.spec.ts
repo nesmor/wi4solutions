@@ -4,24 +4,24 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 import { Wi4SolutionsTestModule } from '../../../test.module';
-import { CallDetailRecordDetailComponent } from 'app/entities/call-detail-record/call-detail-record-detail.component';
-import { CallDetailRecord } from 'app/shared/model/call-detail-record.model';
+import { CallReportDetailComponent } from 'app/entities/call-report/call-report-detail.component';
+import { CallReport } from 'app/shared/model/call-report.model';
 
 describe('Component Tests', () => {
-    describe('CallDetailRecord Management Detail Component', () => {
-        let comp: CallDetailRecordDetailComponent;
-        let fixture: ComponentFixture<CallDetailRecordDetailComponent>;
-        const route = ({ data: of({ callDetailRecord: new CallDetailRecord(123) }) } as any) as ActivatedRoute;
+    describe('CallReport Management Detail Component', () => {
+        let comp: CallReportDetailComponent;
+        let fixture: ComponentFixture<CallReportDetailComponent>;
+        const route = ({ data: of({ callReport: new CallReport(123) }) } as any) as ActivatedRoute;
 
         beforeEach(() => {
             TestBed.configureTestingModule({
                 imports: [Wi4SolutionsTestModule],
-                declarations: [CallDetailRecordDetailComponent],
+                declarations: [CallReportDetailComponent],
                 providers: [{ provide: ActivatedRoute, useValue: route }]
             })
-                .overrideTemplate(CallDetailRecordDetailComponent, '')
+                .overrideTemplate(CallReportDetailComponent, '')
                 .compileComponents();
-            fixture = TestBed.createComponent(CallDetailRecordDetailComponent);
+            fixture = TestBed.createComponent(CallReportDetailComponent);
             comp = fixture.componentInstance;
         });
 
@@ -33,7 +33,7 @@ describe('Component Tests', () => {
                 comp.ngOnInit();
 
                 // THEN
-                expect(comp.callDetailRecord).toEqual(jasmine.objectContaining({ id: 123 }));
+                expect(comp.callReport).toEqual(jasmine.objectContaining({ id: 123 }));
             });
         });
     });

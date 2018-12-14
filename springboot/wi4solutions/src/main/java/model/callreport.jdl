@@ -1,0 +1,14 @@
+entity CallReport{
+	fromDate String,
+	toDate String,
+	failedCalls Long,
+	totalCalls Long,
+	totalDuration Long,
+	asr Float,
+	acd Long,
+	minutes Long,
+	connectedCalls Long,
+	reportType String,
+	hour Integer,
+	date String 
+}

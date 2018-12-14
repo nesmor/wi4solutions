@@ -4,35 +4,35 @@ import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Wi4SolutionsTestModule } from '../../../test.module';
-import { CallDetailRecordUpdateComponent } from 'app/entities/call-detail-record/call-detail-record-update.component';
-import { CallDetailRecordService } from 'app/entities/call-detail-record/call-detail-record.service';
-import { CallDetailRecord } from 'app/shared/model/call-detail-record.model';
+import { CallReportUpdateComponent } from 'app/entities/call-report/call-report-update.component';
+import { CallReportService } from 'app/entities/call-report/call-report.service';
+import { CallReport } from 'app/shared/model/call-report.model';
 
 describe('Component Tests', () => {
-    describe('CallDetailRecord Management Update Component', () => {
-        let comp: CallDetailRecordUpdateComponent;
-        let fixture: ComponentFixture<CallDetailRecordUpdateComponent>;
-        let service: CallDetailRecordService;
+    describe('CallReport Management Update Component', () => {
+        let comp: CallReportUpdateComponent;
+        let fixture: ComponentFixture<CallReportUpdateComponent>;
+        let service: CallReportService;
 
         beforeEach(() => {
             TestBed.configureTestingModule({
                 imports: [Wi4SolutionsTestModule],
-                declarations: [CallDetailRecordUpdateComponent]
+                declarations: [CallReportUpdateComponent]
             })
-                .overrideTemplate(CallDetailRecordUpdateComponent, '')
+                .overrideTemplate(CallReportUpdateComponent, '')
                 .compileComponents();
 
-            fixture = TestBed.createComponent(CallDetailRecordUpdateComponent);
+            fixture = TestBed.createComponent(CallReportUpdateComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(CallDetailRecordService);
+            service = fixture.debugElement.injector.get(CallReportService);
         });
 
         describe('save', () => {
             it('Should call update service on save for existing entity', fakeAsync(() => {
                 // GIVEN
-                const entity = new CallDetailRecord(123);
+                const entity = new CallReport(123);
                 spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
-                comp.callDetailRecord = entity;
+                comp.callReport = entity;
                 // WHEN
                 comp.save();
                 tick(); // simulate async
@@ -44,9 +44,9 @@ describe('Component Tests', () => {
 
             it('Should call create service on save for new entity', fakeAsync(() => {
                 // GIVEN
-                const entity = new CallDetailRecord();
+                const entity = new CallReport();
                 spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));
-                comp.callDetailRecord = entity;
+                comp.callReport = entity;
                 // WHEN
                 comp.save();
                 tick(); // simulate async
