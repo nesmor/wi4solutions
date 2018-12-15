@@ -19,12 +19,19 @@ const ENTITY_STATES = [...callReportRoute, ...callReportPopupRoute];
     imports: [Wi4SolutionsSharedModule, RouterModule.forChild(ENTITY_STATES)],
     declarations: [
         CallReportComponent,
+        CallReportByHourComponent,
         CallReportDetailComponent,
         CallReportUpdateComponent,
         CallReportDeleteDialogComponent,
         CallReportDeletePopupComponent
     ],
-    entryComponents: [CallReportComponent, CallReportUpdateComponent, CallReportDeleteDialogComponent, CallReportDeletePopupComponent],
+    entryComponents: [
+        CallReportComponent,
+        CallReportByHourComponent,
+        CallReportUpdateComponent,
+        CallReportDeleteDialogComponent,
+        CallReportDeletePopupComponent
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Wi4SolutionsCallReportModule {}
