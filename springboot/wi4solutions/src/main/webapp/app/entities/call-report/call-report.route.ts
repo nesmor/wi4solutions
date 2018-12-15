@@ -7,6 +7,7 @@ import { filter, map } from 'rxjs/operators';
 import { CallReport } from 'app/shared/model/call-report.model';
 import { CallReportService } from './call-report.service';
 import { CallReportComponent } from './call-report.component';
+import { CallReportByHourComponent } from './call-report-by-hour.component';
 import { CallReportDetailComponent } from './call-report-detail.component';
 import { CallReportUpdateComponent } from './call-report-update.component';
 import { CallReportDeletePopupComponent } from './call-report-delete-dialog.component';
@@ -38,6 +39,25 @@ export const callReportRoute: Routes = [
         },
         canActivate: [UserRouteAccessService]
     },
+    {
+        path: 'call-report/by-date',
+        component: CallReportComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'wi4SolutionsApp.callReport.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'call-report/by-hour',
+        component: CallReportByHourComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'wi4SolutionsApp.callReport.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+
     {
         path: 'call-report/:id/view',
         component: CallReportDetailComponent,

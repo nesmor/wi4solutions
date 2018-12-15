@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Wi4SolutionsSharedModule } from 'app/shared';
 import {
     CallReportComponent,
+    CallReportByHourComponent,
     CallReportDetailComponent,
     CallReportUpdateComponent,
     CallReportDeletePopupComponent,

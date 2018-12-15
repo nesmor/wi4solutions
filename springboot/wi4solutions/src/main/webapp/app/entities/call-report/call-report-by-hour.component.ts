@@ -12,12 +12,11 @@ import { DatePipe } from '@angular/common';
     selector: 'jhi-call-report',
     templateUrl: './call-report.component.html'
 })
-export class CallReportComponent implements OnInit, OnDestroy {
+export class CallReportByHourComponent implements OnInit, OnDestroy {
     callReports: ICallReport[];
     currentAccount: any;
     eventSubscriber: Subscription;
     fromDate: string;
-    toDate: string;
 
     constructor(
         private callReportService: CallReportService,
@@ -29,17 +28,12 @@ export class CallReportComponent implements OnInit, OnDestroy {
     ) {}
 
     loadAll() {
-        this.callReportService
-            .findByDate({
-                fromDate: this.fromDate,
-                toDate: this.toDate
-            })
-            .subscribe(
-                (res: HttpResponse<ICallReport[]>) => {
-                    this.callReports = res.body;
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
+        this.callReportService.findByHour({ fromDate: this.fromDate }).subscribe(
+            (res: HttpResponse<ICallReport[]>) => {
+                this.callReports = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     ngOnInit() {
@@ -58,18 +52,6 @@ export class CallReportComponent implements OnInit, OnDestroy {
         return item.id;
     }
 
-    transition() {
-        this.router.navigate(['/call-report/by-date'], {
-            queryParams: {
-                fromDate: this.fromDate,
-                toDate: this.toDate
-                //page: this.page,
-                //sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
-        });
-        this.loadAll();
-    }
-
     registerChangeInCallReports() {
         this.eventSubscriber = this.eventManager.subscribe('callReportListModification', response => this.loadAll());
     }
@@ -78,25 +60,12 @@ export class CallReportComponent implements OnInit, OnDestroy {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
-    previousMonth() {
-        const dateFormat = 'yyyy-MM-dd';
-        let fromDate: Date = new Date();
-
-        if (fromDate.getMonth() === 0) {
-            fromDate = new Date(fromDate.getFullYear() - 1, 11, fromDate.getDate());
-        } else {
-            fromDate = new Date(fromDate.getFullYear(), fromDate.getMonth() - 1, fromDate.getDate());
-        }
-
-        this.fromDate = this.datePipe.transform(fromDate, dateFormat);
-    }
-
     today() {
         const dateFormat = 'yyyy-MM-dd';
         // Today + 1 day - needed if the current day must be included
         const today: Date = new Date();
         today.setDate(today.getDate() + 1);
         const date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        this.toDate = this.datePipe.transform(date, dateFormat);
+        this.fromDate = this.datePipe.transform(date, dateFormat);
     }
 }

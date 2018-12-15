@@ -1,7 +1,9 @@
+import { Moment } from 'moment';
+
 export interface ICallReport {
     id?: number;
-    fromDate?: string;
-    toDate?: string;
+    fromDate?: Moment;
+    toDate?: Moment;
     failedCalls?: number;
     totalCalls?: number;
     totalDuration?: number;
@@ -17,8 +19,8 @@ export interface ICallReport {
 export class CallReport implements ICallReport {
     constructor(
         public id?: number,
-        public fromDate?: string,
-        public toDate?: string,
+        public fromDate?: Moment,
+        public toDate?: Moment,
         public failedCalls?: number,
         public totalCalls?: number,
         public totalDuration?: number,

@@ -3,6 +3,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+import * as moment from 'moment';
 import { take, map } from 'rxjs/operators';
 import { CallReportService } from 'app/entities/call-report/call-report.service';
 import { ICallReport, CallReport } from 'app/shared/model/call-report.model';
@@ -12,6 +13,7 @@ describe('Service Tests', () => {
         let injector: TestBed;
         let service: CallReportService;
         let httpMock: HttpTestingController;
+        let currentDate: moment.Moment;
         let elemDefault: ICallReport;
         beforeEach(() => {
             TestBed.configureTestingModule({
@@ -20,8 +22,9 @@ describe('Service Tests', () => {
             injector = getTestBed();
             service = injector.get(CallReportService);
             httpMock = injector.get(HttpTestingController);
+            currentDate = moment();
 
-            elemDefault = new CallReport(0, 'AAAAAAA', 'AAAAAAA', 0, 0, 0, 0, 0, 0, 0, 'AAAAAAA', 0, 'AAAAAAA');
+            elemDefault = new CallReport(0, currentDate, currentDate, 0, 0, 0, 0, 0, 0, 0, 'AAAAAAA', 0, 'AAAAAAA');
         });
 
         describe('Service methods', async () => {
@@ -53,10 +56,11 @@ describe('Service Tests', () => {
             });
 
             it('should update a CallReport', async () => {
+                currentDate = moment();
                 const returnedFromService = Object.assign(
                     {
-                        fromDate: 'BBBBBB',
-                        toDate: 'BBBBBB',
+                        fromDate: currentDate,
+                        toDate: currentDate,
                         failedCalls: 1,
                         totalCalls: 1,
                         totalDuration: 1,
@@ -81,10 +85,11 @@ describe('Service Tests', () => {
             });
 
             it('should return a list of CallReport', async () => {
+                currentDate = moment();
                 const returnedFromService = Object.assign(
                     {
-                        fromDate: 'BBBBBB',
-                        toDate: 'BBBBBB',
+                        fromDate: currentDate,
+                        toDate: currentDate,
                         failedCalls: 1,
                         totalCalls: 1,
                         totalDuration: 1,

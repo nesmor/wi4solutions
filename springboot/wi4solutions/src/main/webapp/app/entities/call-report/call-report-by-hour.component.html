@@ -10,11 +10,6 @@
                     <span class="input-group-text" jhiTranslate="wi4SolutionsApp.callReport.filter.from">from</span>
                 </div>
                 <input type="date" class="form-control" name="start" [(ngModel)]="fromDate" (ngModelChange)="transition()" required/>
-
-                <div class="input-group-append">
-                    <span class="input-group-text" jhiTranslate="wi4SolutionsApp.callReport.filter.to">To</span>
-                </div>
-                <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()" required/>
             </div>
         </div>
     </div>
@@ -25,7 +20,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-             <th><span jhiTranslate="wi4SolutionsApp.callReport.date">Date</span></th>
+             <th><span jhiTranslate="wi4SolutionsApp.callReport.date">Hour</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.callReport.failedCalls">Failed Calls</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.callReport.totalCalls">Total Calls</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.callReport.totalDuration">Total Duration</span></th>
@@ -39,7 +34,7 @@
             <tbody>
             <tr *ngFor="let callReport of callReports ;trackBy: trackId">
                 <td><a [routerLink]="['/call-report', callReport.id, 'view' ]">{{callReport.id}}</a></td>
-                <td>{{callReport.date}}</td>
+                <td>{{callReport.hour}}</td>
                 <td>{{callReport.failedCalls}}</td>
                 <td>{{callReport.totalCalls}}</td>
                 <td>{{callReport.totalDuration}}</td>

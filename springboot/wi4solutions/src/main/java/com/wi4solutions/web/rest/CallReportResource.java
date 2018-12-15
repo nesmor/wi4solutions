@@ -88,9 +88,9 @@ public class CallReportResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of callReports in body
      */
-    @GetMapping("/call-reports")
+    @GetMapping("/call-reports/by-date")
     @Timed
-    public List<CallReport> getAllCallReports(@RequestParam("fromDate") Date fromDate, @RequestParam("toDate") Date toDate) {
+    public List<CallReport> getAllCallReportsByDate(@RequestParam("fromDate") Date fromDate, @RequestParam("toDate") Date toDate) {
         log.debug("REST request to get all CallReports");
         try {
 	        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
@@ -102,6 +102,21 @@ public class CallReportResource {
         return callReportRepository.findByDate(fromDate, toDate);       
     }
 
+    
+    @GetMapping("/call-reports/by-hour")
+    @Timed
+    public List<CallReport> getAllCallReportsByHour(@RequestParam("fromDate") Date fromDate) {
+        log.debug("REST request to get all CallReports");
+        try {
+	        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+	    	fromDate = new Date(sdf.parse("31-03-2018").getTime());
+        }catch (Exception e) {
+
+        }
+        return callReportRepository.findByHour(fromDate);       
+    }
+    
+    
     /**
      * GET  /call-reports/:id : get the "id" callReport.
      *
