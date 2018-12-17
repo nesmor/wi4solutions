@@ -93,9 +93,9 @@ public class CallReportResource {
     public List<CallReport> getAllCallReportsByDate(@RequestParam("fromDate") Date fromDate, @RequestParam("toDate") Date toDate) {
         log.debug("REST request to get all CallReports");
         try {
-	        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
-	    	fromDate = new Date(sdf.parse("31-03-2018").getTime());
-	    	toDate = new Date(sdf.parse("1-4-2018").getTime());
+//	        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+//	    	fromDate = new Date(sdf.parse("31-03-2018").getTime());
+//	    	toDate = new Date(sdf.parse("1-4-2018").getTime());
         }catch (Exception e) {
 
         }
@@ -108,12 +108,24 @@ public class CallReportResource {
     public List<CallReport> getAllCallReportsByHour(@RequestParam("fromDate") Date fromDate) {
         log.debug("REST request to get all CallReports");
         try {
-	        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
-	    	fromDate = new Date(sdf.parse("31-03-2018").getTime());
+//	        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+//	    	fromDate = new Date(sdf.parse("31-03-2018").getTime());
         }catch (Exception e) {
 
         }
         return callReportRepository.findByHour(fromDate);       
+    }
+    
+    /**
+     * GET  /call-reports : get all the callReports.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of callReports in body
+     */
+    @GetMapping("/call-reports/by-type/{type}")
+    @Timed
+    public List<CallReport> getAllCallReportsByDate(@RequestParam("fromDate") Date fromDate, @RequestParam("toDate") Date toDate, @PathVariable String type) {
+        log.debug("REST request to get all CallReports");
+        return callReportRepository.findAll(fromDate, toDate,type);       
     }
     
     

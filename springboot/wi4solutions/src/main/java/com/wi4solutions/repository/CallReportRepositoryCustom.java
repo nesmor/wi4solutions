@@ -8,6 +8,8 @@ import com.wi4solutions.domain.CallReport;
 
 public interface CallReportRepositoryCustom {
 	
+	public List<CallReport> findAll(Date fromDate, Date toDate, String type);
+	
 	public CallReport findByFromDateAndToDate(Date fromDate, Date toDate);
 	
 	public List<CallReport> findByHour(Date date);

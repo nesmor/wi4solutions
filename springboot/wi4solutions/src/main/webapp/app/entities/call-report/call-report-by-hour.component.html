@@ -4,7 +4,7 @@
     </h2>
      <div class="row">
         <div class="col-md-5">
-            <h4 jhiTranslate="wi4SolutionsApp.callReport.filter.title">Filter by date</h4>
+            <h4 jhiTranslate="wi4SolutionsApp.callReport.filter.tittle">Filter by date</h4>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" jhiTranslate="wi4SolutionsApp.callReport.filter.from">from</span>
@@ -20,29 +20,27 @@
         <table class="table table-striped">
             <thead>
             <tr>
-             <th><span jhiTranslate="wi4SolutionsApp.callReport.date">Hour</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.callReport.failedCalls">Failed Calls</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callReport.date">Hour</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.callReport.totalCalls">Total Calls</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callReport.connectedCalls">Connected Calls</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.callReport.failedCalls">Failed Calls</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.callReport.totalDuration">Total Duration</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.callReport.asr">Asr</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.callReport.acd">Acd</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.callReport.minutes">Minutes</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.callReport.connectedCalls">Connected Calls</span></th>
-            <th></th>
+        
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let callReport of callReports ;trackBy: trackId">
-                <td><a [routerLink]="['/call-report', callReport.id, 'view' ]">{{callReport.id}}</a></td>
+                <!--  <td><a [routerLink]="['/call-report', callReport.id, 'view' ]">{{callReport.id}}</a></td>-->
                 <td>{{callReport.hour}}</td>
-                <td>{{callReport.failedCalls}}</td>
                 <td>{{callReport.totalCalls}}</td>
+                <td>{{callReport.connectedCalls}}</td>
+                <td>{{callReport.failedCalls}}</td>
                 <td>{{callReport.totalDuration}}</td>
                 <td>{{callReport.asr}}</td>
                 <td>{{callReport.acd}}</td>
-                <td>{{callReport.minutes}}</td>
-                <td>{{callReport.connectedCalls}}</td>
-                <td class="text-right">
+             <!--   <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
                                 [routerLink]="['/call-report', callReport.id, 'view' ]"
@@ -65,7 +63,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
-                </td>
+                </td>-->
             </tr>
             </tbody>
         </table>

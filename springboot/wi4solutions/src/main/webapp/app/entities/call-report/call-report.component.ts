@@ -18,6 +18,7 @@ export class CallReportComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     fromDate: string;
     toDate: string;
+    reportType: string;
 
     constructor(
         private callReportService: CallReportService,
@@ -29,6 +30,10 @@ export class CallReportComponent implements OnInit, OnDestroy {
     ) {}
 
     loadAll() {
+        if ((this.fromDate == null || this.fromDate == '') && (this.toDate == null || this.toDate)) {
+            this.today();
+        }
+        this.reportType = 'hour';
         this.callReportService
             .findByDate({
                 fromDate: this.fromDate,
@@ -97,6 +102,7 @@ export class CallReportComponent implements OnInit, OnDestroy {
         const today: Date = new Date();
         today.setDate(today.getDate() + 1);
         const date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        this.fromDate = this.datePipe.transform(date, dateFormat);
         this.toDate = this.datePipe.transform(date, dateFormat);
     }
 }

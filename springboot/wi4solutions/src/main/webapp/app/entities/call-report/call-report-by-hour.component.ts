@@ -10,13 +10,14 @@ import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'jhi-call-report',
-    templateUrl: './call-report.component.html'
+    templateUrl: './call-report-by-hour.component.html'
 })
 export class CallReportByHourComponent implements OnInit, OnDestroy {
     callReports: ICallReport[];
     currentAccount: any;
     eventSubscriber: Subscription;
     fromDate: string;
+    dateFormat = 'yyyy-MM-dd';
 
     constructor(
         private callReportService: CallReportService,
@@ -28,6 +29,11 @@ export class CallReportByHourComponent implements OnInit, OnDestroy {
     ) {}
 
     loadAll() {
+        if (this.fromDate == null || this.fromDate == '') {
+            const date: Date = new Date();
+            date.setUTCFullYear(2018, 3, 31);
+            this.fromDate = this.datePipe.transform(date, this.dateFormat);
+        }
         this.callReportService.findByHour({ fromDate: this.fromDate }).subscribe(
             (res: HttpResponse<ICallReport[]>) => {
                 this.callReports = res.body;
@@ -61,11 +67,14 @@ export class CallReportByHourComponent implements OnInit, OnDestroy {
     }
 
     today() {
-        const dateFormat = 'yyyy-MM-dd';
         // Today + 1 day - needed if the current day must be included
         const today: Date = new Date();
         today.setDate(today.getDate() + 1);
         const date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        this.fromDate = this.datePipe.transform(date, dateFormat);
+        this.fromDate = this.datePipe.transform(date, this.dateFormat);
+    }
+
+    transition() {
+        this.loadAll();
     }
 }

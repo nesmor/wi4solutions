@@ -106,7 +106,7 @@ public class CallReport {
 	
 	private String reportType;
 	
-	private Integer hour;
+	private Double hour;
 	
 	private Date date;
 	
@@ -199,11 +199,11 @@ public class CallReport {
 	}
 	
 
-	public Integer getHour() {
+	public Double getHour() {
 		return hour;
 	}
 
-	public void setHour(Integer hour) {
+	public void setHour(Double hour) {
 		this.hour = hour;
 	}
 
