@@ -59,7 +59,10 @@ export const callReportRoute: Routes = [
     },
     {
         path: 'call-report/by-type/:type',
-        component: CallReportByHourComponent,
+        component: CallReportComponent,
+        resolve: {
+            callReport: CallReportResolve
+        },
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'wi4SolutionsApp.callReport.home.title'

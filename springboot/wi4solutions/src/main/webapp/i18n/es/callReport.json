@@ -27,6 +27,9 @@
             "reportType": "Report Type",
             "hour": "Hour",
             "date": "Date",
+            "year": "Year",
+            "monthy": "Month",
+            "week": "Week",
             "filter": {
                 "tittle": "Filter by date",
                 "from": "From Date",

@@ -44,6 +44,12 @@ export class CallReportService {
         //   .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
+    findByType(type: string, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<ICallReport[]>(`${this.resourceUrl}/by-type/${type}`, { params: options, observe: 'response' });
+        //   .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }

@@ -33,9 +33,36 @@ export class CallReportComponent implements OnInit, OnDestroy {
         if ((this.fromDate == null || this.fromDate == '') && (this.toDate == null || this.toDate)) {
             this.today();
         }
-        this.reportType = 'hour';
+        console.log('*******Path called:' + this.router.url);
+        if (this.router.url == '/call-report/by-type/week') {
+            this.reportType = 'week';
+            this.callFindByType('week');
+        } else if (this.router.url == '/call-report/by-type/monthy') {
+            this.reportType = 'monthy';
+            this.callFindByType('monthy');
+        } else {
+            this.reportType = 'date';
+            this.callFindByDate();
+        }
+    }
+
+    callFindByDate() {
         this.callReportService
             .findByDate({
+                fromDate: this.fromDate,
+                toDate: this.toDate
+            })
+            .subscribe(
+                (res: HttpResponse<ICallReport[]>) => {
+                    this.callReports = res.body;
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
+    callFindByType(type: string) {
+        this.callReportService
+            .findByType(type, {
                 fromDate: this.fromDate,
                 toDate: this.toDate
             })
@@ -64,14 +91,7 @@ export class CallReportComponent implements OnInit, OnDestroy {
     }
 
     transition() {
-        this.router.navigate(['/call-report/by-date'], {
-            queryParams: {
-                fromDate: this.fromDate,
-                toDate: this.toDate
-                //page: this.page,
-                //sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-            }
-        });
+        console.log('*******Ejecuting transition');
         this.loadAll();
     }
 

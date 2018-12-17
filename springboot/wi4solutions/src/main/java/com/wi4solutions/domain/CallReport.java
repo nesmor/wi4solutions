@@ -89,6 +89,10 @@ public class CallReport {
 	
 	private Date toDate;
 	
+	private Integer year;
+	
+	private Integer week;
+	
 	@Id
 	private Long failedCalls;
 	
@@ -213,6 +217,23 @@ public class CallReport {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getWeek() {
+		return week;
+	}
+
+	public void setWeek(Integer week) {
+		this.week = week;
 	}
 
 	@Override

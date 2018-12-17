@@ -35,7 +35,7 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 				 q = em.createQuery(
 						"SELECT YEAR(c.calldate), WEEK(c.calldate) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
 						"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM Cdr cd  " + 
-						"WHERE cd.disposition != 'ANSWERED' AND  WEEK(cd.calldate) = WEEK(c.calldate),1) AS NOT_CONNECTED " + 
+						"WHERE cd.disposition != 'ANSWERED' AND  WEEK(cd.calldate) = WEEK(c.calldate)) AS NOT_CONNECTED " + 
 						"FROM Cdr c  WHERE c.disposition = 'ANSWERED' " + 
 						"AND c.duration > 0 AND " + 
 						"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY WEEK(c.calldate) ORDER BY YEAR(c.calldate) DESC, MONTH(c.calldate) ASC ");
@@ -44,7 +44,7 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 				 q = em.createQuery(
 						"SELECT YEAR(c.calldate), MONTH(c.calldate) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
 						"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM Cdr cd  " + 
-						"WHERE cd.disposition != 'ANSWERED' AND  MONTH(cd.calldate) = MONTH(c.calldate),1) AS NOT_CONNECTED " + 
+						"WHERE cd.disposition != 'ANSWERED' AND  MONTH(cd.calldate) = MONTH(c.calldate)) AS NOT_CONNECTED " + 
 						"FROM Cdr c  WHERE c.disposition = 'ANSWERED' " + 
 						"AND c.duration > 0 AND " + 
 						"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY MONTH(c.calldate) ORDER BY YEAR(c.calldate) DESC, MONTH(c.calldate) ASC ");
@@ -56,7 +56,7 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		q.setParameter("fromDate", fromDate);
 		q.setParameter("toDate", toDate);
 		reports = q.getResultList();
-		return (List<CallReport>) reports.stream().map(e -> {return this.mapCallReport(e);}).collect(Collectors.toList());
+		return (List<CallReport>) reports.stream().map(e -> {return this.mapCallReportType(e);}).collect(Collectors.toList());
 	}
 
 	@Override
@@ -125,12 +125,49 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		callReport.setConnectedCalls((Long) data[1]);
 		callReport.setTotalDuration((Long) data[2]);
 		callReport.setFailedCalls((Long)data[3]);
-		callReport.setAcd(callReport.getTotalDuration() / callReport.getTotalCalls());
+		callReport.setTotalCalls(callReport.getConnectedCalls() + callReport.getFailedCalls());
 		callReport.setAcd(callReport.getTotalDuration() / callReport.getConnectedCalls());
 		callReport.setAsr(callReport.getConnectedCalls() / callReport.getTotalCalls());
 		return callReport;
 	}
 	
+	private CallReport mapCallReportType(Object[] data) {
+		CallReport callReport = new CallReport();
+		if(data[0] instanceof Double){
+			callReport.setYear(((Double)data[0]).intValue());
+		}else if(data[0] instanceof Integer){
+			callReport.setYear((Integer)data[0]);
+		}
+		
+		if(data[1] instanceof Double){
+			callReport.setWeek(((Double)data[1]).intValue());
+		}else if(data[1] instanceof Integer){
+			callReport.setWeek((Integer)data[1]);
+		}
+	
+		if(data[2] instanceof Long){
+			callReport.setConnectedCalls((Long) data[2]);
+		}else if(data[2] instanceof Integer){
+			callReport.setConnectedCalls(((Integer)data[2]).longValue());
+		}
+		
+		if(data[3] instanceof Long){
+			callReport.setTotalDuration((Long) data[3]);
+		}else if(data[3] instanceof Integer){
+			callReport.setTotalDuration(((Integer)data[3]).longValue());
+		}
+		
+		if(data[4] instanceof Long){
+			callReport.setFailedCalls((Long) data[4]);
+		}else if(data[4] instanceof Integer){
+			callReport.setFailedCalls(((Integer)data[4]).longValue());
+		}
+		
+		callReport.setTotalCalls(callReport.getConnectedCalls() + callReport.getFailedCalls());
+		callReport.setAcd(callReport.getTotalDuration() / callReport.getConnectedCalls());
+		callReport.setAsr(callReport.getConnectedCalls() / callReport.getTotalCalls());
+		return callReport;
+	}
 	
 
 }
