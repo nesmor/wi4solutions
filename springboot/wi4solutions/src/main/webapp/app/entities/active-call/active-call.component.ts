@@ -49,10 +49,7 @@ export class ActiveCallComponent implements OnInit, OnDestroy {
     }
 
     registerChangeInActiveCalls() {
-        this.eventSubscriber = this.eventManager
-            .timer(0, 10000)
-            .pipe()
-            .subscribe('activeCallListModification', response => this.loadAll());
+        this.eventSubscriber = this.eventManager.subscribe('activeCallListModification', response => this.loadAll());
     }
 
     private onError(errorMessage: string) {
