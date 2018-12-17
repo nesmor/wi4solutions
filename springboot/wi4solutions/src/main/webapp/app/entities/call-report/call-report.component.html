@@ -26,7 +26,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            	<th ng-show="reportType === 'week' || reportType === 'monthy'" jhiTranslate="wi4SolutionsApp.callReport.year">Year</th>
+            	<th *ngIf="reportType == 'week' || reportType == 'monthy'" jhiTranslate="wi4SolutionsApp.callReport.year">Year</th>
 	            <th><span jhiTranslate="wi4SolutionsApp.callReport.{{reportType}}">{{reportType}}</span></th>
 	            <th><span jhiTranslate="wi4SolutionsApp.callReport.totalCalls">Total Calls</span></th>
 	            <th><span jhiTranslate="wi4SolutionsApp.callReport.connectedCalls">Connected Calls</span></th>
@@ -40,9 +40,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let callReport of callReports ;trackBy: trackId">
-            	<td ng-show="reportType === 'week' || reportType === 'monthy'">{{callReport.year}}</td>
-            	<td ng-show="reportType === 'week' || reportType === 'monthy'">{{callReport.week}}</td>
-            	<td ng-show="reportType === 'date'">{{callReport.date}}</td>
+            	<td *ngIf="reportType == 'week' || reportType == 'monthy'">{{callReport.year}}</td>
+            	<td *ngIf="reportType == 'week' || reportType == 'monthy'">{{callReport.week}}</td>
+            	<td *ngIf="reportType == 'date'">{{callReport.date}}</td>
                 <td>{{callReport.totalCalls}}</td>
                 <td>{{callReport.connectedCalls}}</td>
                 <td>{{callReport.failedCalls}}</td>

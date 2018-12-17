@@ -1,0 +1,27 @@
+{
+    "wi4SolutionsApp": {
+        "activeCall": {
+            "home": {
+                "title": "Active Calls",
+                "createLabel": "Crear nuevo Active Call",
+                "createOrEditLabel": "Crear o editar Active Call"
+            },
+            "created": "Un nuevo Active Call ha sido creado con el identificador {{ param }}",
+            "updated": "Un Active Call ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Active Call ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Active Call {{ id }}?"
+            },
+            "detail": {
+                "title": "Active Call"
+            },
+            "number": "Number",
+            "originator": "Originator",
+            "ani": "Ani",
+            "dni": "Dni",
+            "gateway": "Gateway",
+            "duration": "Duration",
+            "status": "Status"
+        }
+    }
+}

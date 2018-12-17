@@ -5,6 +5,7 @@ import { Wi4SolutionsDialPlanModule } from './dial-plan/dial-plan.module';
 import { Wi4SolutionsGatewayModule } from './gateway/gateway.module';
 import { Wi4SolutionsCallDetailRecordModule } from './call-detail-record/call-detail-record.module';
 import { Wi4SolutionsCallReportModule } from './call-report/call-report.module';
+import { Wi4SolutionsActiveCallModule } from './active-call/active-call.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -15,6 +16,7 @@ import { Wi4SolutionsCallReportModule } from './call-report/call-report.module';
         Wi4SolutionsGatewayModule,
         Wi4SolutionsCallDetailRecordModule,
         Wi4SolutionsCallReportModule,
+        Wi4SolutionsActiveCallModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

@@ -1,0 +1,66 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="wi4SolutionsApp.activeCall.home.title">Active Calls</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-active-call" [routerLink]="['/active-call/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="wi4SolutionsApp.activeCall.home.createLabel">
+            Create new Active Call
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="activeCalls">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.activeCall.number">Number</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.activeCall.originator">Originator</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.activeCall.ani">Ani</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.activeCall.dni">Dni</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.activeCall.gateway">Gateway</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.activeCall.duration">Duration</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.activeCall.status">Status</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let activeCall of activeCalls ;trackBy: trackId">
+                <td><a [routerLink]="['/active-call', activeCall.id, 'view' ]">{{activeCall.id}}</a></td>
+                <td>{{activeCall.number}}</td>
+                <td>{{activeCall.originator}}</td>
+                <td>{{activeCall.ani}}</td>
+                <td>{{activeCall.dni}}</td>
+                <td>{{activeCall.gateway}}</td>
+                <td>{{activeCall.duration}}</td>
+                <td>{{activeCall.status}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/active-call', activeCall.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/active-call', activeCall.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'active-call/'+ activeCall.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

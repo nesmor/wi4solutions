@@ -44,6 +44,7 @@ public class CacheConfiguration {
             cm.createCache(com.wi4solutions.domain.CallDetailRecord.class.getName(), jcacheConfiguration);
             cm.createCache(com.wi4solutions.domain.Cdr.class.getName(), jcacheConfiguration);
             cm.createCache(com.wi4solutions.domain.CallReport.class.getName(), jcacheConfiguration);
+            cm.createCache(com.wi4solutions.domain.ActiveCall.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

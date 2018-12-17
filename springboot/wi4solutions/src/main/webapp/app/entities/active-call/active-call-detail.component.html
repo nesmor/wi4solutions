@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="activeCall">
+            <h2><span jhiTranslate="wi4SolutionsApp.activeCall.detail.title">Active Call</span> {{activeCall.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="wi4SolutionsApp.activeCall.number">Number</span></dt>
+                <dd>
+                    <span>{{activeCall.number}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.activeCall.originator">Originator</span></dt>
+                <dd>
+                    <span>{{activeCall.originator}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.activeCall.ani">Ani</span></dt>
+                <dd>
+                    <span>{{activeCall.ani}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.activeCall.dni">Dni</span></dt>
+                <dd>
+                    <span>{{activeCall.dni}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.activeCall.gateway">Gateway</span></dt>
+                <dd>
+                    <span>{{activeCall.gateway}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.activeCall.duration">Duration</span></dt>
+                <dd>
+                    <span>{{activeCall.duration}}</span>
+                </dd>
+                <dt><span jhiTranslate="wi4SolutionsApp.activeCall.status">Status</span></dt>
+                <dd>
+                    <span>{{activeCall.status}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/active-call', activeCall.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+entity ActiveCall{
+	number String,
+	originator String,
+	ani String,
+	dni String,
+	gateway String,
+	duration String,
+	status String
+}

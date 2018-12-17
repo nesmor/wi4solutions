@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-active-call-heading" jhiTranslate="wi4SolutionsApp.activeCall.home.createOrEditLabel">Create or edit a Active Call</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!activeCall.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="activeCall.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.activeCall.number" for="field_number">Number</label>
+                    <input type="text" class="form-control" name="number" id="field_number"
+                        [(ngModel)]="activeCall.number" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.activeCall.originator" for="field_originator">Originator</label>
+                    <input type="text" class="form-control" name="originator" id="field_originator"
+                        [(ngModel)]="activeCall.originator" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.activeCall.ani" for="field_ani">Ani</label>
+                    <input type="text" class="form-control" name="ani" id="field_ani"
+                        [(ngModel)]="activeCall.ani" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.activeCall.dni" for="field_dni">Dni</label>
+                    <input type="text" class="form-control" name="dni" id="field_dni"
+                        [(ngModel)]="activeCall.dni" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.activeCall.gateway" for="field_gateway">Gateway</label>
+                    <input type="text" class="form-control" name="gateway" id="field_gateway"
+                        [(ngModel)]="activeCall.gateway" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.activeCall.duration" for="field_duration">Duration</label>
+                    <input type="text" class="form-control" name="duration" id="field_duration"
+                        [(ngModel)]="activeCall.duration" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.activeCall.status" for="field_status">Status</label>
+                    <input type="text" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="activeCall.status" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

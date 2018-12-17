@@ -13,6 +13,7 @@
                 "gateway": "Gateway",
                 "callDetailRecord": "Call Detail Record",
                 "callReport": "Call Report",
+                "activeCall": "Active Call",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "report": {
