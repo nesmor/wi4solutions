@@ -40,6 +40,10 @@ export class CallReportComponent implements OnInit, OnDestroy {
         } else if (this.router.url == '/call-report/by-type/monthy') {
             this.reportType = 'monthy';
             this.callFindByType('monthy');
+        } else if (this.router.url.indexOf('/call-report/by-period') >= 0) {
+            const urlSegment = this.router.url.split('/');
+            this.reportType = 'date';
+            this.callFindByPeriod(urlSegment[3]);
         } else {
             this.reportType = 'date';
             this.callFindByDate();
@@ -72,6 +76,15 @@ export class CallReportComponent implements OnInit, OnDestroy {
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
+    }
+
+    callFindByPeriod(type: string) {
+        this.callReportService.findByPeriod(type).subscribe(
+            (res: HttpResponse<ICallReport[]>) => {
+                this.callReports = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
     }
 
     ngOnInit() {
