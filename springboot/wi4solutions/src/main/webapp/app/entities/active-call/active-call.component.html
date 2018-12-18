@@ -1,12 +1,6 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="wi4SolutionsApp.activeCall.home.title">Active Calls</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-active-call" [routerLink]="['/active-call/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="wi4SolutionsApp.activeCall.home.createLabel">
-            Create new Active Call
-            </span>
-        </button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
@@ -22,7 +16,6 @@
             <th><span jhiTranslate="wi4SolutionsApp.activeCall.gateway">Gateway</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.activeCall.duration">Duration</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.activeCall.status">Status</span></th>
-            <th></th>
             </tr>
             </thead>
             <tbody>
@@ -35,6 +28,7 @@
                 <td>{{activeCall.gateway}}</td>
                 <td>{{activeCall.duration}}</td>
                 <td>{{activeCall.status}}</td>
+                <!--  
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
@@ -58,7 +52,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
-                </td>
+                </td>-->
             </tr>
             </tbody>
         </table>

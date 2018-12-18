@@ -20,12 +20,14 @@ public class ActiveCallRepositoryImp  implements ActiveCallRepository{
 		for(int i = 0; i < 10 ; i++) {
 			a = new ActiveCall();
 			a.setNumber(RandomUtil.generatePassword());
+			a.setOriginator(RandomUtil.generatePassword());
 			a.setAni(RandomUtil.generatePassword());
 			a.setDni(RandomUtil.generatePassword());
 			a.setDuration(RandomUtil.generatePassword());
 			a.setGateway(RandomUtil.generatePassword());
 			a.setId(RandomUtil.generatePassword());
 			a.setDuration(RandomUtil.generatePassword());
+			a.setStatus(RandomUtil.generatePassword());
 			activeCalls.add(a);
 		}
 		return activeCalls;

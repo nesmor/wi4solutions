@@ -49,6 +49,15 @@ export const callReportRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
+        path: 'call-report/by-date/:date',
+        component: CallReportComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'wi4SolutionsApp.callReport.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
         path: 'call-report/by-hour',
         component: CallReportByHourComponent,
         data: {

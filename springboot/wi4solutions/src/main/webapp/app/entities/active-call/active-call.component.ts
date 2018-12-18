@@ -9,12 +9,14 @@ import { ActiveCallService } from './active-call.service';
 
 @Component({
     selector: 'jhi-active-call',
-    templateUrl: './active-call.component.html'
+    templateUrl: './active-call.component.html',
+    styles: ['.table-responsive { font-size: 80%; }']
 })
 export class ActiveCallComponent implements OnInit, OnDestroy {
     activeCalls: IActiveCall[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    interval: any;
 
     constructor(
         private activeCallService: ActiveCallService,
@@ -33,7 +35,10 @@ export class ActiveCallComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.loadAll();
+        this.interval = setInterval(() => {
+            this.loadAll();
+        }, 1000);
+
         this.principal.identity().then(account => {
             this.currentAccount = account;
         });
@@ -42,6 +47,7 @@ export class ActiveCallComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
+        clearInterval(this.interval);
     }
 
     trackId(index: number, item: IActiveCall) {
