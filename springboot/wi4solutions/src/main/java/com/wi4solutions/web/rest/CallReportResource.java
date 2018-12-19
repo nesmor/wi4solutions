@@ -16,7 +16,10 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -92,6 +95,55 @@ public class CallReportResource {
     @Timed
     public List<CallReport> getAllCallReportsByDate(@RequestParam("fromDate") Date fromDate, @RequestParam("toDate") Date toDate) {
         log.debug("REST request to get all CallReports");
+        Calendar calendar = Calendar.getInstance();	
+        java.util.Date today = new java.util.Date();
+        calendar.setTime(today);
+        calendar.set(Calendar.MONTH, 3);
+        																																																																																																																																																																																																																																						fromDate = new java.sql.Date(calendar.getTime().getTime());
+		toDate = fromDate;
+        return callReportRepository.findByDate(fromDate, toDate);       
+    } 
+    
+    
+    /**
+     * GET  /call-reports : get all the callReports.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of callReports in body
+     */
+    @GetMapping("/call-reports/by-period/{period}")
+    @Timed
+    public List<CallReport> getAllCallReportsByPeriod(@PathVariable String period) {
+    	Date fromDate = null;
+    	Date toDate = null;
+    	log.debug("REST request to get all CallReports");
+        Calendar calendar = Calendar.getInstance();	
+        java.util.Date today = new java.util.Date();
+        calendar.setTime(today);
+        calendar.set(Calendar.MONTH, 3);
+        
+        switch (period) {
+			case "today":
+				fromDate = new java.sql.Date(calendar.getTime().getTime());
+				toDate = fromDate;
+				break;
+			case "yesterday":
+				calendar.add(Calendar.DAY_OF_MONTH, -1);
+				fromDate = new java.sql.Date(calendar.getTime().getTime());
+				toDate = fromDate;
+				break;
+			case "month":
+				calendar.set(Calendar.DAY_OF_MONTH, 1);
+				fromDate = new java.sql.Date(calendar.getTime().getTime());
+				toDate = new java.sql.Date(today.getTime());
+			break;
+			case "last-month":
+				calendar.setTime(today);
+				calendar.set(Calendar.DAY_OF_MONTH, 1);
+				calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
+				fromDate = new java.sql.Date(calendar.getTime().getTime());
+				toDate = new java.sql.Date(today.getTime());
+			break;
+		}
         try {
 //	        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
 //	    	fromDate = new Date(sdf.parse("31-03-2018").getTime());
@@ -123,7 +175,7 @@ public class CallReportResource {
      */
     @GetMapping("/call-reports/by-type/{type}")
     @Timed
-    public List<CallReport> getAllCallReportsByDate(@RequestParam("fromDate") Date fromDate, @RequestParam("toDate") Date toDate, @PathVariable String type) {
+    public List<CallReport> getAllCallReportsByType(@RequestParam("fromDate") Date fromDate, @RequestParam("toDate") Date toDate, @PathVariable String type) {
         log.debug("REST request to get all CallReports");
         return callReportRepository.findAll(fromDate, toDate,type);       
     }
