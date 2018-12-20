@@ -27,7 +27,11 @@ export class CallReportComponent implements OnInit, OnDestroy {
         private principal: Principal,
         private datePipe: DatePipe,
         private router: Router
-    ) {}
+    ) {
+        this.router.routeReuseStrategy.shouldReuseRoute = function() {
+            return false;
+        };
+    }
 
     loadAll() {
         if ((this.fromDate == null || this.fromDate == '') && (this.toDate == null || this.toDate)) {
