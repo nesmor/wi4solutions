@@ -2,8 +2,8 @@ package com.wi4solutions.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.wi4solutions.domain.ActiveCall;
-import com.wi4solutions.repository.ActiveCallRepository;
-import com.wi4solutions.repository.ActiveCallRepositoryImp;
+import com.wi4solutions.repository.AsteriskRepository;
+import com.wi4solutions.repository.AsteriskRepositoryImp;
 import com.wi4solutions.web.rest.errors.BadRequestAlertException;
 import com.wi4solutions.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -29,9 +29,9 @@ public class ActiveCallResource {
 
     private static final String ENTITY_NAME = "activeCall";
 
-    private final ActiveCallRepositoryImp activeCallRepository;
+    private final AsteriskRepositoryImp activeCallRepository;
 
-    public ActiveCallResource(ActiveCallRepositoryImp activeCallRepository) {
+    public ActiveCallResource(AsteriskRepositoryImp activeCallRepository) {
         this.activeCallRepository = activeCallRepository;
     }
 

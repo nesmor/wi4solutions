@@ -3,7 +3,7 @@ package com.wi4solutions.web.rest;
 import com.wi4solutions.Wi4SolutionsApp;
 
 import com.wi4solutions.domain.ActiveCall;
-import com.wi4solutions.repository.ActiveCallRepository;
+import com.wi4solutions.repository.AsteriskRepository;
 import com.wi4solutions.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
