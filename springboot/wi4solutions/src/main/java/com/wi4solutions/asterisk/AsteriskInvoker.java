@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AsteriskInvoker<T>{
 	
-	private String host;
+	private String host = "192.168.210.13";
 	
-	private String username;
+	private String username = "wixtel";
 	
-	private String password;
+	private String password = "w1xt3l!mgr";
 	
 	private ManagerConnection managerConnection;
 	
@@ -26,6 +26,7 @@ public class AsteriskInvoker<T>{
 		ManagerConnectionFactory factory = new ManagerConnectionFactory(this.host, this.username, this.password);
 		this.managerConnection = factory.createManagerConnection();
 	}
+	
 	
 	Action<T> action;
 	
@@ -74,9 +75,11 @@ public class AsteriskInvoker<T>{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Action<T> getAction() {
+		return action;
 	} 
-    
-    
-   
+
     
 }

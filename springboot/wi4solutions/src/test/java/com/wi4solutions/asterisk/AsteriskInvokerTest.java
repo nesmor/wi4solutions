@@ -43,9 +43,9 @@ public class AsteriskInvokerTest {
 	    	LoginCommand login = new LoginCommand();
 	    	ActiveCallsComand activeCalls = new ActiveCallsComand();
 	    	LogoutCommand logout = new LogoutCommand();
-	    	
 	    	this.asteriskInvoker.invoke(login);
 	    	this.asteriskInvoker.invoke(activeCalls);
+	     	this.asteriskInvoker.getResponse();
 	    	this.asteriskInvoker.invoke(logout);
     	}catch (Exception e) {
     		e.printStackTrace();

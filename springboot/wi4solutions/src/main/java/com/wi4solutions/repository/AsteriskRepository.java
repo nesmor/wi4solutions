@@ -21,7 +21,7 @@ public interface AsteriskRepository  {
 	 * (non-Javadoc)
 	 * @see org.springframework.data.repository.CrudRepository#findAll()
 	 */
-	List<ActiveCall> findAll();
+	String findAll();
 
 	/*
 	 * (non-Javadoc)

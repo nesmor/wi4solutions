@@ -2,14 +2,14 @@ package com.wi4solutions.asterisk;
 
 import org.asteriskjava.manager.ManagerConnection;
 
-public abstract class AbstractAsteriskAction implements Action<String>{
+public abstract class AbstractAsteriskAction<T> implements Action<T>{
 
 	ManagerConnection managerConnection;
 
 	@Override
-	public String getResponse() {
+	public T getResponse() {
 		return null;
-	}
+	};
 
 	@Override
 	public void handError() {

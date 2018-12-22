@@ -84,9 +84,24 @@ public class ActiveCallResource {
      */
     @GetMapping("/active-calls")
     @Timed
-    public List<ActiveCall> getAllActiveCalls() {
+    public String getAllActiveCalls() {
         log.debug("REST request to get all ActiveCalls");
         return activeCallRepository.findAll();
+    }
+    
+    @GetMapping("/reload")
+    @Timed
+    public void getReload() {
+        log.debug("REST request to get all ActiveCalls");
+        activeCallRepository.reloadServer();
+    }
+    
+    
+    @GetMapping("/restart")
+    @Timed
+    public void getRestart() {
+        log.debug("REST request to get all ActiveCalls");
+        activeCallRepository.restartServer();
     }
 
     /**
