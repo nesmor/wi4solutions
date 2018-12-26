@@ -27,9 +27,9 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/wi4solutions?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=VET
+        url: jdbc:mysql://localhost:3306/wi4solutions?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false
         username: root
-        password: 2909
+        password: swift123
         hikari:
             auto-commit: false
             data-source-properties:
