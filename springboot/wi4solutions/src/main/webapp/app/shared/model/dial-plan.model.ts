@@ -10,6 +10,7 @@ export interface IDialPlan {
     priority?: number;
     limit?: number;
     gateway?: IGateway;
+    status?: number;
 }
 
 export class DialPlan implements IDialPlan {
@@ -22,6 +23,7 @@ export class DialPlan implements IDialPlan {
         public preceding?: string,
         public priority?: number,
         public limit?: number,
-        public gateway?: IGateway
+        public gateway?: IGateway,
+        public status?: number
     ) {}
 }
