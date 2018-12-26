@@ -46,7 +46,6 @@ export class GatewayUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
         this.gateway.nat = 'force_rport';
-        this.gateway.username = this.gateway.host;
         if (this.gateway.id !== undefined) {
             this.subscribeToSaveResponse(this.gatewayService.update(this.gateway));
         } else {

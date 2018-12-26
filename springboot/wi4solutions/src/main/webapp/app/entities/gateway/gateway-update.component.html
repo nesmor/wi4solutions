@@ -15,10 +15,15 @@
                         [(ngModel)]="gateway.name" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.host" for="field_host">Host</label>
-                    <input type="text" class="form-control" name="host" id="field_host"
-                        [(ngModel)]="gateway.host" />
+                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.defaultip" for="field_defaultip">Defaultip</label>
+                    <input type="text" class="form-control" name="defaultip" id="field_defaultip"
+                        [(ngModel)]="gateway.defaultip" />
                 </div>
+<!--                 <div class="form-group"> -->
+<!--                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.host" for="field_host">Host</label> -->
+<!--                     <input type="text" class="form-control" name="host" id="field_host" -->
+<!--                         [(ngModel)]="gateway.host" /> -->
+<!--                 </div> -->
                 <div class="form-group" hidden="true">
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.nat" for="field_nat">Nat</label>
                     <input type="text" class="form-control" name="nat" id="field_nat"  
@@ -74,11 +79,7 @@
                     <input type="text" class="form-control" name="context" id="field_context"
                         [(ngModel)]="gateway.context" />
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.defaultip" for="field_defaultip">Defaultip</label>
-                    <input type="text" class="form-control" name="defaultip" id="field_defaultip"
-                        [(ngModel)]="gateway.defaultip" />
-                </div>
+             
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.gateway.dtmfmode" for="field_dtmfmode">Dtmfmode</label>
                     <input type="text" class="form-control" name="dtmfmode" id="field_dtmfmode"

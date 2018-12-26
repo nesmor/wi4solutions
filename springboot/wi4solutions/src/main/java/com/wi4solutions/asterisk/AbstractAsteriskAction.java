@@ -17,9 +17,7 @@ public abstract class AbstractAsteriskAction<T> implements Action<T>{
 	}
 
 	@Override
-	public Integer getCode() {
-		return null;
-	}
+	public abstract Integer getCode();
 
 	@Override
 	public String getMessage() {

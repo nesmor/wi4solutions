@@ -34,7 +34,7 @@ export class CallReportComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        if ((this.fromDate == null || this.fromDate == '') && (this.toDate == null || this.toDate)) {
+        if ((this.fromDate == null || this.fromDate == '') && (this.toDate == null || this.toDate == '')) {
             this.today();
         }
         console.log('*******Path called:' + this.router.url);
@@ -46,7 +46,7 @@ export class CallReportComponent implements OnInit, OnDestroy {
             this.callFindByType('monthy');
         } else if (this.router.url.indexOf('/call-report/by-period') >= 0) {
             const urlSegment = this.router.url.split('/');
-            this.reportType = 'date';
+            this.reportType = urlSegment[3];
             this.callFindByPeriod(urlSegment[3]);
         } else {
             this.reportType = 'date';

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import org.asteriskjava.manager.TimeoutException;
 import org.asteriskjava.manager.response.ManagerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -60,15 +61,16 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 	@Override
 	public String findAll(){
 		List<ActiveCall> activeCalls ;
+		Integer code = null;
 		try {
 			asteriskInvoker.connect();
 			asteriskInvoker.invoke(loginCommand);
 			asteriskInvoker.invoke(activeCallsCommand);
+			code = asteriskInvoker.getCode();
 			asteriskInvoker.invoke(logoutCommand);
 		} catch (Exception e) {
 			throw new CommandFailedException();
 		}
-		int code = asteriskInvoker.getCode();
 		if(code == 1)
 			throw new CommandFailedException();
 		
@@ -82,35 +84,51 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 	}
 	
 	public void reloadServer() {
+		int code = 1;
 		try {
 			asteriskInvoker.connect();
 			asteriskInvoker.invoke(loginCommand);
 			asteriskInvoker.invoke(reloadCommand);
+			code = asteriskInvoker.getCode();
 			asteriskInvoker.invoke(logoutCommand);
 		} catch (Exception e) {
 			throw new CommandFailedException();
 		}
-		int code = asteriskInvoker.getCode();
 		if(code == 1)
 			throw new CommandFailedException();
 		
 	}
 	
 	public void restartServer() {
+		int code = 1;
 		try {
 			asteriskInvoker.connect();
 			asteriskInvoker.invoke(loginCommand);
 			asteriskInvoker.invoke(restartCommand);
-			asteriskInvoker.invoke(logoutCommand);
-		} catch (Exception e) {
+			code = asteriskInvoker.getCode();
+			new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					try {
+						Thread.sleep(500);
+						asteriskInvoker.invoke(logoutCommand);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+				}
+			}).start();
+		}
+		catch (TimeoutException e) {
+			code = 0;
+		}
+		catch (Exception e) {
 			throw new CommandFailedException();
 		}
-		int code = asteriskInvoker.getCode();
 		if(code == 1)
 			throw new CommandFailedException();
-		
 	}
-	
 	
 
 }

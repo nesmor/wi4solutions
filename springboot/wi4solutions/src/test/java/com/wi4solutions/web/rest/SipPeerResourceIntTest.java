@@ -3,6 +3,7 @@ package com.wi4solutions.web.rest;
 import com.wi4solutions.Wi4SolutionsApp;
 
 import com.wi4solutions.domain.SipPeer;
+import com.wi4solutions.repository.AsteriskRepositoryImp;
 import com.wi4solutions.repository.SipPeerRepository;
 import com.wi4solutions.web.rest.errors.ExceptionTranslator;
 
@@ -176,6 +177,9 @@ public class SipPeerResourceIntTest {
 
     @Autowired
     private SipPeerRepository sipPeerRepository;
+    
+    @Autowired
+    private AsteriskRepositoryImp asteriskRepositoryImp;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -196,7 +200,7 @@ public class SipPeerResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final SipPeerResource sipPeerResource = new SipPeerResource(sipPeerRepository);
+        final SipPeerResource sipPeerResource = new SipPeerResource(sipPeerRepository, asteriskRepositoryImp);
         this.restSipPeerMockMvc = MockMvcBuilders.standaloneSetup(sipPeerResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

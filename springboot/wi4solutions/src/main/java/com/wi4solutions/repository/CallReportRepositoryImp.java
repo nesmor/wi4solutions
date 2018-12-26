@@ -1,6 +1,7 @@
-package com.wi4solutions.repository;
+	package com.wi4solutions.repository;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -47,7 +48,7 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 						"WHERE cd.disposition != 'ANSWERED' AND  MONTH(cd.calldate) = MONTH(c.calldate)) AS NOT_CONNECTED " + 
 						"FROM Cdr c  WHERE c.disposition = 'ANSWERED' " + 
 						"AND c.duration > 0 AND " + 
-						"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY MONTH(c.calldate) ORDER BY YEAR(c.calldate) DESC, MONTH(c.calldate) ASC ");
+						"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY MONTH(c.calldate) ORDER BY YEAR(c.calldate) DESC, WEEK(c.calldate) ASC ");
 		   break;
 		
 		
@@ -67,7 +68,7 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		findAll.setParameter("from_date", fromDate);
 		findAll.setParameter("to_date", toDate);
 		findAll.execute();
-		report.setAcd((Long)findAll.getOutputParameterValue(CallReport.PARAM_OUT_ACD));
+		report.setAcd(((Long)findAll.getOutputParameterValue(CallReport.PARAM_OUT_ACD)).floatValue());
 		report.setAsr((Float)findAll.getOutputParameterValue(CallReport.PARAM_OUT_ASR));
 		report.setTotalCalls((Long)findAll.getOutputParameterValue(CallReport.PARAM_OUT_CONNECTED_TOTAL_CALLS));
 		report.setTotalDuration((Long)findAll.getOutputParameterValue(CallReport.PARAM_OUT_TOTAL_DURATION));
@@ -126,8 +127,8 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		callReport.setTotalDuration((Long) data[2]);
 		callReport.setFailedCalls((Long)data[3]);
 		callReport.setTotalCalls(callReport.getConnectedCalls() + callReport.getFailedCalls());
-		callReport.setAcd(callReport.getTotalDuration() / callReport.getConnectedCalls());
-		callReport.setAsr(callReport.getConnectedCalls() / callReport.getTotalCalls());
+		callReport.setAcd(callReport.getTotalDuration().floatValue() / callReport.getConnectedCalls().floatValue());
+		callReport.setAsr(callReport.getConnectedCalls().floatValue() / callReport.getTotalCalls().floatValue());
 		return callReport;
 	}
 	
@@ -164,10 +165,30 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		}
 		
 		callReport.setTotalCalls(callReport.getConnectedCalls() + callReport.getFailedCalls());
-		callReport.setAcd(callReport.getTotalDuration() / callReport.getConnectedCalls());
-		callReport.setAsr(callReport.getConnectedCalls() / callReport.getTotalCalls());
+		callReport.setAcd(callReport.getTotalDuration().floatValue() / callReport.getConnectedCalls().floatValue());
+		callReport.setAsr(callReport.getConnectedCalls().floatValue() / callReport.getTotalCalls().floatValue());
 		return callReport;
 	}
 	
+	 public List<CallReport> getResume(Date fromDate, Date toDate){
+    	 List<CallReport> reports = new ArrayList();
+         CallReport report = new CallReport();
+         report.setConnectedCalls(0l);
+         report.setFailedCalls(0l);
+         report.setTotalCalls(0l);
+         report.setTotalDuration(0l);
+         
+         this.findByDate(fromDate, toDate).stream().forEach(r ->{
+         		report.setFailedCalls(report.getFailedCalls() + r.getFailedCalls());
+         		report.setConnectedCalls(report.getConnectedCalls() + r.getConnectedCalls());
+                report.setTotalCalls(report.getFailedCalls() + report.getConnectedCalls());
+                report.setTotalDuration(report.getTotalDuration() + r.getTotalDuration());
+         });  
+         report.setAcd(report.getTotalDuration().floatValue() / report.getConnectedCalls().floatValue());
+         report.setAsr(report.getConnectedCalls().floatValue() / report.getTotalCalls().floatValue());
+         reports.add(report);
+         return reports;
+    	
+    }
 
 }

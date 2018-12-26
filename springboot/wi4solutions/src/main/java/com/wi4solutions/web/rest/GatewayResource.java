@@ -2,6 +2,7 @@ package com.wi4solutions.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.wi4solutions.domain.Gateway;
+import com.wi4solutions.repository.AsteriskRepositoryImp;
 import com.wi4solutions.repository.GatewayRepository;
 import com.wi4solutions.service.util.RandomUtil;
 import com.wi4solutions.web.rest.errors.BadRequestAlertException;
@@ -32,9 +33,12 @@ public class GatewayResource {
     private static final String ENTITY_NAME = "gateway";
 
     private final GatewayRepository gatewayRepository;
+    
+    private final AsteriskRepositoryImp asteriskRepository;
 
-    public GatewayResource(GatewayRepository gatewayRepository) {
+    public GatewayResource(GatewayRepository gatewayRepository, AsteriskRepositoryImp asteriskRepository) {
         this.gatewayRepository = gatewayRepository;
+        this.asteriskRepository = asteriskRepository;
     }
 
     /**
@@ -56,6 +60,7 @@ public class GatewayResource {
         gateway.setHost("dynamic");
         gateway.setSecret(RandomUtil.generatePassword());
         Gateway result = gatewayRepository.save(gateway);
+        asteriskRepository.reloadServer();
         return ResponseEntity.created(new URI("/api/gateways/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -78,7 +83,10 @@ public class GatewayResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         gateway.setUsername(gateway.getName());
+        gateway.setType("friend");
+        gateway.setHost("dynamic");
         Gateway result = gatewayRepository.save(gateway);
+        asteriskRepository.reloadServer();
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, gateway.getId().toString()))
             .body(result);
@@ -101,7 +109,10 @@ public class GatewayResource {
                 .collect(Collectors.toList());
         }
         log.debug("REST request to get all Gateways");
-        return gatewayRepository.findAll();
+        return StreamSupport
+        .stream(gatewayRepository.findAll().spliterator(), false)
+        .filter(gateway -> gateway.getPeerType().equals("GATEWAY"))
+        .collect(Collectors.toList());
     }
 
     /**
@@ -130,6 +141,7 @@ public class GatewayResource {
         log.debug("REST request to delete Gateway : {}", id);
 
         gatewayRepository.deleteById(id);
+        asteriskRepository.reloadServer();
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

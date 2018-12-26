@@ -12,6 +12,14 @@ export class JhiMetricsService {
         return this.http.get(SERVER_API_URL + 'management/metrics');
     }
 
+    reloadAsterisk(): Observable<any> {
+        return this.http.get(SERVER_API_URL + 'api/reload');
+    }
+
+    restartAsterisk(): Observable<any> {
+        return this.http.get(SERVER_API_URL + 'api/restart');
+    }
+
     threadDump(): Observable<any> {
         return this.http.get(SERVER_API_URL + 'management/threaddump');
     }

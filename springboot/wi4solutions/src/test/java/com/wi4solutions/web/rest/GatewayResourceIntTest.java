@@ -3,6 +3,7 @@ package com.wi4solutions.web.rest;
 import com.wi4solutions.Wi4SolutionsApp;
 
 import com.wi4solutions.domain.Gateway;
+import com.wi4solutions.repository.AsteriskRepositoryImp;
 import com.wi4solutions.repository.GatewayRepository;
 import com.wi4solutions.web.rest.errors.ExceptionTranslator;
 
@@ -176,6 +177,9 @@ public class GatewayResourceIntTest {
 
     @Autowired
     private GatewayRepository gatewayRepository;
+    
+    @Autowired
+    private AsteriskRepositoryImp asteriskRepositoryImp;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -196,7 +200,7 @@ public class GatewayResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final GatewayResource gatewayResource = new GatewayResource(gatewayRepository);
+        final GatewayResource gatewayResource = new GatewayResource(gatewayRepository, asteriskRepositoryImp);
         this.restGatewayMockMvc = MockMvcBuilders.standaloneSetup(gatewayResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

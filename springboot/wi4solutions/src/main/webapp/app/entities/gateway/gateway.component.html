@@ -16,7 +16,8 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.name">Name</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.gateway.host">Host</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.defaultip">Defaultip</span></th>
+            
             <th><span jhiTranslate="wi4SolutionsApp.gateway.nat">Nat</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.calllimit">Calllimit</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.allow">Allow</span></th>
@@ -33,7 +34,7 @@
             <th><span jhiTranslate="wi4SolutionsApp.gateway.cancallforward">Cancallforward</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.canreinvite">Canreinvite</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.context">Context</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.gateway.defaultip">Defaultip</span></th>
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.host">Host</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.dtmfmode">Dtmfmode</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.fromuser">Fromuser</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.fromdomain">Fromdomain</span></th>
@@ -73,7 +74,7 @@
             <tr *ngFor="let gateway of gateways ;trackBy: trackId">
                 <td><a [routerLink]="['/gateway', gateway.id, 'view' ]">{{gateway.id}}</a></td>
                 <td>{{gateway.name}}</td>
-                <td>{{gateway.host}}</td>
+                <td>{{gateway.defaultip}}</td>
                 <td>{{gateway.nat}}</td>
                 <td>{{gateway.calllimit}}</td>
                 <td>{{gateway.allow}}</td>
@@ -90,13 +91,13 @@
                 <td>{{gateway.type}}</td>
                 <td>{{gateway.accountcode}}</td>
                 <td>{{gateway.amaflags}}</td>
-               
+               <td>{{gateway.host}}</td>
                 <td>{{gateway.callgroup}}</td>
                 <td>{{gateway.callerid}}</td>
                 <td>{{gateway.cancallforward}}</td>
                 <td>{{gateway.canreinvite}}</td>
                 <td>{{gateway.context}}</td>
-                <td>{{gateway.defaultip}}</td>
+                
                 <td>{{gateway.dtmfmode}}</td>
                 <td>{{gateway.fromuser}}</td>
                 <td>{{gateway.fromdomain}}</td>

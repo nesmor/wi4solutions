@@ -1,9 +1,11 @@
 package com.wi4solutions.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.wi4solutions.asterisk.CommandFailedException;
 import com.wi4solutions.domain.ActiveCall;
 import com.wi4solutions.repository.AsteriskRepository;
 import com.wi4solutions.repository.AsteriskRepositoryImp;
+import com.wi4solutions.service.dto.MessageDTO;
 import com.wi4solutions.web.rest.errors.BadRequestAlertException;
 import com.wi4solutions.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -91,18 +93,29 @@ public class ActiveCallResource {
     
     @GetMapping("/reload")
     @Timed
-    public void getReload() {
-        log.debug("REST request to get all ActiveCalls");
-        activeCallRepository.reloadServer();
+    public MessageDTO getReload() {
+    	try {
+    		log.debug("REST request to get all ActiveCalls");
+    	    activeCallRepository.reloadServer();
+    	}catch(CommandFailedException e) {
+    		return new MessageDTO("1","Command reload failed");
+		}
+	    return new MessageDTO("0","Command reload successfully");
     }
     
     
     @GetMapping("/restart")
     @Timed
-    public void getRestart() {
-        log.debug("REST request to get all ActiveCalls");
-        activeCallRepository.restartServer();
-    }
+    public MessageDTO getRestart() {
+	    try {
+	        log.debug("REST request to get all ActiveCalls");
+	        activeCallRepository.restartServer();
+	    }catch(CommandFailedException e) {
+	    	
+			return new MessageDTO("1","Command restart failed");
+		}
+	    return new MessageDTO("0","Command restart successfully");
+	}
 
     /**
      * GET  /active-calls/:id : get the "id" activeCall.

@@ -16,4 +16,10 @@ public class LogoutCommand extends AbstractAsteriskAction{
 		managerConnection.logoff();
 	}
 
+	@Override
+	public Integer getCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

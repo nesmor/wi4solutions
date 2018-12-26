@@ -18,10 +18,12 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -113,6 +115,7 @@ public class CallReportResource {
     @GetMapping("/call-reports/by-period/{period}")
     @Timed
     public List<CallReport> getAllCallReportsByPeriod(@PathVariable String period) {
+    	List<CallReport> reports = null;
     	Date fromDate = null;
     	Date toDate = null;
     	log.debug("REST request to get all CallReports");
@@ -125,35 +128,49 @@ public class CallReportResource {
 			case "today":
 				fromDate = new java.sql.Date(calendar.getTime().getTime());
 				toDate = fromDate;
+				reports = callReportRepository.findByDate(fromDate, toDate);
 				break;
 			case "yesterday":
 				calendar.add(Calendar.DAY_OF_MONTH, -1);
 				fromDate = new java.sql.Date(calendar.getTime().getTime());
 				toDate = fromDate;
+				reports = callReportRepository.findByDate(fromDate, toDate);
 				break;
 			case "month":
 				calendar.set(Calendar.DAY_OF_MONTH, 1);
 				fromDate = new java.sql.Date(calendar.getTime().getTime());
 				toDate = new java.sql.Date(today.getTime());
+				reports = callReportRepository.getResume(fromDate, toDate);
 			break;
 			case "last-month":
-				calendar.setTime(today);
+				boolean flag = false;
 				calendar.set(Calendar.DAY_OF_MONTH, 1);
-				calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
+				if(calendar.get(Calendar.MONTH) == 0) {
+					flag = true;
+					calendar.set(Calendar.MONTH, 11);
+				}else {
+					calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
+				}
+				fromDate = new java.sql.Date(calendar.getTime().getTime());
+				int days = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+				calendar.set(Calendar.DAY_OF_MONTH, days);
+				toDate = new java.sql.Date(calendar.getTime().getTime());
+				reports = callReportRepository.getResume(fromDate, toDate);
+			break;
+			case "always":
+				calendar.set(Calendar.DAY_OF_MONTH, 1);
+				calendar.set(Calendar.MONTH, 0);
+				calendar.set(Calendar.YEAR, 2018);
 				fromDate = new java.sql.Date(calendar.getTime().getTime());
 				toDate = new java.sql.Date(today.getTime());
+				reports = callReportRepository.getResume(fromDate, toDate);
 			break;
 		}
-        try {
-//	        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
-//	    	fromDate = new Date(sdf.parse("31-03-2018").getTime());
-//	    	toDate = new Date(sdf.parse("1-4-2018").getTime());
-        }catch (Exception e) {
-
-        }
-        return callReportRepository.findByDate(fromDate, toDate);       
+        return reports;
+       
     }
 
+   
     
     @GetMapping("/call-reports/by-hour")
     @Timed

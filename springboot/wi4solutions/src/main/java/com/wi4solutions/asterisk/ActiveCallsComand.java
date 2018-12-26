@@ -41,4 +41,10 @@ public class ActiveCallsComand extends AbstractAsteriskAction<ActiveCallsReponse
 		return (String) this.response.getAttribute("_result_");
 	}
 
+	@Override
+	public Integer getCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

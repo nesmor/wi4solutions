@@ -68,6 +68,16 @@ export class JhiMetricsMonitoringComponent implements OnInit {
         });
     }
 
+    reloadAsterisk() {
+        this.metricsService.reloadAsterisk().subscribe(data => {});
+        this.refresh();
+    }
+
+    restartAsterisk() {
+        this.metricsService.restartAsterisk().subscribe(data => {});
+        this.refresh();
+    }
+
     filterNaN(input) {
         if (isNaN(input)) {
             return 0;

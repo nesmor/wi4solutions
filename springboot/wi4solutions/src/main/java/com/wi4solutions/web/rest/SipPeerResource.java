@@ -2,6 +2,7 @@ package com.wi4solutions.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.wi4solutions.domain.SipPeer;
+import com.wi4solutions.repository.AsteriskRepositoryImp;
 import com.wi4solutions.repository.SipPeerRepository;
 import com.wi4solutions.service.util.RandomUtil;
 import com.wi4solutions.web.rest.errors.BadRequestAlertException;
@@ -32,9 +33,12 @@ public class SipPeerResource {
     private static final String ENTITY_NAME = "sipPeer";
 
     private final SipPeerRepository sipPeerRepository;
+    
+    private final AsteriskRepositoryImp asteriskRepository;
 
-    public SipPeerResource(SipPeerRepository sipPeerRepository) {
+    public SipPeerResource(SipPeerRepository sipPeerRepository, AsteriskRepositoryImp asteriskRepository) {
         this.sipPeerRepository = sipPeerRepository;
+        this.asteriskRepository = asteriskRepository;
     }
 
     /**
@@ -54,6 +58,7 @@ public class SipPeerResource {
         sipPeer.setUsername(sipPeer.getName());
         sipPeer.setSecret(RandomUtil.generatePassword());
         SipPeer result = sipPeerRepository.save(sipPeer);
+        asteriskRepository.reloadServer();
         return ResponseEntity.created(new URI("/api/sip-peers/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -77,6 +82,7 @@ public class SipPeerResource {
         }
         sipPeer.setUsername(sipPeer.getName());
         SipPeer result = sipPeerRepository.save(sipPeer);
+        asteriskRepository.reloadServer();
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, sipPeer.getId().toString()))
             .body(result);
@@ -123,6 +129,7 @@ public class SipPeerResource {
         log.debug("REST request to delete SipPeer : {}", id);
 
         sipPeerRepository.deleteById(id);
+        asteriskRepository.reloadServer();
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

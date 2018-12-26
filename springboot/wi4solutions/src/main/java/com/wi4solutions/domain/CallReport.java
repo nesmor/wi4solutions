@@ -102,7 +102,7 @@ public class CallReport {
 	
 	private Float asr;
 	
-	private Long acd;
+	private Float acd;
 	
 	private Long minutes;
 	
@@ -124,8 +124,8 @@ public class CallReport {
 	}
 
 	public Long getTotalCalls() {
-		this.totalCalls = + this.connectedCalls + this.failedCalls;
-		return totalCalls;
+		this.totalCalls = this.connectedCalls + this.failedCalls;
+		return this.totalCalls;
 	}
 
 	public void setTotalCalls(Long totalCalls) {
@@ -145,7 +145,7 @@ public class CallReport {
 	}
 
 	public void setAsr(Float asr) {
-		this.asr = asr;
+		this.asr = asr * 100;
 	}
 	
 	public void setAsr(Long asr) {
@@ -154,11 +154,11 @@ public class CallReport {
 		}
 	}
 
-	public Long getAcd() {
+	public Float getAcd() {
 		return acd;
 	}
 
-	public void setAcd(Long acd) {
+	public void setAcd(Float acd) {
 		this.acd = acd;
 	}
 

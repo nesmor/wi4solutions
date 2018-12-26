@@ -2,6 +2,8 @@
     "metrics": {
         "title": "Métricas de aplicación",
         "refresh.button": "Refrescar",
+        "reload-asterisk.button": "Recargar Asterisk",
+        "restart-asterisk.button": "Reiniciar Asterisk",
         "updating": "Actualizando...",
         "jvm": {
             "title": "Métricas de JVM",

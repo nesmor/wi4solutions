@@ -9,7 +9,14 @@ public class LoginCommand extends AbstractAsteriskAction{
 
 	@Override
 	public void execute() throws IllegalStateException, IOException, AuthenticationFailedException, TimeoutException {
-				managerConnection.login();
+		if(managerConnection.getState() != managerConnection.getState().CONNECTED)
+			managerConnection.login();
+	}
+
+	@Override
+	public Integer getCode() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
