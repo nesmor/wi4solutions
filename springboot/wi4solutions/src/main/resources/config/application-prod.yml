@@ -30,6 +30,8 @@ spring:
         url: jdbc:mariadb://localhost:3306/wi4solutions?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false
         username: root
         password: swift123
+        driverClassName: org.mariadb.jdbc.Driver
+        platform: mariadb
         hikari:
             auto-commit: false
             data-source-properties:
