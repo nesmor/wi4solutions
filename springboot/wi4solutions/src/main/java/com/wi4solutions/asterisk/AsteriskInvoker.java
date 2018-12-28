@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AsteriskInvoker<T>{
 	
-	private String host = "192.168.1.104";
+	private String host = "localhost";
 	
 	private String username = "manager";
 	
