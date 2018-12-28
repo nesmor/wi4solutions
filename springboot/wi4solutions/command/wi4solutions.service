@@ -1,0 +1,10 @@
+[Unit]
+Description=Wi4solutions System
+After=syslog.target
+ 
+[Service]
+User=springboot
+ExecStart=/var/www/projects/wi4solutions/springboot/wi4solutions/target/wi-4-solutions-0.0.1-SNAPSHOT.war SuccessExitStatus=143 
+ 
+[Install] 
+WantedBy=multi-user.target
