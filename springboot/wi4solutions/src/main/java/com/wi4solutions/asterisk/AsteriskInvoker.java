@@ -3,23 +3,32 @@ package com.wi4solutions.asterisk;
 import org.asteriskjava.manager.ManagerConnection;
 import org.asteriskjava.manager.ManagerConnectionFactory;
 import org.asteriskjava.manager.action.CoreShowChannelsAction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
+
+import com.wi4solutions.config.ApplicationProperties;
 
 @Service
 public class AsteriskInvoker<T>{
 	
-	private String host = "localhost";
+	ApplicationProperties applicationProperties;
 	
-	private String username = "manager";
+	private String host;
 	
-	private String password = "4st3r1sk";
+	private String username;
+	
+	private String password;
 	
 	private static ManagerConnection managerConnection;
 	
     public AsteriskServer asteriskServer;
 	
-	public AsteriskInvoker() {
-		
+	public AsteriskInvoker(ApplicationProperties applicationProperties) {
+		this.applicationProperties = applicationProperties;
+		this.username = applicationProperties.getAsterisk().getUsername();
+		this.password = applicationProperties.getAsterisk().getPassword();
+		this.host = applicationProperties.getAsterisk().getHost();
 	}
 	
 	public void connect() {

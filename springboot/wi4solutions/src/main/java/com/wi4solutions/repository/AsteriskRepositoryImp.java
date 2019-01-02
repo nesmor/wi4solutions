@@ -17,6 +17,8 @@ import com.wi4solutions.asterisk.Action;
 import com.wi4solutions.asterisk.ActiveCallsComand;
 import com.wi4solutions.asterisk.AsteriskInvoker;
 import com.wi4solutions.asterisk.CommandFailedException;
+import com.wi4solutions.asterisk.TerminationTestCommand;
+import com.wi4solutions.config.ApplicationProperties;
 import com.wi4solutions.asterisk.CommandNotFoundException;
 import com.wi4solutions.asterisk.LoginCommand;
 import com.wi4solutions.asterisk.LogoutCommand;
@@ -30,13 +32,15 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 
 	@Autowired
 	AsteriskInvoker asteriskInvoker ;
+	
+	@Autowired
+	ApplicationProperties applicationProperties;
 	public static final LoginCommand loginCommand = new LoginCommand();
 	public static final ActiveCallsComand activeCallsCommand = new ActiveCallsComand();
 	public static final RestartCommand restartCommand = new RestartCommand();
 	public static final ReloadCommand reloadCommand = new ReloadCommand();
-	
 	public static final LogoutCommand logoutCommand = new LogoutCommand();
-	
+
 //	@Override
 //	public List<ActiveCall> findAll() {
 //		List<ActiveCall> activeCalls = new ArrayList();
@@ -56,8 +60,8 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 //		}
 //		return activeCalls;
 //	}
-	
-	
+
+
 	@Override
 	public String findAll(){
 		List<ActiveCall> activeCalls ;
@@ -69,11 +73,25 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 			code = asteriskInvoker.getCode();
 			asteriskInvoker.invoke(logoutCommand);
 		} catch (Exception e) {
+			try {
+				asteriskInvoker.invoke(logoutCommand);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			throw new CommandFailedException();
 		}
-		if(code == 1)
+		if(code == 1) {
+			try {
+				asteriskInvoker.invoke(logoutCommand);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			throw new CommandFailedException();
-		
+		}
+			
+
 //		activeCalls = lines.stream().map(((line) -> this.getActiveCall(line))).collect(Collectors.toList());
 		return activeCallsCommand.getResponseString();
 	}
@@ -82,7 +100,83 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 	public List<ActiveCall> findAll(Sort sort) {
 		return null;
 	}
-	
+
+	public void sendCall(String phoneNumber) {
+		TerminationTestCommand terminationTestCommand = new TerminationTestCommand(applicationProperties);
+		int code = 1;
+		try {
+			terminationTestCommand.setNumber(phoneNumber);
+			asteriskInvoker.connect();
+			asteriskInvoker.invoke(loginCommand);
+			asteriskInvoker.invoke(terminationTestCommand);
+			code = asteriskInvoker.getCode();
+			asteriskInvoker.invoke(logoutCommand);
+		} catch (Exception e) {
+			try {
+				asteriskInvoker.invoke(logoutCommand);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			throw new CommandFailedException();
+		}
+		if(code == 1) {
+			try {
+				asteriskInvoker.invoke(logoutCommand);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			throw new CommandFailedException();
+		}
+	}
+
+	public void restartServer() {
+		int code = 1;
+		try {
+			asteriskInvoker.connect();
+			asteriskInvoker.invoke(loginCommand);
+			asteriskInvoker.invoke(restartCommand);
+			code = asteriskInvoker.getCode();
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						Thread.sleep(500);
+						asteriskInvoker.invoke(logoutCommand);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+				}
+			}).start();
+		}
+		catch (TimeoutException e) {
+			code = 0;
+		}
+		catch (Exception e) {
+			try {
+				asteriskInvoker.invoke(logoutCommand);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			throw new CommandFailedException();
+		}
+		if(code == 1) {
+			try {
+				asteriskInvoker.invoke(logoutCommand);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			throw new CommandFailedException();
+		}
+	}
+
+
+
 	public void reloadServer() {
 		int code = 1;
 		try {
@@ -92,13 +186,25 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 			code = asteriskInvoker.getCode();
 			asteriskInvoker.invoke(logoutCommand);
 		} catch (Exception e) {
+			try {
+				asteriskInvoker.invoke(logoutCommand);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			throw new CommandFailedException();
 		}
-		if(code == 1)
+		if(code == 1) {
+			try {
+				asteriskInvoker.invoke(logoutCommand);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			throw new CommandFailedException();
-		
+		}
 	}
-	
+	/*
 	public void restartServer() {
 		int code = 1;
 		try {
@@ -107,7 +213,7 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 			asteriskInvoker.invoke(restartCommand);
 			code = asteriskInvoker.getCode();
 			new Thread(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					try {
@@ -116,7 +222,7 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					
+
 				}
 			}).start();
 		}
@@ -129,6 +235,6 @@ public class AsteriskRepositoryImp  implements AsteriskRepository{
 		if(code == 1)
 			throw new CommandFailedException();
 	}
-	
+	*/
 
 }

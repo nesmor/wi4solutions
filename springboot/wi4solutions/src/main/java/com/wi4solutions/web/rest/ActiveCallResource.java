@@ -3,6 +3,7 @@ package com.wi4solutions.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.wi4solutions.asterisk.CommandFailedException;
 import com.wi4solutions.domain.ActiveCall;
+import com.wi4solutions.domain.Call;
 import com.wi4solutions.repository.AsteriskRepository;
 import com.wi4solutions.repository.AsteriskRepositoryImp;
 import com.wi4solutions.service.dto.MessageDTO;
@@ -44,18 +45,15 @@ public class ActiveCallResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new activeCall, or with status 400 (Bad Request) if the activeCall has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-//    @PostMapping("/active-calls")
-//    @Timed
-//    public ResponseEntity<ActiveCall> createActiveCall(@RequestBody ActiveCall activeCall) throws URISyntaxException {
-//        log.debug("REST request to save ActiveCall : {}", activeCall);
-//        if (activeCall.getId() != null) {
-//            throw new BadRequestAlertException("A new activeCall cannot already have an ID", ENTITY_NAME, "idexists");
-//        }
-//        ActiveCall result = activeCallRepository.save(activeCall);
-//        return ResponseEntity.created(new URI("/api/active-calls/" + result.getId()))
-//            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-//            .body(result);
-//    }
+    @PostMapping("/send-calls")
+    @Timed
+    public ResponseEntity<String> createActiveCall(@RequestBody Call call) throws URISyntaxException {
+      log.debug("REST request to save ActiveCall : {}", call.getPhoneNumber());
+      activeCallRepository.sendCall(call.getPhoneNumber());
+      return ResponseEntity.created(new URI("/api/send-calls/" + call.getPhoneNumber()))
+      .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, call.getPhoneNumber()))
+      .body(call.getPhoneNumber());
+   }
 
     /**
      * PUT  /active-calls : Updates an existing activeCall.
@@ -90,7 +88,7 @@ public class ActiveCallResource {
         log.debug("REST request to get all ActiveCalls");
         return activeCallRepository.findAll();
     }
-    
+
     @GetMapping("/reload")
     @Timed
     public MessageDTO getReload() {
@@ -102,8 +100,8 @@ public class ActiveCallResource {
 		}
 	    return new MessageDTO("0","Command reload successfully");
     }
-    
-    
+
+
     @GetMapping("/restart")
     @Timed
     public MessageDTO getRestart() {
@@ -111,7 +109,7 @@ public class ActiveCallResource {
 	        log.debug("REST request to get all ActiveCalls");
 	        activeCallRepository.restartServer();
 	    }catch(CommandFailedException e) {
-	    	
+
 			return new MessageDTO("1","Command restart failed");
 		}
 	    return new MessageDTO("0","Command restart successfully");
