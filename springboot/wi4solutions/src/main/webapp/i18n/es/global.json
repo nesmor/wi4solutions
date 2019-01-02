@@ -14,6 +14,7 @@
                 "callDetailRecord": "Call Detail Record",
                 "callReport": "Call Report",
                 "activeCall": "Active Call",
+                "asterisk": "Asterisk",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "report": {
@@ -117,7 +118,8 @@
             "edit": "Editar",
             "open": "Open",
             "save": "Guardar",
-            "view": "Vista"
+            "view": "Vista",
+            "call": "Llamar"
         },
         "detail": {
             "field": "Campo",

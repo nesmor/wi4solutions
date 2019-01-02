@@ -1,0 +1,21 @@
+{
+    "wi4SolutionsApp": {
+        "asterisk": {
+            "home": {
+                "title": "Asterisk",
+                "createLabel": "Crear nuevo Asterisk",
+                "createOrEditLabel": "Crear o editar Asterisk"
+            },
+            "created": "Un nuevo Asterisk ha sido creado con el identificador {{ param }}",
+            "updated": "Un Asterisk ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Asterisk ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Asterisk {{ id }}?"
+            },
+            "detail": {
+                "title": "Asterisk"
+            },
+            "phoneNumber": "Phone Number"
+        }
+    }
+}

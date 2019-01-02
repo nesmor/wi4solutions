@@ -18,9 +18,9 @@
                     </span>
                 </a>
             </li>
-            
-            
-            
+
+
+
                         <!-- Menu asociado a los reportes-->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="report-menu">
@@ -86,17 +86,17 @@
                             <span jhiTranslate="global.menu.report.all-time-statistic">All Time Statistics</span>
                         </a>
                     </li>
-                    
+
                     <!-- Menu asociado a los reportes -->
                 </ul>
             </li>
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
@@ -126,7 +126,7 @@
                             <span jhiTranslate="global.menu.entities.gateway">Gateway</span>
                         </a>
                     </li>
-                    <!-- 
+                    <!--
                     <li>
                         <a class="dropdown-item" routerLink="call-detail-record" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
@@ -139,7 +139,7 @@
                             <span jhiTranslate="global.menu.entities.callReport">Call Report</span>
                         </a>
                     </li>
-                    
+
                     <li>
                         <a class="dropdown-item" routerLink="active-call" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
@@ -158,6 +158,12 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li>
+                        <a class="dropdown-item" routerLink="asterisk" routerLinkActive="active" (click)="collapseNavbar()">
+                            <fa-icon icon="user" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.asterisk">Asterisk</span>
+                        </a>
+                    </li>
                     <li>
                         <a class="dropdown-item" routerLink="admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="user" fixedWidth="true"></fa-icon>
