@@ -126,7 +126,8 @@ public class Gateway implements Serializable {
     @Column(name = "allow")
     private String allow;
 
-    @Column(name = "fullcontact")
+    @Transient
+    //@Column(name = "fullcontact")
     private String fullcontact;
 
     @Column(name = "ipaddr")
@@ -158,10 +159,10 @@ public class Gateway implements Serializable {
 
     @Column(name = "status")
     private boolean status = false;
-    
+
     @Column(name = "peer_type")
     private String peerType = "GATEWAY";
-    
+
 
     @OneToMany(mappedBy = "gateway")
     @JsonIgnore
@@ -782,12 +783,12 @@ public class Gateway implements Serializable {
   	public void setPeerType(String peerType) {
   		this.peerType = peerType;
   	}
-  	
+
   	public Gateway peerType(String peerType) {
         this.peerType = peerType;
         return this;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

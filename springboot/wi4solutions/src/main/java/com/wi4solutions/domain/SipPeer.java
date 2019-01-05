@@ -124,7 +124,8 @@ public class SipPeer implements Serializable {
     @Column(name = "allow")
     private String allow;
 
-    @Column(name = "fullcontact")
+    @Transient
+    //@Column(name = "fullcontact")
     private String fullcontact;
 
     @Column(name = "ipaddr")
@@ -156,7 +157,7 @@ public class SipPeer implements Serializable {
 
     @Column(name = "status")
     private boolean status = false;
-    
+
     @Column(name = "peer_type")
     private String peerType = "CARRIER";
 
@@ -753,7 +754,7 @@ public class SipPeer implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
+
     public String getPeerType() {
   		return peerType;
   	}
@@ -761,12 +762,12 @@ public class SipPeer implements Serializable {
   	public void setPeerType(String peerType) {
   		this.peerType = peerType;
   	}
-  	
+
   	public SipPeer peerType(String peerType) {
         this.peerType = peerType;
         return this;
     }
-    
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
