@@ -10,11 +10,12 @@
   </div>
   <div class="col-sm">
       <form name="editForm" role="form" novalidate (ngSubmit)="sendTest()" #editForm="ngForm">
+          <jhi-alert-success></jhi-alert-success>
           <jhi-alert-error></jhi-alert-error>
           <div class="form-group">
             <!--  <label class="form-control-label" jhiTranslate="wi4SolutionsApp.asterisk.phoneNumber" for="field_phoneNumber">phoneNumber</label>-->
-              <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"  placeholder="Phone Number"
-                  [(ngModel)]="phoneNumber" />
+              <input type="text" required class="form-control" name="phoneNumber" id="field_phoneNumber"  placeholder="Phone Number"
+                  [(ngModel)]="phoneNumber" placeholder="SIP/02127350632/GOIP" />
           </div>
           <div>
             <button type="submit" id="send-call"  class="btn btn-primary">

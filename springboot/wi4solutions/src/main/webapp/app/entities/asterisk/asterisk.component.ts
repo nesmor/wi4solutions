@@ -8,6 +8,7 @@ import { Principal } from 'app/core';
 import { AsteriskService } from './asterisk.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { setInterval, clearInterval } from 'timers';
+import { IMessage } from 'app/shared/model/message.model';
 
 @Component({
     selector: 'jhi-asterisk',
@@ -48,7 +49,7 @@ export class AsteriskComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.eventManager.destroy(this.eventSubscriber);
+        //   this.eventManager.destroy(this.eventSubscriber);
     }
 
     trackId(index: number, item: IAsterisk) {
@@ -56,12 +57,12 @@ export class AsteriskComponent implements OnInit, OnDestroy {
     }
 
     reloadAsterisk() {
-        this.metricsService.reloadAsterisk().subscribe(data => {});
+        this.metricsService.reloadAsterisk().subscribe(data => {}, (res: HttpErrorResponse) => this.onError(res.message));
         this.refresh();
     }
 
     restartAsterisk() {
-        this.metricsService.restartAsterisk().subscribe(data => {});
+        this.metricsService.restartAsterisk().subscribe(data => {}, (res: HttpErrorResponse) => this.onError(res.message));
         this.refresh();
     }
 
@@ -78,7 +79,9 @@ export class AsteriskComponent implements OnInit, OnDestroy {
     sendTest() {
         var asterisk: Asterisk = { phoneNumber: this.phoneNumber };
         //  asterisk.setNumber = this.phoneNumber;
-        this.asteriskService.sendCall(asterisk).subscribe(data => {});
+        this.asteriskService
+            .sendCall(asterisk)
+            .subscribe((res: HttpResponse<IMessage>) => this.processResponse(res), (res: HttpErrorResponse) => this.onError(res.message));
         this.refresh();
     }
 
@@ -86,7 +89,20 @@ export class AsteriskComponent implements OnInit, OnDestroy {
         //  this.eventSubscriber = this.eventManager.subscribe('asteriskListModification', response => this.loadAll());
     }
 
+    private processResponse(res: HttpResponse<IMessage>) {
+        console.log('**data:' + res.body.code);
+        console.log('**message:' + res.body.message);
+        if (res.body.code == 0) {
+            this.onSuccess(res.body.message);
+        } else {
+            this.onError(res.body.message);
+        }
+    }
+
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+    private onSuccess(successMessage: string) {
+        this.jhiAlertService.success(successMessage, null, null);
     }
 }

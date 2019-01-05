@@ -41,9 +41,6 @@ export const asteriskRoute: Routes = [
     {
         path: 'send-calls',
         component: AsteriskComponent,
-        resolve: {
-            asterisk: AsteriskResolve
-        },
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'wi4SolutionsApp.asterisk.home.title'

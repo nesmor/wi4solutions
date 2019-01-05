@@ -47,13 +47,19 @@ public class ActiveCallResource {
      */
     @PostMapping("/send-calls")
     @Timed
-    public ResponseEntity<String> createActiveCall(@RequestBody Call call) throws URISyntaxException {
+    public MessageDTO createActiveCall(@RequestBody Call call) throws URISyntaxException {
       log.debug("REST request to save ActiveCall : {}", call.getPhoneNumber());
-      activeCallRepository.sendCall(call.getPhoneNumber());
-      return ResponseEntity.created(new URI("/api/send-calls/" + call.getPhoneNumber()))
-      .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, call.getPhoneNumber()))
-      .body(call.getPhoneNumber());
-   }
+      try {
+          log.debug("REST request to get all ActiveCalls");
+          activeCallRepository.sendCall(call.getPhoneNumber());
+      }catch(CommandFailedException e) {
+        return new MessageDTO("1","wi4SolutionsApp.asterisk.message.call-error");
+      }
+      catch(Exception e) {
+    		return new MessageDTO("1","wi4SolutionsApp.asterisk.message.call-error");
+		  }
+        return new MessageDTO("0","wi4SolutionsApp.asterisk.message.call.sended");
+    }
 
     /**
      * PUT  /active-calls : Updates an existing activeCall.
@@ -96,9 +102,9 @@ public class ActiveCallResource {
     		log.debug("REST request to get all ActiveCalls");
     	    activeCallRepository.reloadServer();
     	}catch(CommandFailedException e) {
-    		return new MessageDTO("1","Command reload failed");
-		}
-	    return new MessageDTO("0","Command reload successfully");
+    		return new MessageDTO("1","wi4SolutionsApp.asterisk.message.error");
+		  }
+	    return new MessageDTO("0","wi4SolutionsApp.asterisk.message.success");
     }
 
 
@@ -110,9 +116,9 @@ public class ActiveCallResource {
 	        activeCallRepository.restartServer();
 	    }catch(CommandFailedException e) {
 
-			return new MessageDTO("1","Command restart failed");
+			return new MessageDTO("1","wi4SolutionsApp.asterisk.message.error");
 		}
-	    return new MessageDTO("0","Command restart successfully");
+	    return new MessageDTO("0","wi4SolutionsApp.asterisk.message.success");
 	}
 
     /**

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IAsterisk } from 'app/shared/model/asterisk.model';
+import { IMessage } from 'app/shared/model/message.model';
 
 type EntityResponseType = HttpResponse<IAsterisk>;
 type EntityArrayResponseType = HttpResponse<IAsterisk[]>;
@@ -21,8 +22,8 @@ export class AsteriskService {
         return this.http.post<IAsterisk>(this.resourceUrl, asterisk, { observe: 'response' });
     }
 
-    sendCall(asterisk: IAsterisk): Observable<EntityResponseType> {
-        return this.http.post<IAsterisk>(this.resourceUrl, asterisk, { observe: 'response' });
+    sendCall(asterisk: IAsterisk): Observable<HttpResponse<IMessage>> {
+        return this.http.post<IMessage>(this.resourceUrl, asterisk, { observe: 'response' });
     }
 
     update(asterisk: IAsterisk): Observable<EntityResponseType> {

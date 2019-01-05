@@ -15,7 +15,13 @@
             "detail": {
                 "title": "Asterisk"
             },
-            "phoneNumber": "Phone Number"
+            "phoneNumber": "Phone Number",
+            "message": {
+                "success": "Command executed successfully",
+                "error": "Error processing command",
+                "call-sended": "Call sended, wait some second while call is connected. If call not connect repeat againg or check asterisk manager connection.",
+                "call-error": "Error processing call"
+            }
         }
     }
 }
