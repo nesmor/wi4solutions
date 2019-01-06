@@ -9,7 +9,7 @@
     <span>Test Calls</span>
   </div>
   <div class="col-sm">
-      <form name="editForm" role="form" novalidate (ngSubmit)="sendTest()" #editForm="ngForm">
+      <form name="editForm" novalidate role="form" (ngSubmit)="sendTest()" #editForm="ngForm">
           <jhi-alert-success></jhi-alert-success>
           <jhi-alert-error></jhi-alert-error>
           <div class="form-group">
@@ -18,7 +18,7 @@
                   [(ngModel)]="phoneNumber" placeholder="SIP/02127350632/GOIP" />
           </div>
           <div>
-            <button type="submit" id="send-call"  class="btn btn-primary">
+            <button type="submit" id="send-call"  class="btn btn-primary" [disabled]="editForm.form.invalid">
                 <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.call">Call</span>
             </button>
           </div>

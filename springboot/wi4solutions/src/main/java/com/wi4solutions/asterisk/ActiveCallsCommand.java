@@ -1,9 +1,9 @@
 package com.wi4solutions.asterisk;
 
-public class RestartCommand extends AbstractAction{
+public class ActiveCallsCommand extends AbstractAction{
 	
-	public RestartCommand() {
-		this.command = new String[] {"asterisk", "-rx", "core restart now" };
+	public ActiveCallsCommand() {
+		this.command = new String[] {"asterisk", "-rx", "core show channels" };
 	}
 	
 	@Override
@@ -18,6 +18,7 @@ public class RestartCommand extends AbstractAction{
 		this.code = Action.SUCCESS_CODE;
 		this.message = "wi4SolutionsApp.asterisk.message.success";
 	}
-
+	
+	public String getResponseString() {return null;}
 
 }

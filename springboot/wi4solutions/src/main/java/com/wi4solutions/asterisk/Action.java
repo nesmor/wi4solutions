@@ -12,9 +12,10 @@ public interface Action<T> {
 	
 	public void handError();
 	
+	public void handSuccess();
+	
 	public Integer getCode();
 	
 	public String getMessage();
 	
-	public void setManagerConnection(ManagerConnection managerConnection);
 }

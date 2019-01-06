@@ -58,7 +58,7 @@ public class ActiveCallResource {
       catch(Exception e) {
     		return new MessageDTO("1","wi4SolutionsApp.asterisk.message.call-error");
 		  }
-        return new MessageDTO("0","wi4SolutionsApp.asterisk.message.call.sended");
+        return new MessageDTO("0","wi4SolutionsApp.asterisk.message.call-sended");
     }
 
     /**

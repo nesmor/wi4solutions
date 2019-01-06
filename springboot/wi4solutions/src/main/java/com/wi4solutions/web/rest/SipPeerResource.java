@@ -55,8 +55,9 @@ public class SipPeerResource {
         if (sipPeer.getId() != null) {
             throw new BadRequestAlertException("A new sipPeer cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        sipPeer.setUsername(sipPeer.getName());
+        sipPeer.setUsername(sipPeer.getName());	
         sipPeer.setSecret(RandomUtil.generatePassword());
+        sipPeer.setContext("incoming");
         SipPeer result = sipPeerRepository.save(sipPeer);
         asteriskRepository.reloadServer();
         return ResponseEntity.created(new URI("/api/sip-peers/" + result.getId()))

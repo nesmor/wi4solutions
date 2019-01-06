@@ -14,10 +14,30 @@ public class AsteriskInvoker<T>{
 	
 	ApplicationProperties applicationProperties;
 	
+	private String host;
+	
+	private String username;
+	
+	private String password;
+	
+	private static ManagerConnection managerConnection;
+	
+    public AsteriskServer asteriskServer;
 	
 	public AsteriskInvoker(ApplicationProperties applicationProperties) {
 		this.applicationProperties = applicationProperties;
+		this.username = applicationProperties.getAsterisk().getUsername();
+		this.password = applicationProperties.getAsterisk().getPassword();
+		this.host = applicationProperties.getAsterisk().getHost();
 	}
+	
+	public void connect() {
+		ManagerConnectionFactory factory = new ManagerConnectionFactory(this.host, this.username, this.password);
+		if(this.managerConnection == null) {
+			this.managerConnection = factory.createManagerConnection();
+		}
+	}
+	
 	
 	Action<T> action;
 	
@@ -28,6 +48,7 @@ public class AsteriskInvoker<T>{
     public  void invoke(Action<T> action) throws Exception 
     {	
     	this.action = action;
+    	this.action.setManagerConnection(managerConnection);
     	this.action.execute();
     }
 
@@ -42,6 +63,30 @@ public class AsteriskInvoker<T>{
     public String getMessage() {
  	   return this.action.getMessage();
     }
+
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public Action<T> getAction() {
 		return action;

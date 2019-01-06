@@ -3,7 +3,12 @@ package com.wi4solutions.asterisk;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public abstract class AbstractAction implements Action<String>{
+	
+	private final Logger log = LoggerFactory.getLogger(AbstractAction.class);
 	
 	String[] command ;
 	
@@ -26,8 +31,8 @@ public abstract class AbstractAction implements Action<String>{
 		}catch (Exception e) {
 			this.handError();
 		}
-		this.code = SUCCESS_CODE;
-		this.message = "command excetuted successfully";
+			log.info(response.toString());
+		this.handSuccess();
 	}
 		
 
@@ -36,10 +41,6 @@ public abstract class AbstractAction implements Action<String>{
 		return response.toString();
 	}
 
-	@Override
-	public void handError() {
-		
-	}
 
 	@Override
 	public Integer getCode() {
