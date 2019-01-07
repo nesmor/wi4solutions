@@ -60,7 +60,8 @@ public class Gateway implements Serializable {
     @Column(name = "context")
     private String context;
 
-    @Column(name = "defaultip")
+    @Transient
+ //   @Column(name = "defaultip")
     private String defaultip;
 
     @Column(name = "dtmfmode")

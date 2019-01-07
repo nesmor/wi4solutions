@@ -16,7 +16,7 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.name">Name</span></th>
-            <th><span jhiTranslate="wi4SolutionsApp.gateway.defaultip">Defaultip</span></th>
+            
             
             <th><span jhiTranslate="wi4SolutionsApp.gateway.nat">Nat</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.calllimit">Calllimit</span></th>
@@ -24,6 +24,7 @@
             <th><span jhiTranslate="wi4SolutionsApp.gateway.status">Status</span></th>
             
             <!-- 
+            <th><span jhiTranslate="wi4SolutionsApp.gateway.defaultip">Defaultip</span></th>
             
             <th><span jhiTranslate="wi4SolutionsApp.gateway.type">Type</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.gateway.accountcode">Accountcode</span></th>
@@ -74,7 +75,7 @@
             <tr *ngFor="let gateway of gateways ;trackBy: trackId">
                 <td><a [routerLink]="['/gateway', gateway.id, 'view' ]">{{gateway.id}}</a></td>
                 <td>{{gateway.name}}</td>
-                <td>{{gateway.defaultip}}</td>
+               
                 <td>{{gateway.nat}}</td>
                 <td>{{gateway.calllimit}}</td>
                 <td>{{gateway.allow}}</td>
@@ -86,6 +87,7 @@
                 </td>
                 
                 <!-- 
+                 <td>{{gateway.defaultip}}</td>
                 <td>{{gateway.status}}</td>
                 <td>{{gateway.nat}}</td>
                 <td>{{gateway.type}}</td>

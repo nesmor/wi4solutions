@@ -60,7 +60,7 @@ public class GatewayResource {
         gateway.setHost("dynamic");
         gateway.setSecret(RandomUtil.generatePassword());
         Gateway result = gatewayRepository.save(gateway);
-      //  asteriskRepository.reloadServer();
+        asteriskRepository.reloadServer();
         return ResponseEntity.created(new URI("/api/gateways/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -86,7 +86,7 @@ public class GatewayResource {
         gateway.setType("friend");
         gateway.setHost("dynamic");
         Gateway result = gatewayRepository.save(gateway);
-      //  asteriskRepository.reloadServer();
+        asteriskRepository.reloadServer();
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, gateway.getId().toString()))
             .body(result);
