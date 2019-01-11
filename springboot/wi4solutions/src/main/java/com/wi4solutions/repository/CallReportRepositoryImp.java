@@ -37,14 +37,14 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 						"SELECT YEAR(c.calldate), WEEK(c.calldate) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
 						"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM Cdr cd  " + 
 						"WHERE cd.disposition != 'ANSWERED' AND  WEEK(cd.calldate) = WEEK(c.calldate)) AS NOT_CONNECTED " + 
-						"FROM Cdr c  WHERE c.disposition = 'ANSWERED' " + 
+						"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
 						"AND c.duration > 0 AND " + 
 						"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY WEEK(c.calldate) ORDER BY YEAR(c.calldate) DESC, MONTH(c.calldate) ASC ");
 			break;
 			case "monthy":
 				 q = em.createQuery(
 						"SELECT YEAR(c.calldate), MONTH(c.calldate) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
-						"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM Cdr cd  " + 
+						"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
 						"WHERE cd.disposition != 'ANSWERED' AND  MONTH(cd.calldate) = MONTH(c.calldate)) AS NOT_CONNECTED " + 
 						"FROM Cdr c  WHERE c.disposition = 'ANSWERED' " + 
 						"AND c.duration > 0 AND " + 
@@ -86,7 +86,7 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 				"SELECT AVG(HOUR(c.calldate)) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
 				"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM Cdr cd  " + 
 				"WHERE cd.disposition != 'ANSWERED' AND  HOUR(cd.calldate) = HOUR(c.calldate)) AS NOT_CONNECTED " + 
-				"FROM Cdr c  WHERE c.disposition = 'ANSWERED' " + 
+				"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
 				"AND c.duration > 0 AND " + 
 				"DATE(c.calldate) = :date GROUP BY HOUR(c.calldate)");
 		q.setParameter("date", date);
@@ -103,7 +103,7 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 				"SELECT DATE(c.calldate) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
 				"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM Cdr cd  " + 
 				"WHERE cd.disposition != 'ANSWERED' AND  DATE(cd.calldate) = DATE(c.calldate)) AS NOT_CONNECTED " + 
-				"FROM Cdr c  WHERE c.disposition = 'ANSWERED' " + 
+				"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
 				"AND c.duration > 0 AND " + 
 				"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY DATE(c.calldate)");
 		q.setParameter("fromDate", fromDate);
