@@ -1,4 +1,4 @@
-# WI4wi4solutions
+# WI4SOLUTIONS
 
 Project to finnish calls throw goip devices.
 
