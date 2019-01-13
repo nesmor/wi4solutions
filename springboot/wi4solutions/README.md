@@ -1,107 +1,156 @@
-# wi4solutions
-This application was generated using JHipster 5.7.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v5.7.0](https://www.jhipster.tech/documentation-archive/v5.7.0).
+# WI4wi4solutions
 
-## Development
+Project to finnish calls throw goip devices.
 
-To start your application in the dev profile, simply run:
+## Getting Started
 
-    ./mvnw
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+### Prerequisites
 
-For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
-
-### Using angular-cli
-
-You can also use [Angular CLI][] to generate some custom client code.
-
-For example, the following command:
-
-    ng generate component my-component
-
-will generate few files:
-
-    create src/main/webapp/app/my-component/my-component.component.html
-    create src/main/webapp/app/my-component/my-component.component.ts
-    update src/main/webapp/app/app.module.ts
-
-
-## Building for production
-
-To optimize the wi4solutions application for production, run:
-
-    ./mvnw -Pprod clean package
-
-To ensure everything worked, run:
-
-    java -jar target/*.war
-
-
-Refer to [Using JHipster in production][] for more details.
-
-## Testing
-
-To launch your application's tests, run:
-
-    ./mvnw clean test
-### Other tests
-
-Performance tests are run by [Gatling][] and written in Scala. They're located in [src/test/gatling](src/test/gatling).
-
-To use those tests, you must install Gatling from [https://gatling.io/](https://gatling.io/).
-
-For more information, refer to the [Running tests page][].
-
-### Code quality
-
-Sonar is used to analyse code quality. You can start a local Sonar server (accessible on http://localhost:9001) with:
+What things you need to install the software and how to install them
 
 ```
-docker-compose -f src/main/docker/sonar.yml up -d
+Give examples
 ```
 
-Then, run a Sonar analysis:
+### Installing
+
+
 
 ```
-./mvnw -Pprod clean test sonar:sonar
+Mariadb Install
+-------------------
+apt install  default-mysql-server/kali-rolling
+apt install default-mysql-client/kali-rolling
+mysql_secure_installation
+
+Asterisk Install
+-------------------
+#apt update && sudo apt upgrade
+#apt install wget build-essential subversion
+#cd /usr/src/
+#wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16-current.tar.gz
+#tar -zxf asterisk-16-current.tar.gz
+#mv asterisk-16.1.0/ asterisk
+#cd asterisk/
+#contrib/scripts/get_mp3_source.sh
+#contrib/scripts/install_prereq install
+#./configure
+#make
+#make menuselect
+#make install
+#make menuselect
+#make samples
+
+Clone project source code
+#apt install git
+#mkdir /var/www/projects
+#mkdir -p /var/www/projects
+#cd /var/www/projects
+Clone repository with your custom git access: (After that you will have project source code in server to install it)
+---------------------------------------------
+#git clone https://guatellama.visualstudio.com/wi4solutions/_git/wi4solutions
+Username for 'https://guatellama.visualstudio.com':srtalha@outlook.com
+Password for 'https://srtalha@outlook.com@guatellama.visualstudio.com':pob7xagadyksz7ajshipjxil33cosnrikdvfmivzjf6vy4sgxaya
+
+Install java and maven
+-----------------------------
+#apt install openjdk-8-jdk/kali-rolling
+Select number associated to openjdk 1.8 version. By default server has 11 installed.
+#update-alternatives  --config java
+#apt install maven
+Create user and password for database.
+---------------------------------------
+Log into mariadb
+#mysql -u root -h localhost -p
+#password XXXX
+
+mariadb> create database wi4solutions;
+mariadb> create database wi4solutions;
+mariadb> GRANT ALL PRIVILEGES ON .* to 'wi4solutions'@'localhost' IDENTIFIED BY 'w14s0l_1';
+mariadb> FLUSH PRIVILEGES;
+
+Import database wi4solutions
+
+mariadb>source /var/www/projects/wi4solutions/springboot/wi4solutions/database/wi4solutions.sql;
+
+
+
+
+
+
+
+
+
+
+
+Import databse
+-------------------------
+Connect to mysql server.
+#mysql -u root -h localhost
+MariaDB()>source
+
 ```
 
-For more information, refer to the [Code quality page][].
+And repeat
 
-## Using Docker to simplify development (optional)
+```
+until finished
+```
 
-You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
+End with an example of getting some data out of the system or using it for a little demo
 
-For example, to start a mysql database in a docker container, run:
+## Running the tests
 
-    docker-compose -f src/main/docker/mysql.yml up -d
+Explain how to run the automated tests for this system
 
-To stop it and remove the container, run:
+### Break down into end to end tests
 
-    docker-compose -f src/main/docker/mysql.yml down
+Explain what these tests test and why
 
-You can also fully dockerize your application and all the services that it depends on.
-To achieve this, first build a docker image of your app by running:
+```
+Give an example
+```
 
-    ./mvnw package -Pprod jib:dockerBuild
+### And coding style tests
 
-Then run:
+Explain what these tests test and why
 
-    docker-compose -f src/main/docker/app.yml up -d
+```
+Give an example
+```
 
-For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
+## Deployment
 
-## Continuous Integration (optional)
+Add additional notes about how to deploy this on a live system
 
-To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
+## Built With
 
-[JHipster Homepage and latest documentation]: https://www.jhipster.tech
-[JHipster 5.7.0 archive]: https://www.jhipster.tech/documentation-archive/v5.7.0
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
-[Using JHipster in development]: https://www.jhipster.tech/documentation-archive/v5.7.0/development/
-[Using Docker and Docker-Compose]: https://www.jhipster.tech/documentation-archive/v5.7.0/docker-compose
-[Using JHipster in production]: https://www.jhipster.tech/documentation-archive/v5.7.0/production/
-[Running tests page]: https://www.jhipster.tech/documentation-archive/v5.7.0/running-tests/
-[Code quality page]: https://www.jhipster.tech/documentation-archive/v5.7.0/code-quality/
-[Setting up Continuous Integration]: https://www.jhipster.tech/documentation-archive/v5.7.0/setting-up-ci/
+## Contributing
 
-[Gatling]: http://gatling.io/
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
