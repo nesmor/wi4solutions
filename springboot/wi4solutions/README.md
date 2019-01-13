@@ -24,7 +24,7 @@ apt install  default-mysql-server/kali-rolling
 apt install default-mysql-client/kali-rolling
 mysql_secure_installation
 ```
-Change config files base on custom server ip and database settings.
+
 Clone project source code
 
 ```
@@ -63,6 +63,7 @@ Asterisk Install
 #cp /var/www/projects/wi4solutions/springboot/wi4solutions/asterisk/odbcinst.ini /etc/.
 #cp /var/www/projects/wi4solutions/springboot/wi4solutions/libmyodbc* /usr/lib/x86_64-linux-gnu/odbc/.
 ```
+Change config files base on custom server ip and database settings if it is necesary.
 Validate odbc connection
 
 ```
@@ -130,11 +131,54 @@ Import database wi4solutions
 ```
 mariadb>source /var/www/projects/wi4solutions/springboot/wi4solutions/database/wi4solutions.sql;
 ```
-And repeat
+Compile and package project with maven and install as service
 
 ```
-until finished
+#cd /var/www/projects/wi4solutions/springboot/wi4solutions
+#mvn  -Dmaven.test.skip=true -Dspring.profiles.active=prod,webpack,no-liquibase package
+#ln -s /var/www/projects/wi4solutions/springboot/wi4solutions/target/wi-4-solutions-0.0.1-SNAPSHOT.war wi4solutions
+# cd /var/www/projects/wi4solutions/springboot/wi4solutions/service
+#cp  wi4solutions.service  /etc/systemd/system/wi4solutions.service
+#systemctl enable wi4solutions.service
+#service start wi4solutions
+
 ```
+
+If want to see any log status, read file syslog to check any success or error message
+```
+#tail -200f /var/log/syslog
+
+```
+Can see application open port on syslog output:
+
+```
+Jan 13 13:45:07 vpn-client systemd[1]: Started Wi4solutions System.
+Jan 13 13:45:12 vpn-client java[19569]:         ██╗ ██╗   ██╗ ████████╗ ███████╗   ██████╗ ████████╗ ████████╗ ███████╗
+Jan 13 13:45:12 vpn-client java[19569]:         ██║ ██║   ██║ ╚══██╔══╝ ██╔═══██╗ ██╔════╝ ╚══██╔══╝ ██╔═════╝ ██╔═══██╗
+Jan 13 13:45:12 vpn-client java[19569]:         ██║ ████████║    ██║    ███████╔╝ ╚█████╗     ██║    ██████╗   ███████╔╝
+Jan 13 13:45:12 vpn-client java[19569]:   ██╗   ██║ ██╔═══██║    ██║    ██╔════╝   ╚═══██╗    ██║    ██╔═══╝   ██╔══██║
+Jan 13 13:45:12 vpn-client java[19569]:   ╚██████╔╝ ██║   ██║ ████████╗ ██║       ██████╔╝    ██║    ████████╗ ██║  ╚██╗
+Jan 13 13:45:12 vpn-client java[19569]:    ╚═════╝  ╚═╝   ╚═╝ ╚═══════╝ ╚═╝       ╚═════╝     ╚═╝    ╚═══════╝ ╚═╝   ╚═╝
+Jan 13 13:45:12 vpn-client java[19569]: :: JHipster 🤓  :: Running Spring Boot 2.0.6.RELEASE ::
+Jan 13 13:45:12 vpn-client java[19569]: :: https://www.jhipster.tech ::
+Jan 13 13:45:12 vpn-client java[19569]: 2019-01-13 13:45:12.439  INFO 19569 --- [           main] com.wi4solutions.Wi4SolutionsApp         : Starting Wi4SolutionsApp on vpn-client with PID 19569 (/var/www/projects/wi4solutions/springboot/wi4solutions/target/wi-4-solutions-0.0.1-SNAPSHOT.war started by root in /)
+Jan 13 13:45:12 vpn-client java[19569]: 2019-01-13 13:45:12.453  INFO 19569 --- [           main] com.wi4solutions.Wi4SolutionsApp         : The following profiles are active: prod,webpack,no-liquibase
+Jan 13 13:45:29 vpn-client java[19569]: 2019-01-13 13:45:29.359  INFO 19569 --- [           main] com.wi4solutions.config.WebConfigurer    : Web application configuration, using profiles: prod
+Jan 13 13:45:29 vpn-client java[19569]: 2019-01-13 13:45:29.377  INFO 19569 --- [           main] com.wi4solutions.config.WebConfigurer    : Web application fully configured
+Jan 13 13:45:38 vpn-client java[19569]: 2019-01-13 13:45:38.020  INFO 19569 --- [           main] com.wi4solutions.Wi4SolutionsApp         : Started Wi4SolutionsApp in 28.415 seconds (JVM running for 30.155)
+Jan 13 13:45:38 vpn-client java[19569]: 2019-01-13 13:45:38.035  INFO 19569 --- [           main] com.wi4solutions.Wi4SolutionsApp         :
+Jan 13 13:45:38 vpn-client java[19569]: ----------------------------------------------------------
+Jan 13 13:45:38 vpn-client java[19569]: #011Application 'wi4solutions' is running! Access URLs:
+Jan 13 13:45:38 vpn-client java[19569]: #011Local: #011#011http://localhost:8080/
+Jan 13 13:45:38 vpn-client java[19569]: #011External: #011http://127.0.1.1:8080/
+Jan 13 13:45:38 vpn-client java[19569]: #011Profile(s): #011[prod, webpack, no-liquibase]
+Jan 13 13:45:38 vpn-client java[19569]: ----------------------------------------------------------
+
+```
+
+Our application will be available on
+
+http://[Server Public Ip]:8080/
 
 End with an example of getting some data out of the system or using it for a little demo
 
