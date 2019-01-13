@@ -42,8 +42,51 @@ Asterisk Install
 #make install
 #make samples
 #cp /var/www/projects/wi4solutions/springboot/wi4solutions/asterisk/*conf /etc/asterisk
+#cp /var/www/projects/wi4solutions/springboot/wi4solutions/asterisk/odbc.ini /etc/.
+#cp /var/www/projects/wi4solutions/springboot/wi4solutions/asterisk/odbcinst.ini /etc/.
+#cp /var/www/projects/wi4solutions/springboot/wi4solutions/libmyodbc* /usr/lib/x86_64-linux-gnu/odbc/.
 ```
+Validate odbc connection
+
+```
+echo "select 1" | isql -v asterisk-connector
+```
+
+Out will be something like:
+```
++---------------------------------------+
+| Connected!                            |
+|                                       |
+| sql-statement                         |
+| help [tablename]                      |
+| quit                                  |
+|                                       |
++---------------------------------------+
+SQL> select 1
++---------------------+
+| 1                   |
++---------------------+
+| 1                   |
++---------------------+
+SQLRowCount returns 1
+1 rows fetched
+```
+Install g729 and  g2723 asterisk code:
+
+```
+#cd /var/www/projects/wi4solutions/springboot/wi4solutions/asterisk/codec
+#chmod +x codec_g729-ast160-gcc4-glibc-x86_64-pentium4.so
+#chmod +x codec_g723-ast160-gcc4-glibc-x86_64-pentium4.so
+#cp codec_g723-ast160-gcc4-glibc-x86_64-pentium4.so /usr/lib/asterisk/modules/.
+#cp codec_g729-ast160-gcc4-glibc-x86_64-pentium4.so /usr/lib/asterisk/modules/.
+#asterisk -rx  "module load codec_g723-ast160-gcc4-glibc-x86_64-pentium4.so"
+#asterisk -rx  "module load codec_g729-ast160-gcc4-glibc-x86_64-pentium4.so"
+#service asterisk restart
+
+```
+Change config files base on custom server ip and database settings.
 Clone project source code
+
 ```
 #apt install git
 #mkdir /var/www/projects
@@ -51,7 +94,7 @@ Clone project source code
 #cd /var/www/projects
 ```
 Clone repository with your custom git access: (After that you will have project source code in server to install it)
----------------------------------------------
+
 ```
 #git clone https://github.com/nesmor/wi4solutions.git
 Username for 'https://github.com/nesmor/wi4solutions.git':[github Username]
