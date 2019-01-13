@@ -24,6 +24,23 @@ apt install  default-mysql-server/kali-rolling
 apt install default-mysql-client/kali-rolling
 mysql_secure_installation
 ```
+Change config files base on custom server ip and database settings.
+Clone project source code
+
+```
+#apt install git
+#mkdir /var/www/projects
+#mkdir -p /var/www/projects
+#cd /var/www/projects
+```
+Clone repository with your custom git access: (After that you will have project source code in server to install it)
+
+```
+#git clone https://github.com/nesmor/wi4solutions.git
+Username for 'https://github.com/nesmor/wi4solutions.git':[github Username]
+Password for [github [github Username]] 'https://github.com/nesmor/wi4solutions.git':[github password]
+```
+
 Asterisk Install
 -------------------
 ```
@@ -84,22 +101,7 @@ Install g729 and  g2723 asterisk code:
 #service asterisk restart
 
 ```
-Change config files base on custom server ip and database settings.
-Clone project source code
 
-```
-#apt install git
-#mkdir /var/www/projects
-#mkdir -p /var/www/projects
-#cd /var/www/projects
-```
-Clone repository with your custom git access: (After that you will have project source code in server to install it)
-
-```
-#git clone https://github.com/nesmor/wi4solutions.git
-Username for 'https://github.com/nesmor/wi4solutions.git':[github Username]
-Password for [github [github Username]] 'https://github.com/nesmor/wi4solutions.git':[github password]
-```
 Install java and maven
 -----------------------------
 ```
