@@ -100,7 +100,7 @@ public class CallReportResource {
         Calendar calendar = Calendar.getInstance();	
         java.util.Date today = new java.util.Date();
         calendar.setTime(today);
-        calendar.set(Calendar.MONTH, 3);
+       // calendar.set(Calendar.MONTH, 3);
         																																																																																																																																																																																																																																						fromDate = new java.sql.Date(calendar.getTime().getTime());
 		toDate = fromDate;
         return callReportRepository.findByDate(fromDate, toDate);       
@@ -122,7 +122,7 @@ public class CallReportResource {
         Calendar calendar = Calendar.getInstance();	
         java.util.Date today = new java.util.Date();
         calendar.setTime(today);
-        calendar.set(Calendar.MONTH, 3);
+      //  calendar.set(Calendar.MONTH, 3);
         
         switch (period) {
 			case "today":
