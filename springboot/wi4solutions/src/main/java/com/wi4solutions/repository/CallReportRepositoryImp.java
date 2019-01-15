@@ -84,11 +84,12 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		List<Object[]> reports = null;
 		Query q = em.createQuery(
 				"SELECT AVG(HOUR(c.calldate)) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
-				"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
+				"SUM(c.billsec) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
 				"WHERE cd.disposition != 'ANSWERED' AND  HOUR(cd.calldate) = HOUR(c.calldate)) AS NOT_CONNECTED " + 
 				"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
-				"AND c.duration > 0 AND " + 
-				"DATE(c.calldate) = :date GROUP BY HOUR(c.calldate)");
+				"AND c.billsec > 0 AND " + 
+				"DATE(c.calldate) = :date GROUP BY HOUR(c.calldate)");//si answered = true y billsec > 0 hay registros en no answer porque los busca,
+		// debido a que la condicion se cumple, sino no busca los registros es decir answer = false
 		q.setParameter("date", date);
 		reports = q.getResultList();
 		return (List<CallReport>)  reports.stream().map(e -> {return this.mapCallReport(e);}).collect(Collectors.toList());
@@ -101,10 +102,10 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		List<Object[]> reports = null;
 		Query q = em.createQuery(
 				"SELECT DATE(c.calldate) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
-				"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
+				"SUM(c.billsec) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
 				"WHERE cd.disposition != 'ANSWERED' AND  DATE(cd.calldate) = DATE(c.calldate)) AS NOT_CONNECTED " + 
 				"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
-				"AND c.duration > 0 AND " + 
+				"AND c.billsec > 0 AND " + 
 				"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY DATE(c.calldate)");
 		q.setParameter("fromDate", fromDate);
 		q.setParameter("toDate", toDate);
@@ -127,8 +128,14 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		callReport.setTotalDuration((Long) data[2]);
 		callReport.setFailedCalls((Long)data[3]);
 		callReport.setTotalCalls(callReport.getConnectedCalls() + callReport.getFailedCalls());
-		callReport.setAcd(callReport.getTotalDuration().floatValue() / callReport.getConnectedCalls().floatValue());
-		callReport.setAsr(callReport.getConnectedCalls().floatValue() / callReport.getTotalCalls().floatValue());
+		callReport.setAsr(0f);
+		callReport.setAcd(0f);
+		if(callReport.getConnectedCalls().floatValue() != 0) {
+			callReport.setAcd(callReport.getTotalDuration().floatValue() / callReport.getConnectedCalls().floatValue());
+        }
+        if(callReport.getTotalCalls().floatValue() != 0) {
+        	callReport.setAsr(callReport.getConnectedCalls().floatValue() / callReport.getTotalCalls().floatValue());
+        }
 		return callReport;
 	}
 	
@@ -163,10 +170,15 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		}else if(data[4] instanceof Integer){
 			callReport.setFailedCalls(((Integer)data[4]).longValue());
 		}
-		
+		callReport.setAsr(0f);
+		callReport.setAcd(0f);
 		callReport.setTotalCalls(callReport.getConnectedCalls() + callReport.getFailedCalls());
-		callReport.setAcd(callReport.getTotalDuration().floatValue() / callReport.getConnectedCalls().floatValue());
-		callReport.setAsr(callReport.getConnectedCalls().floatValue() / callReport.getTotalCalls().floatValue());
+		if(callReport.getConnectedCalls().floatValue() != 0) {
+			callReport.setAcd(callReport.getTotalDuration().floatValue() / callReport.getConnectedCalls().floatValue());
+        }
+        if(callReport.getTotalCalls().floatValue() != 0) {
+        	callReport.setAsr(callReport.getConnectedCalls().floatValue() / callReport.getTotalCalls().floatValue());
+        }
 		return callReport;
 	}
 	
@@ -177,6 +189,8 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
          report.setFailedCalls(0l);
          report.setTotalCalls(0l);
          report.setTotalDuration(0l);
+         report.setAsr(0f);
+         report.setAcd(0f);
          
          this.findByDate(fromDate, toDate).stream().forEach(r ->{
          		report.setFailedCalls(report.getFailedCalls() + r.getFailedCalls());
@@ -184,8 +198,12 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
                 report.setTotalCalls(report.getFailedCalls() + report.getConnectedCalls());
                 report.setTotalDuration(report.getTotalDuration() + r.getTotalDuration());
          });  
-         report.setAcd(report.getTotalDuration().floatValue() / report.getConnectedCalls().floatValue());
-         report.setAsr(report.getConnectedCalls().floatValue() / report.getTotalCalls().floatValue());
+         if(report.getConnectedCalls().floatValue() != 0) {
+        	 report.setAcd(report.getTotalDuration().floatValue() / report.getConnectedCalls().floatValue());
+         }
+         if(report.getTotalCalls().floatValue() != 0) {
+        	 report.setAsr(report.getConnectedCalls().floatValue() / report.getTotalCalls().floatValue());
+         }
          reports.add(report);
          return reports;
     	
