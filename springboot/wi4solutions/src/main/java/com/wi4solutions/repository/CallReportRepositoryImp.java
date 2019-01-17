@@ -34,21 +34,24 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		switch(type) {
 			case "week":
 				 q = em.createQuery(
-						"SELECT YEAR(c.calldate), WEEK(c.calldate) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
-						"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
-						"WHERE cd.disposition != 'ANSWERED' AND  WEEK(cd.calldate) = WEEK(c.calldate)) AS NOT_CONNECTED " + 
-						"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
-						"AND c.duration > 0 AND " + 
-						"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY WEEK(c.calldate) ORDER BY YEAR(c.calldate) DESC, MONTH(c.calldate) ASC ");
+						 "SELECT YEAR(c.calldate), WEEK(c.calldate) AS H ," +
+						 "(SELECT CONCAT(COUNT(cdr.id),'|',SUM(cdr.billsec)) FROM  CallDetailRecord   cdr WHERE cdr.disposition = 'ANSWERED' AND WEEK(cdr.calldate) = WEEK(c.calldate)) AS CONNECTED_CALLS, " + 
+						 "(SELECT COUNT(cd.id) FROM CallDetailRecord cd WHERE cd.disposition != 'ANSWERED' AND  WEEK(cd.calldate) = WEEK(c.calldate)) AS NOT_CONNECTED " +
+						 "FROM  CallDetailRecord   c " +
+						 "WHERE DATE(c.calldate) BETWEEN :fromDate AND :toDate   GROUP BY WEEK(c.calldate) ORDER BY YEAR(c.calldate) DESC, MONTH(c.calldate) ASC " 
+						);
+				 
 			break;
 			case "monthy":
 				 q = em.createQuery(
-						"SELECT YEAR(c.calldate), MONTH(c.calldate) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
-						"SUM(c.duration) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
-						"WHERE cd.disposition != 'ANSWERED' AND  MONTH(cd.calldate) = MONTH(c.calldate)) AS NOT_CONNECTED " + 
-						"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
-						"AND c.duration > 0 AND " + 
-						"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY MONTH(c.calldate) ORDER BY YEAR(c.calldate) DESC, WEEK(c.calldate) ASC ");
+						 "SELECT YEAR(c.calldate), MONTH(c.calldate) AS H ," + 
+						 "(SELECT CONCAT(COUNT(cdr.id),'|',SUM(cdr.billsec)) FROM  CallDetailRecord   cdr WHERE cdr.disposition = 'ANSWERED' AND MONTH(cdr.calldate) = MONTH(c.calldate))" + 
+						 "AS CONNECTED_CALLS,"  +   
+						 "(SELECT COUNT(cd.id) FROM CallDetailRecord cd " +   
+						 "WHERE cd.disposition != 'ANSWERED' AND  MONTH(cd.calldate) = MONTH(c.calldate)) AS NOT_CONNECTED " +  
+						 "FROM CallDetailRecord c  WHERE " +
+						 "DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY MONTH(c.calldate) ORDER BY YEAR(c.calldate) DESC, WEEK(c.calldate) ASC"
+						);
 		   break;
 		
 		
@@ -78,18 +81,35 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 	}
 	
 	
+//	@Override
+//	public List<CallReport> findByHour(Date date) {
+//		// TODO Auto-generated method stub
+//		List<Object[]> reports = null;
+//		Query q = em.createQuery(
+//				"SELECT AVG(HOUR(c.calldate)) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
+//				"SUM(c.billsec) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
+//				"WHERE cd.disposition != 'ANSWERED' AND  HOUR(cd.calldate) = HOUR(c.calldate)) AS NOT_CONNECTED " + 
+//				"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
+//				"AND c.billsec > 0 AND " + 
+//				"DATE(c.calldate) = :date GROUP BY HOUR(c.calldate)");//si answered = true y billsec > 0 hay registros en no answer porque los busca,
+//		// debido a que la condicion se cumple, sino no busca los registros es decir answer = false
+//		q.setParameter("date", date);
+//		reports = q.getResultList();
+//		return (List<CallReport>)  reports.stream().map(e -> {return this.mapCallReport(e);}).collect(Collectors.toList());
+//	}
+	
 	@Override
 	public List<CallReport> findByHour(Date date) {
 		// TODO Auto-generated method stub
 		List<Object[]> reports = null;
 		Query q = em.createQuery(
-				"SELECT AVG(HOUR(c.calldate)) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
-				"SUM(c.billsec) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
-				"WHERE cd.disposition != 'ANSWERED' AND  HOUR(cd.calldate) = HOUR(c.calldate)) AS NOT_CONNECTED " + 
-				"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
-				"AND c.billsec > 0 AND " + 
-				"DATE(c.calldate) = :date GROUP BY HOUR(c.calldate)");//si answered = true y billsec > 0 hay registros en no answer porque los busca,
-		// debido a que la condicion se cumple, sino no busca los registros es decir answer = false
+				"SELECT HOUR(c.calldate) AS H , " + 
+				"(SELECT CONCAT(COUNT(cdr.id),'|',SUM(cdr.billsec)) FROM CallDetailRecord cdr WHERE cdr.disposition = 'ANSWERED' AND HOUR(cdr.calldate) = HOUR(c.calldate)) " + 
+				"AS CONNECTED_CALLS, " + 
+				"(SELECT COUNT(cd.id) FROM CallDetailRecord cd WHERE cd.disposition != 'ANSWERED' AND HOUR(cd.calldate) = HOUR(c.calldate))" + 
+				"AS NOT_CONNECTED " + 
+				"FROM CallDetailRecord c WHEREDATE(c.calldate) =:date GROUP BY HOUR(c.calldate)" 
+				);
 		q.setParameter("date", date);
 		reports = q.getResultList();
 		return (List<CallReport>)  reports.stream().map(e -> {return this.mapCallReport(e);}).collect(Collectors.toList());
@@ -101,12 +121,12 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		// TODO Auto-generated method stub
 		List<Object[]> reports = null;
 		Query q = em.createQuery(
-				"SELECT DATE(c.calldate) AS H , COUNT(c.id) AS CONNECTED_CALLS, " + 
-				"SUM(c.billsec) AS DURATION, (SELECT COUNT(cd.id) FROM CallDetailRecord cd  " + 
-				"WHERE cd.disposition != 'ANSWERED' AND  DATE(cd.calldate) = DATE(c.calldate)) AS NOT_CONNECTED " + 
-				"FROM CallDetailRecord c  WHERE c.disposition = 'ANSWERED' " + 
-				"AND c.billsec > 0 AND " + 
-				"DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY DATE(c.calldate)");
+				"SELECT DATE(c.calldate) AS H , " + 
+				"(SELECT CONCAT(COUNT(cdr.id),'|',SUM(cdr.billsec)) FROM CallDetailRecord cdr WHERE cdr.disposition = 'ANSWERED' AND DATE(cdr.calldate) = DATE(c.calldate)) " + 
+				"AS CONNECTED_CALLS, " + 
+				"(SELECT COUNT(cd.id) FROM CallDetailRecord cd WHERE cd.disposition != 'ANSWERED' AND DATE(cd.calldate) = DATE(c.calldate))" + 
+				"AS NOT_CONNECTED " + 
+				"FROM CallDetailRecord c WHERE DATE(c.calldate) BETWEEN :fromDate AND :toDate  GROUP BY DATE(c.calldate)");
 		q.setParameter("fromDate", fromDate);
 		q.setParameter("toDate", toDate);
 		reports = q.getResultList();
@@ -152,23 +172,23 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		}else if(data[1] instanceof Integer){
 			callReport.setWeek((Integer)data[1]);
 		}
-	
-		if(data[2] instanceof Long){
-			callReport.setConnectedCalls((Long) data[2]);
-		}else if(data[2] instanceof Integer){
-			callReport.setConnectedCalls(((Integer)data[2]).longValue());
+		if( data[2] != null && (String)data[2] != "" && ((String) data[2]).contains("|")) {
+			String[] answeredCalls  = ((String)data[2]).split("|");
+			try {
+				callReport.setConnectedCalls(new Long(answeredCalls[0]));
+			}catch (Exception e) {
+				callReport.setConnectedCalls(0l);
+			}
+			try {
+				callReport.setTotalDuration(new Long(answeredCalls[1]));
+			}catch (Exception e) {
+				callReport.setTotalDuration(0l);
+			}
 		}
-		
 		if(data[3] instanceof Long){
-			callReport.setTotalDuration((Long) data[3]);
+			callReport.setFailedCalls((Long) data[3]);
 		}else if(data[3] instanceof Integer){
-			callReport.setTotalDuration(((Integer)data[3]).longValue());
-		}
-		
-		if(data[4] instanceof Long){
-			callReport.setFailedCalls((Long) data[4]);
-		}else if(data[4] instanceof Integer){
-			callReport.setFailedCalls(((Integer)data[4]).longValue());
+			callReport.setFailedCalls(((Integer)data[3]).longValue());
 		}
 		callReport.setAsr(0f);
 		callReport.setAcd(0f);
