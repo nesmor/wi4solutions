@@ -98,10 +98,6 @@ public class CallReportResource {
     public List<CallReport> getAllCallReportsByDate(@RequestParam("fromDate") Date fromDate, @RequestParam("toDate") Date toDate) {
         log.debug("REST request to get all CallReports");
         Calendar calendar = Calendar.getInstance();	
-        java.util.Date today = new java.util.Date();
-        calendar.setTime(today);
-       // calendar.set(Calendar.MONTH, 3);
-        																																																																																																																																																																																																																																						fromDate = new java.sql.Date(calendar.getTime().getTime());
 		toDate = fromDate;
         return callReportRepository.findByDate(fromDate, toDate);       
     } 
@@ -143,11 +139,10 @@ public class CallReportResource {
 				reports = callReportRepository.getResume(fromDate, toDate);
 			break;
 			case "last-month":
-				boolean flag = false;
 				calendar.set(Calendar.DAY_OF_MONTH, 1);
 				if(calendar.get(Calendar.MONTH) == 0) {
-					flag = true;
 					calendar.set(Calendar.MONTH, 11);
+					calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) - 1);
 				}else {
 					calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
 				}

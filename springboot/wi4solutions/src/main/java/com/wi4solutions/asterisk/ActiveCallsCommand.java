@@ -19,6 +19,6 @@ public class ActiveCallsCommand extends AbstractAction{
 		this.message = "wi4SolutionsApp.asterisk.message.success";
 	}
 	
-	public String getResponseString() {return null;}
+	public String getResponseString() {return this.getResponse();}
 
 }

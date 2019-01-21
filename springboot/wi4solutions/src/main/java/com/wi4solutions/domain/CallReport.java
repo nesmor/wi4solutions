@@ -94,49 +94,49 @@ public class CallReport {
 	private Integer week;
 	
 	@Id
-	private Long failedCalls;
+	private Integer failedCalls;
 	
-	private Long totalCalls;
+	private Integer totalCalls;
 	
-	private Long totalDuration;
+	private Integer totalDuration;
 	
 	private Float asr;
 	
 	private Float acd;
 	
-	private Long minutes;
+	private Integer minutes;
 	
-	private Long connectedCalls;
+	private Integer connectedCalls;
 	
 	private String reportType;
 	
-	private Double hour;
+	private Integer hour;
 	
 	private Date date;
 	
 
-	public Long getFailedCalls() {
+	public Integer getFailedCalls() {
 		return failedCalls;
 	}
 
-	public void setFailedCalls(Long failedCalls) {
+	public void setFailedCalls(Integer failedCalls) {
 		this.failedCalls = failedCalls;
 	}
 
-	public Long getTotalCalls() {
+	public Integer getTotalCalls() {
 		this.totalCalls = this.connectedCalls + this.failedCalls;
 		return this.totalCalls;
 	}
 
-	public void setTotalCalls(Long totalCalls) {
+	public void setTotalCalls(Integer totalCalls) {
 		this.totalCalls = totalCalls;
 	}
 
-	public Long getTotalDuration() {
+	public Integer getTotalDuration() {
 		return totalDuration;
 	}
 
-	public void setTotalDuration(Long totalDuration) {
+	public void setTotalDuration(Integer totalDuration) {
 		this.totalDuration = totalDuration;
 	}
 
@@ -162,11 +162,11 @@ public class CallReport {
 		this.acd = acd;
 	}
 
-	public Long getMinutes() {
+	public Integer getMinutes() {
 		return minutes;
 	}
 
-	public void setMinutes(Long minutes) {
+	public void setMinutes(Integer minutes) {
 		this.minutes = minutes;
 	}
 
@@ -186,11 +186,11 @@ public class CallReport {
 		this.toDate = toDate;
 	}
 
-	public Long getConnectedCalls() {
+	public Integer getConnectedCalls() {
 		return connectedCalls;
 	}
 
-	public void setConnectedCalls(Long connectedCalls) {
+	public void setConnectedCalls(Integer connectedCalls) {
 		this.connectedCalls = connectedCalls;
 	}
 
@@ -203,11 +203,11 @@ public class CallReport {
 	}
 	
 
-	public Double getHour() {
+	public Integer getHour() {
 		return hour;
 	}
 
-	public void setHour(Double hour) {
+	public void setHour(Integer hour) {
 		this.hour = hour;
 	}
 

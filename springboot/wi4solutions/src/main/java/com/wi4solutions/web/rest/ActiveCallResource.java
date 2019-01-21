@@ -3,6 +3,7 @@ package com.wi4solutions.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.wi4solutions.asterisk.CommandFailedException;
 import com.wi4solutions.domain.ActiveCall;
+import com.wi4solutions.domain.ActiveCalls;
 import com.wi4solutions.domain.Call;
 import com.wi4solutions.repository.AsteriskRepository;
 import com.wi4solutions.repository.AsteriskRepositoryImp;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,9 +91,11 @@ public class ActiveCallResource {
      */
     @GetMapping("/active-calls")
     @Timed
-    public String getAllActiveCalls() {
+    public List<ActiveCalls> getAllActiveCalls() {
         log.debug("REST request to get all ActiveCalls");
-        return activeCallRepository.findAll();
+        List<ActiveCalls> calls = new ArrayList();
+        calls.add(new ActiveCalls(activeCallRepository.findAll()));
+        return calls;
     }
 
     @GetMapping("/reload")

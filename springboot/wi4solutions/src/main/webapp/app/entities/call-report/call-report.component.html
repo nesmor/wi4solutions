@@ -7,17 +7,18 @@
             <div class="row">
             <h4 jhiTranslate="wi4SolutionsApp.callReport.filter.tittle">Filter by date</h4><h4 style="color:red;">&nbsp;&nbsp; {{reportType}} </h4>
             </div>
-            <div class="input-group mb-3" *ngIf="! (reportType == 'always' || reportType == 'last-month' || reportType == 'month' || reportType == 'yesterday' )">
+            <div class="input-group mb-3" *ngIf="! (reportType == 'always' || reportType == 'today'|| reportType == 'last-month' || reportType == 'month' || reportType == 'yesterday' )">
                 <div class="input-group-prepend">
                     <span class="input-group-text" jhiTranslate="wi4SolutionsApp.callReport.filter.from">from</span>
                 </div>
                 <input type="date" class="form-control" name="start" [(ngModel)]="fromDate" (ngModelChange)="transition()" required/>
-
-                <div class="input-group-append">
-                    <span class="input-group-text" jhiTranslate="wi4SolutionsApp.callReport.filter.to">To</span>
-                </div>
-                <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()" required/>
-                <input type="hidden" id="reportType" [(ngModel)]="reportType"  />
+				<div *ngIf="! (reportType == 'date')">
+	               <div class="input-group-append">
+	                   <span class="input-group-text" jhiTranslate="wi4SolutionsApp.callReport.filter.to">To</span>
+	               </div>
+	               <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()" required/>
+               </div>
+	           <input type="hidden" id="reportType" [(ngModel)]="reportType"  />
             </div>
         </div>
     </div>

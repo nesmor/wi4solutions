@@ -3,7 +3,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription, timer, pipe } from 'rxjs';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { IActiveCall } from 'app/shared/model/active-call.model';
+import { IActiveCalls } from 'app/shared/model/active-calls.model';
 import { Principal } from 'app/core';
 import { ActiveCallService } from './active-call.service';
 
@@ -13,7 +13,8 @@ import { ActiveCallService } from './active-call.service';
     styles: ['.table-responsive { font-size: 80%; }']
 })
 export class ActiveCallComponent implements OnInit, OnDestroy {
-    activeCalls: IActiveCall[];
+    activeCalls: IActiveCalls[];
+    calls: string[];
     currentAccount: any;
     eventSubscriber: Subscription;
     interval: any;
@@ -27,8 +28,11 @@ export class ActiveCallComponent implements OnInit, OnDestroy {
 
     loadAll() {
         this.activeCallService.query().subscribe(
-            (res: HttpResponse<IActiveCall[]>) => {
+            (res: HttpResponse<IActiveCalls[]>) => {
                 this.activeCalls = res.body;
+                let s = String(this.activeCalls[0].calls);
+                console.log(s);
+                this.calls = s.split('----');
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -37,7 +41,7 @@ export class ActiveCallComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.interval = setInterval(() => {
             this.loadAll();
-        }, 1000);
+        }, 2000);
 
         this.principal.identity().then(account => {
             this.currentAccount = account;
@@ -50,8 +54,8 @@ export class ActiveCallComponent implements OnInit, OnDestroy {
         clearInterval(this.interval);
     }
 
-    trackId(index: number, item: IActiveCall) {
-        return item.id;
+    trackId(index: number, item: IActiveCalls) {
+        return item.calls;
     }
 
     registerChangeInActiveCalls() {

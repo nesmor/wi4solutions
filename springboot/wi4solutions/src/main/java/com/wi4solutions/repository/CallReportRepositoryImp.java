@@ -73,10 +73,10 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		findAll.execute();
 		report.setAcd(((Long)findAll.getOutputParameterValue(CallReport.PARAM_OUT_ACD)).floatValue());
 		report.setAsr((Float)findAll.getOutputParameterValue(CallReport.PARAM_OUT_ASR));
-		report.setTotalCalls((Long)findAll.getOutputParameterValue(CallReport.PARAM_OUT_CONNECTED_TOTAL_CALLS));
-		report.setTotalDuration((Long)findAll.getOutputParameterValue(CallReport.PARAM_OUT_TOTAL_DURATION));
-		report.setFailedCalls((Long)findAll.getOutputParameterValue(CallReport.PARAM_OUT_FAILED_CALLS));
-		report.setConnectedCalls((Long)findAll.getOutputParameterValue(CallReport.PARAM_OUT_CONNECTED_CALLS));
+		report.setTotalCalls((Integer)findAll.getOutputParameterValue(CallReport.PARAM_OUT_CONNECTED_TOTAL_CALLS));
+		report.setTotalDuration((Integer)findAll.getOutputParameterValue(CallReport.PARAM_OUT_TOTAL_DURATION));
+		report.setFailedCalls((Integer)findAll.getOutputParameterValue(CallReport.PARAM_OUT_FAILED_CALLS));
+		report.setConnectedCalls((Integer)findAll.getOutputParameterValue(CallReport.PARAM_OUT_CONNECTED_CALLS));
 		return report;
 	}
 	
@@ -108,7 +108,7 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 				"AS CONNECTED_CALLS, " + 
 				"(SELECT COUNT(cd.id) FROM CallDetailRecord cd WHERE cd.disposition != 'ANSWERED' AND HOUR(cd.calldate) = HOUR(c.calldate))" + 
 				"AS NOT_CONNECTED " + 
-				"FROM CallDetailRecord c WHEREDATE(c.calldate) =:date GROUP BY HOUR(c.calldate)" 
+				"FROM CallDetailRecord c WHERE DATE(c.calldate) =:date GROUP BY HOUR(c.calldate)" 
 				);
 		q.setParameter("date", date);
 		reports = q.getResultList();
@@ -141,12 +141,17 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 		CallReport callReport = new CallReport();
 		if(data[0] instanceof Date){
 			callReport.setDate((Date)data[0]);
-		}else {
-			callReport.setHour((Double)data[0]);
+		}else if(data[0] != null){
+			callReport.setHour(new Integer(data[0].toString()));
 		}
-		callReport.setConnectedCalls((Long) data[1]);
-		callReport.setTotalDuration((Long) data[2]);
-		callReport.setFailedCalls((Long)data[3]);
+		if(data[1] != null && data[1].toString().contains("|")) {
+			this.processCallsConnected(data[1].toString(), callReport);
+		} else {
+			callReport.setConnectedCalls(0);
+			callReport.setTotalDuration(0);
+		}
+		
+		callReport.setFailedCalls(new Integer(data[2].toString()));
 		callReport.setTotalCalls(callReport.getConnectedCalls() + callReport.getFailedCalls());
 		callReport.setAsr(0f);
 		callReport.setAcd(0f);
@@ -161,35 +166,15 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 	
 	private CallReport mapCallReportType(Object[] data) {
 		CallReport callReport = new CallReport();
-		if(data[0] instanceof Double){
-			callReport.setYear(((Double)data[0]).intValue());
-		}else if(data[0] instanceof Integer){
-			callReport.setYear((Integer)data[0]);
+		callReport.setYear(new Integer(data[0].toString()));
+		callReport.setWeek(new Integer(data[1].toString()));
+		if(data[2] != null && data[2].toString().contains("|")) {
+			this.processCallsConnected(data[2].toString(), callReport);
+		} else {
+			callReport.setConnectedCalls(0);
+			callReport.setTotalDuration(0);
 		}
-		
-		if(data[1] instanceof Double){
-			callReport.setWeek(((Double)data[1]).intValue());
-		}else if(data[1] instanceof Integer){
-			callReport.setWeek((Integer)data[1]);
-		}
-		if( data[2] != null && (String)data[2] != "" && ((String) data[2]).contains("|")) {
-			String[] answeredCalls  = ((String)data[2]).split("|");
-			try {
-				callReport.setConnectedCalls(new Long(answeredCalls[0]));
-			}catch (Exception e) {
-				callReport.setConnectedCalls(0l);
-			}
-			try {
-				callReport.setTotalDuration(new Long(answeredCalls[1]));
-			}catch (Exception e) {
-				callReport.setTotalDuration(0l);
-			}
-		}
-		if(data[3] instanceof Long){
-			callReport.setFailedCalls((Long) data[3]);
-		}else if(data[3] instanceof Integer){
-			callReport.setFailedCalls(((Integer)data[3]).longValue());
-		}
+		callReport.setFailedCalls(new Integer(data[3].toString()));
 		callReport.setAsr(0f);
 		callReport.setAcd(0f);
 		callReport.setTotalCalls(callReport.getConnectedCalls() + callReport.getFailedCalls());
@@ -205,10 +190,10 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
 	 public List<CallReport> getResume(Date fromDate, Date toDate){
     	 List<CallReport> reports = new ArrayList();
          CallReport report = new CallReport();
-         report.setConnectedCalls(0l);
-         report.setFailedCalls(0l);
-         report.setTotalCalls(0l);
-         report.setTotalDuration(0l);
+         report.setConnectedCalls(0);
+         report.setFailedCalls(0);
+         report.setTotalCalls(0);
+         report.setTotalDuration(0);
          report.setAsr(0f);
          report.setAcd(0f);
          
@@ -228,5 +213,22 @@ public class CallReportRepositoryImp implements CallReportRepositoryCustom{
          return reports;
     	
     }
+	 
+	 private void processCallsConnected(String data, CallReport callReport) {
+		 if( data != null && (String)data != "" && ((String) data).contains("|")) {
+			String[] answeredCalls  = data.split("\\|");
+			try {
+				callReport.setConnectedCalls(new Integer(answeredCalls[0]));
+			}catch (Exception e) {
+				callReport.setConnectedCalls(0);
+			}
+			try {
+				callReport.setTotalDuration(new Integer(answeredCalls[1]));
+			}catch (Exception e) {
+				callReport.setTotalDuration(0);
+			}
+		}
+		 
+	 }
 
 }

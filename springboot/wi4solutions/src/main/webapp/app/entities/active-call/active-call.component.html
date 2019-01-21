@@ -5,8 +5,22 @@
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive" *ngIf="activeCalls">
+      <div  *ngFor="let call of calls">
+        <div class="row">
+          <div class="col-2">
+          </div>
+          <div class="col-6">
+            <p>{{call}}</p>
+          </div>
+        </div>
+      </div>
+
+    <!--
+    <p  *ngFor="let activeCall of activeCalls ;trackBy: trackId">
+      <div id="calls">{{activeCall.calls}}</div>
+    </p>
         <table class="table table-striped">
-            <thead>
+<thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="wi4SolutionsApp.activeCall.number">Number</span></th>
@@ -28,7 +42,7 @@
                 <td>{{activeCall.gateway}}</td>
                 <td>{{activeCall.duration}}</td>
                 <td>{{activeCall.status}}</td>
-                <!--  
+                <!--
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
@@ -52,9 +66,9 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
-                </td>-->
+                </td>
             </tr>
             </tbody>
-        </table>
+        </table>-->
     </div>
 </div>

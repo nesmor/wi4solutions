@@ -118,7 +118,7 @@ jhipster:
             host: localhost
             port: 5000
             queue-size: 512
-
+#186.14.33.161
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
@@ -128,4 +128,14 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+    asterisk:
+        username: manager
+        password: 4st3r1sk
+        host: 129.18.200.2
+        channel: SIP/
+        timeout: 2000
+        context: test-calls
+        application: Playback(tt-monkeys)
+        extend: 123
+        priority : 1
