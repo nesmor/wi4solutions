@@ -32,7 +32,7 @@ export class ActiveCallComponent implements OnInit, OnDestroy {
                 this.activeCalls = res.body;
                 let s = String(this.activeCalls[0].calls);
                 console.log(s);
-                this.calls = s.split('----');
+                this.calls = s.split('*');
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
