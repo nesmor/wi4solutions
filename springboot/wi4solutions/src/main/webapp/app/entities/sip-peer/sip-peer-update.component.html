@@ -7,7 +7,7 @@
                 <div class="form-group" [hidden]="!sipPeer.id">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="sipPeer.id" required readonly />
+                        [(ngModel)]="sipPeer.id"  readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.name" for="field_name">Name</label>
@@ -19,7 +19,7 @@
                     <input type="text" class="form-control" name="host" id="field_host"
                         [(ngModel)]="sipPeer.host"  required />
                 </div>
-                <div class="form-group" hidden="true">
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="wi4SolutionsApp.sipPeer.nat" for="field_nat">Nat</label>
                     <input type="text" class="form-control" name="nat" id="field_nat"
                         [(ngModel)]="sipPeer.nat" placeholder="force_rport,yes,no,comedia" required />
