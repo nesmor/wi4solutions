@@ -138,7 +138,6 @@ Compile and package project with maven and install as service
 ```
 #cd /var/www/projects/wi4solutions/springboot/wi4solutions
 #mvn  -Dmaven.test.skip=true -Dspring.profiles.active=prod,webpack,no-liquibase package
-#ln -s /var/www/projects/wi4solutions/springboot/wi4solutions/target/wi-4-solutions-0.0.1-SNAPSHOT.war wi4solutions
 # cd /var/www/projects/wi4solutions/springboot/wi4solutions/command
 #cp  wi4solutions.service  /etc/systemd/system/wi4solutions.service
 #systemctl enable wi4solutions.service
