@@ -100,7 +100,8 @@ Install g729 and  g2723 asterisk code:
 #cp codec_g729-ast160-gcc4-glibc-x86_64-pentium4.so /usr/lib/asterisk/modules/.
 #asterisk -rx  "module load codec_g723-ast160-gcc4-glibc-x86_64-pentium4.so"
 #asterisk -rx  "module load codec_g729-ast160-gcc4-glibc-x86_64-pentium4.so"
-#service asterisk restart
+#asterisk -rx  "core restart now"
+
 
 ```
 
@@ -138,10 +139,10 @@ Compile and package project with maven and install as service
 #cd /var/www/projects/wi4solutions/springboot/wi4solutions
 #mvn  -Dmaven.test.skip=true -Dspring.profiles.active=prod,webpack,no-liquibase package
 #ln -s /var/www/projects/wi4solutions/springboot/wi4solutions/target/wi-4-solutions-0.0.1-SNAPSHOT.war wi4solutions
-# cd /var/www/projects/wi4solutions/springboot/wi4solutions/service
+# cd /var/www/projects/wi4solutions/springboot/wi4solutions/command
 #cp  wi4solutions.service  /etc/systemd/system/wi4solutions.service
 #systemctl enable wi4solutions.service
-#service start wi4solutions
+
 
 ```
 
