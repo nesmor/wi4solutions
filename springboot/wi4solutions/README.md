@@ -62,7 +62,7 @@ Asterisk Install
 #cp /var/www/projects/wi4solutions/springboot/wi4solutions/asterisk/odbc.ini /etc/.
 #cp /var/www/projects/wi4solutions/springboot/wi4solutions/asterisk/odbcinst.ini /etc/.
 #cp /var/www/projects/wi4solutions/springboot/wi4solutions/libmyodbc* /usr/lib/x86_64-linux-gnu/odbc/.
-#apt install unixodbc uniodbc-dev unixodbc-bin
+#apt install unixodbc unixodbc-dev unixodbc-bin
 ```
 Change config files base on custom server ip and database settings if it is necesary.
 Validate odbc connection
@@ -124,7 +124,8 @@ Log into mariadb
 #mysql -u root -h localhost -p
 #password XXXX
 mariadb> create database wi4solutions;
-mariadb> GRANT ALL PRIVILEGES ON .* to 'wi4solutions'@'localhost' IDENTIFIED BY 'w14s0l_!';
+mariadb> GRANT ALL PRIVILEGES ON *.* to 'wi4solutions'@'localhost' IDENTIFIED BY 'w14s0l_!';
+mariadb> GRANT ALL PRIVILEGES ON *.* to 'wi4solutions'@'%' IDENTIFIED BY 'w14s0l_!';
 mariadb> FLUSH PRIVILEGES;
 ```
 
