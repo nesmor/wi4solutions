@@ -44,8 +44,12 @@ Password for [github [github Username]] 'https://github.com/nesmor/wi4solutions.
 Asterisk Install
 -------------------
 ```
+
 #apt update && sudo apt upgrade
 #apt install wget build-essential subversion
+#get install multiarch-support
+#apt-get install default-libmysqlclient-dev
+#dpkg -i /var/www/projects/wi4solutions/springboot/wi4solutions/libs/libmysqlclient18_5.5.60-0+deb8u1_amd64.deb
 #cd /usr/src/
 #wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16-current.tar.gz
 #tar -zxf asterisk-16-current.tar.gz
@@ -53,6 +57,14 @@ Asterisk Install
 #cd asterisk/
 #contrib/scripts/get_mp3_source.sh
 #contrib/scripts/install_prereq install
+#make menuselect 
+
+```
+Check if this line permit select [] res_config_mysql . If has [XXX] res_config_mysql, we need to install mysql-client library, libmysqlclient-18 too
+
+```
+"On make menuselect must be [*] res_config_mysql "
+
 #./configure
 #make
 #make menuselect
